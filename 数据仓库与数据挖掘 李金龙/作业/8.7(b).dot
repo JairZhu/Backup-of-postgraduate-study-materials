@@ -1,0 +1,22 @@
+digraph decisionTree {
+	a1 [label="salary"];
+	a2 [label="junior"];
+	b2 [label="junior"];
+	c2 [label="senior"];
+	d2 [label="junior"];
+	e2 [label="department"];
+	f2 [label="senior"];
+	a3 [label="senior"];
+	b3 [label="junior"];
+	c3 [label="senior"];
+	
+	a1 -> a2 [label="26K...30K"];
+	a1 -> b2 [label="31K...35K"];
+	a1 -> c2 [label="36K...40K"];
+	a1 -> d2 [label="41K...45K"];
+	a1 -> e2 [label="46K...50K"];
+	a1 -> f2 [label="66K...70K"];
+	e2 -> a3 [label="sales"];
+	e2 -> b3 [label="systems"];
+	e2 -> c3 [label="secretary"];
+}

@@ -1,0 +1,11 @@
+find(T, i)
+	x = T.root
+	while true:
+		if x.left != T.nil and x.left.high >= i.low:
+			x = x.left
+		else if x.right != T.nil and x.right.high >= i.low:
+			x = x.right
+		else if x.high >= i.low and x.low <= i.high:
+			return x
+		else
+			return T.nil

@@ -1,0 +1,14 @@
+cost[n][n]
+visit[n]
+mincost = MAXINT
+def dfs(i, curcost):
+	if i > n:
+		if curcost < mincost:
+			mincost = curcost
+		return
+	for j = 1 to n:
+		if !visit[j] and curcost + cost[i][j] < mincost:
+			visit[j] = true
+			dfs(i + 1, curcost + cost[i][j])
+			visit[j] = false
+dfs(1, 0)

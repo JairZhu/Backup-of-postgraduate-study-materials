@@ -1,0 +1,21 @@
+time[n]
+minTime = MAXINT
+threadTime[k]
+map<work, thread>
+schedule<work, thread>
+dfs(1, 0)
+
+def dfs(i, curTime):
+	if i > n:
+		if curTime < minTime:
+			minTime = curTime
+			schedule = map
+		return
+	if curTime > minTime:
+			return
+	for j = 1 to k:
+		threadTime[j] += time[i]
+		map[i] = j
+		curTime = max(threadTime)
+		dfs(i + 1, curTime)
+		threadTime[j] -= time[i]

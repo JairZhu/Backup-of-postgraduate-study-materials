@@ -1,0 +1,22 @@
+subfind(y, i)
+	if i < y.left.size + 1:
+		return subfind(y.left, i)
+	else if i > y.left.size + 1:
+		return subfind(y.right, i - y.left.size - 1)
+	else
+		return y.key
+
+find(x,i)
+	if i <= x.right.size:
+		return subfind(x.right, i)
+	i -= x.right.size
+	y = x
+	while y.p != nil and y.p.left == y:
+		y = y.p
+		if i == 1:
+			return y.key
+		i -= 1
+		if i <= y.right.size:
+			return subfind(y.right, i)
+		i -= y.right.size
+	throw 找不到第i个后继
