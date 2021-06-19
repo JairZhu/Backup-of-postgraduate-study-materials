@@ -1,0 +1,202 @@
+<html dir="ltr" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="save" content="history" />
+    <xml>
+      <MSHelp:TOCTitle Title="Overview" />
+      <MSHelp:RLTitle Title="Overview" />
+      <MSHelp:Attr Name="DocSet" Value="docSet" />
+      <MSHelp:Attr Name="TopicType" Value="kbOrient" />
+      <MSHelp:Attr Name="Locale" Value="kbEnglish" />
+      <MSHelp:Attr Name="AssetId" Value="{GUID}" />
+    </xml>
+    <title>Overview</title>
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css" />
+    <script src="../local/EventUtilities.js" type="text/javascript" language="jscript"> </script>
+    <script src="../local/SplitScreen.js" type="text/javascript" language="jscript"> </script>
+    <script src="../local/Dropdown.js" type="text/javascript" language="jscript"> </script>
+    <script src="../local/script.js" type="text/javascript" language="jscript"> </script>
+  </head>
+  <body>
+    <input type="hidden" id="userDataCache" class="userDataStyle" />
+    <input type="hidden" id="hiddenScrollOffset" />
+    <img id="dropDownImage" style="display:none; height:0; width:0;" alt="DropDown image" src="../local/drpdown.gif" />
+    <img id="dropDownHoverImage" style="display:none; height:0; width:0;" alt="DropDownHover image" src="../local/drpdown_orange.gif" />
+    <img id="collapseImage" style="display:none; height:0; width:0;" alt="Collapse image" src="../local/collapse_all.gif" />
+    <img id="expandImage" style="display:none; height:0; width:0;" alt="Expand image" src="../local/expand_all.gif" />
+    <img id="collapseAllImage" style="display:none; height:0; width:0;" alt="CollapseAll image" src="../local/collall.gif" />
+    <img id="expandAllImage" style="display:none; height:0; width:0;" alt="ExpandAll image" src="../local/expall.gif" />
+    <img id="copyImage" style="display:none; height:0; width:0;" alt="Copy image" src="../local/copycode.gif" />
+    <img id="copyHoverImage" style="display:none; height:0; width:0;" alt="CopyHover image" src="../local/copycodeHighlight.gif" />
+    <div id="header">
+      <table width="100%" id="topTable">
+        <tr id="headerTableRow1">
+          <td align="left">
+            <span id="runningHeaderText">Windows Azure:  Worker Role Communication</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow2">
+          <td align="left">
+            <span id="nsrTitle">Overview</span>
+          </td>
+        </tr>
+        <tr id="headerTableRow3">
+          <td />
+        </tr>
+      </table>
+      <table width="100%" id="bottomTable" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <span onclick="ExpandCollapseAll(toggleAllImage)" onkeypress="ExpandCollapseAll_CheckKey(toggleAllImage)" tabindex="0" style="cursor:default;display:none;">
+              <img id="toggleAllImage" class="toggleAll" alt="CollapseAll image" src="../local/collall.gif" />
+              <label id="collapseAllLabel" for="toggleAllImage" style="display: none;">Collapse All</label>
+              <label id="expandAllLabel" for="toggleAllImage" style="display: none;">Expand All</label> </span>
+            <span id="languageFilterToolTip" onmouseover="languageFilterImage.src=dropDownHoverImage.src;" onmouseout="languageFilterImage.src=dropDownImage.src;" tabindex="0" style="cursor:default;">
+              <img id="languageFilterImage" alt="DropDown image" src="../local/drpdown.gif" />
+              <label id="showAllLabel" for="languageFilterImage" style="display: none;">Language Filter: All</label>
+              <label id="multipleLabel" for="languageFilterImage" style="display: none;">Language Filter: Multiple</label>
+              <label id="vbLabel" for="languageFilterImage" style="display: none;">Language Filter: Visual Basic</label>
+              <label id="csLabel" for="languageFilterImage" style="display: none;">Language Filter: C#</label>
+            </span>
+          </td>
+        </tr>
+      </table>
+      <div id="languageSpan">
+        <input type="checkbox" name="languageFilter" onclick="SetLanguage(this)" id="vbUsageCheckbox" />
+        <label class="languageFilter" for="vbUsageCheckbox">Visual Basic Usage</label>
+        <br />
+        <input type="checkbox" name="languageFilter" onclick="SetLanguage(this)" id="csCheckbox" />
+        <label class="languageFilter" for="csCheckbox">C#</label>
+        <br />
+      </div>
+    </div>
+    <div id="mainSection">
+      <div id="mainBody">
+        <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()" />
+        <p>Web roles in Windows Azure provide support for HTTP and HTTPS protocols through their endpoints. For other TCP/IP protocols and ports, external endpoints allow worker roles to expose Internet-facing services over ports other than 80 and 443. These endpoints can be bound to any process and provide the means to communicate externally using a variety of TCP-based application protocols.</p>
+        <p>Similarly, for inter-role communications, internal endpoints provide a way for roles to communicate directly with each other without the need to go through queues, although queues remain the preferred method for reliable asynchronous message processing.</p>
+        <p>In this hands-on lab, you will explore internal and external endpoints by implementing a WCF chat service and host it in a Windows Azure worker role.  </p>
+        <br />
+        <p><b>The AzureTalk Service</b></p>
+        <p>In the solution, a Windows Azure worker role hosts the WCF service, which listens on an external TCP endpoint that you configure for this role. The service implements a duplex contract over a TCP channel that allows clients to register, send and receive messages, and receive notifications from the service over the same channel. </p>
+        <p>
+          <img src="images\57ff2c65-7de4-4fdd-b05e-0318c1988d0f.png" />
+        </p>
+        <p>
+          <b>Figure 1</b>
+          <br />
+          <i>Chat service duplex contract</i>
+        </p>
+        <br />
+        <p>A typical exchange between the client application and the worker role service involves the following operations:</p>
+        <ol>
+          <li>The client application announces its presence at this chat endpoint by calling the <b>Register</b> operation.</li>
+          <li>The client calls the <b>GetConnectedClients</b> operation to retrieve a list of users currently online.</li>
+          <li>The client calls the <b>SendMessage</b> operation to send messages to other active users.</li>
+          <li>The service calls the <b>UpdateClientList</b> operation to notify the client whenever other users connect or disconnect.</li>
+          <li>The service calls the <b>DeliverMessage</b> operation to forward messages sent to a client by other users.</li>
+        </ol>
+        <p>In order for the service to deliver notifications and messages from other users, the client application needs to implement a callback contract, which the service specifies in its own contract using the <b>CallbackContract</b> attribute. </p>
+        <p>
+          <img src="images\fd2e006c-0122-45c8-942c-802ed725847e.png" />
+        </p>
+        <p>
+          <b>Figure 2</b>
+          <br />
+          <i>Duplex service specifying its callback contract</i>
+        </p>
+        <br />
+        <p>The contract for the chat service indicates that it requires sessions through its <b>SessionMode</b> setting. In addition, because the contract marks the <b>Register</b> operation as being initiating by means of the <b>IsInitiating</b> attribute, whenever a client invokes this particular operation, the WCF infrastructure establishes a session with the client and assigns an identifier to this session. Thereafter, and as long as the client maintains the session open, WCF assigns the same session ID to every operation invoked by the client and makes it available in the operation context through its <b>SessionId</b> property. The chat service uses this identifier to correlate every exchange from a particular client.</p>
+        <p>
+          <img src="images\33b6e1e9-68a2-4706-9f9f-47098ae999f0.png" />
+        </p>
+        <p>
+          <b>Figure 3</b>
+          <br />
+          <i>Service contract session requirements</i>
+        </p>
+        <br />
+        <p>In addition to the WCF session, the chat service also maintains its own notion of a session, which allows it to keep track of each connected client. The service assigns a <b>SessionInformation</b> object to each active client and uses it to register information about its session. To manage sessions, the service keeps an internal dictionary of <b>SessionInformation</b> objects and uses the session ID assigned by WCF as the key to access the sessions it contains. </p>
+        <p>When creating a new session during client registration, the service records the session ID, a user name for the client, and a callback channel to the client. The callback channel allows the service to invoke operations on the client application including forwarding messages from peers and alerting when other users connect or disconnect. Additionally, the session contains an ID for the worker role where the client session is active. This piece of information will become significant in Exercise 2, when you implement an inter-role communication mechanism that enables communication between clients connected to different worker roles.</p>
+        <p>
+          <img src="images\cabc5430-674d-465e-aabe-eef535e074fd.png" />
+        </p>
+        <p>
+          <b>Figure 4</b>
+          <br />
+          <i>Managing sessions in the Chat Service</i>
+        </p>
+        <br />
+        <p>Because multiple clients using the service can read and update sessions concurrently, the service uses a <b>SessionManager</b> class to control access to the session information dictionary in a thread-safe manner.</p>
+        <p>The code provided with the lab already contains the chat service contracts, an implementation for the Session Manager, and a client application that you can use to test the service. During the course of the lab, you will configure the internal and external endpoints of the worker role and implement the chat service.</p>
+        <h1 class="heading">Objectives</h1>
+        <p>In this Hands-On Lab, you will learn how to:</p>
+        <ul>
+          <li>Expose non-HTTP services in Windows Azure from a worker role through external endpoints</li>
+          <li>Use internal endpoints for inter-role communication</li>
+        </ul>
+        <a name="_Toc157870738" href="#">
+          <span />
+        </a>
+        <h1 class="heading">Prerequisites</h1>
+        <p>The following is required to complete this hands-on lab:</p>
+        <ul>
+          <li>IIS 7 (with ASP.NET, WCF HTTP Activation)</li>
+          <li>
+            <a href="http://www.microsoft.com/downloads/details.aspx?FamilyId=AB99342F-5D1A-413D-8319-81DA479AB0D7">Microsoft .NET Framework 3.5 SP1</a>
+          </li>
+          <li>
+            <a href="http://msdn.microsoft.com/vstudio/products/">Microsoft Visual Studio 2008 SP1 (or above)</a>
+          </li>
+          <li>
+            <a href="http://go.microsoft.com/fwlink/?LinkID=128752">Windows Azure Tools for Microsoft Visual Studio (November 2009)</a>
+          </li>
+        </ul>
+        <h1 class="heading">Setup</h1>
+        <p>For convenience, much of the code used in this hands-on lab is available as Visual Studio code snippets. To check the prerequisites of the lab and install the code snippets:</p>
+        <ol>
+          <li>Run the <b>SetupLab.cmd </b>script located in the lab's <b>Source\Setup</b> folder to check dependencies and install any missing prerequisites.</li>
+          <li>Once you have verified every prerequisite, follow the instructions to install the code snippets. </li>
+        </ol>
+        <h1 class="heading">Using the Code Snippets</h1>
+        <p>With code snippets, you have all the code you need at your fingertips. The lab document will tell you exactly when you can use them. For example,</p>
+        <p>
+          <img src="images\b0589213-aa84-4171-8ea9-18e7520628b9.png" />
+        </p>
+        <p>To add this code snippet in Visual Studio, you simply place the cursor where you would like the code to be inserted, start typing the snippet name (without spaces or hyphens), in this case <i>LabNameEx01RunmethodCS</i>, watch as Intellisense picks up the snippet name, and then hit the TAB key twice once the snippet you want is selected. The code will be inserted at the cursor location. </p>
+        <p>
+          <img src="images\f9d7f9e7-d330-422a-bed1-31b94bf1d8c0.png" />
+        </p>
+        <p>
+          <b>Figure 5</b>
+          <br />
+          <i>Hit TAB to select the highlighted snippet.</i>
+        </p>
+        <br />
+        <p>
+          <img src="images\fae5b740-79aa-43d9-993d-0f3599dff701.png" />
+        </p>
+        <p>
+          <b>Figure 6</b>
+          <br />
+          <i>Hit TAB again and the snippet will expand</i>
+        </p>
+        <br />
+        <p>To insert a code snippet using the mouse rather than the keyboard, right-click where you want the code snippet to be inserted, select <b>Insert Snippet </b>followed by <b>My Code Snippets </b>and then pick the relevant snippet from the list.</p>
+        <p>To learn more about Visual Studio IntelliSense Code Snippets, including how to create your own, please see <a href="http://msdn.microsoft.com/en-us/library/ms165392.aspx">http://msdn.microsoft.com/en-us/library/ms165392.aspx</a>. </p>
+        <h1 class="heading">Exercises</h1>
+        <p>This Hands-On Lab comprises the following exercises:</p>
+        <ol>
+          <li>Using Worker Role External Endpoints</li>
+          <li>Using Internal Endpoints for Inter-Role Communication</li>
+        </ol>
+        <p>Estimated time to complete this lab: <b>60 minutes</b>.</p>
+        <br />
+      </div>
+      <div id="footer">
+        <div class="footerLine">
+          <img src="../local/footer.gif" alt="Footer image" width="100%" height="3px" />
+        </div>To give feedback please write to azcfeed@microsoft.com<p />Copyright © 2010 by Microsoft Corporation. All rights reserved.</div>
+    </div>
+  </body>
+</html>

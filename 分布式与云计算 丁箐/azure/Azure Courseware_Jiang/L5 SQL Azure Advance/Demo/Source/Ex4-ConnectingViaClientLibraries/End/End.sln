@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Web
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectDemoApp", "ConnectDemoApp\ConnectDemoApp.csproj", "{757932BE-9B02-4AA6-9CEE-3D451115A454}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1696001C-F57B-4AAA-929B-383A1A89366F}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{757932BE-9B02-4AA6-9CEE-3D451115A454}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{757932BE-9B02-4AA6-9CEE-3D451115A454}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{757932BE-9B02-4AA6-9CEE-3D451115A454}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{757932BE-9B02-4AA6-9CEE-3D451115A454}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

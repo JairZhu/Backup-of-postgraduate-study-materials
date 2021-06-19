@@ -1,0 +1,1 @@
+The End solution will not run, unless you configure the AdventureWorksLTConnectionString and the HolTestDBEntities connection strings in the app.config file to point to your Windows Azure SQL Database.

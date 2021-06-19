@@ -1,0 +1,16 @@
+﻿<configuration>	
+	<windowsAzureSubscription>
+	<!-- 
+		You must configure the publishSettingFile to a known and safe location to avoid being removed by the Reset.Local process (this process clears the Download folder and the Desktop)
+		For instance, you can set it to: 'C:\SafeLocation\AzDemoSubscription-OtherSubscription-1-1-2012-credentials.publishsettings'
+	-->
+		<publishSettingsFile></publishSettingsFile>
+	<!-- 
+		The Cleanup.Azure process will remove the list of Web Sites configured (comma separated) in the webSitesToDelete element.
+	-->
+		<webSitesToDelete></webSitesToDelete>
+	</windowsAzureSubscription>
+	<urls>
+		<publishProfileDownloadUrl>https://windows.azure.com/download/publishprofile.aspx</publishProfileDownloadUrl>
+	</urls>
+</configuration>

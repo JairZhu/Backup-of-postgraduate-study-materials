@@ -1,0 +1,251 @@
+Ôªø<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion></ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8C179E96-2450-4158-9151-1942DE8A1F74}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RdStorage_WebRole</RootNamespace>
+    <AssemblyName>RdStorage_WebRole</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.8.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Diagnostics, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.Storage.1.7.0.0\lib\net35-full\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.1.7.1\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery.UI.Combined">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.UI.Combined.1.8.20\lib\net45\AspNet.ScriptManager.jQuery.UI.Combined.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax, Version=4.5.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.4.5.6\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.WebForms, Version=4.5.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.WebForms.4.5.6\lib\net45\Microsoft.ScriptManager.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.0.3.12153\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Membership.OpenAuth, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Membership.OpenAuth.1.0.0\lib\net45\Microsoft.AspNet.Membership.OpenAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.0.0\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Manage.aspx" />
+    <Content Include="Account\OpenAuthProviders.ascx" />
+    <Content Include="Account\Register.aspx" />
+    <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="Contact.aspx" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base^myIbËÂd|mea£esÿÂh-jg^e≠ 3s>5‹bd'egf_2v40&Q&'‚§*D*°"  B/~pe~t`i~jedm?(Conue~6|T elES‘"‰sÁ\ma~ified\khagEsﬁui)bu_c|qso_7%œdcÂfda_qx404npns ®Ô<ä @0<o~`dnp OnÁ$unEΩKonrDO`TtxeM!s\`aÛeú!Ak.)mÂ\i}acEq‹Ui/‚g'h·vsR?_Â4Eev1`p 0nrNÁ§§.? 3)0πS/nP%.dßMÓC®'de}B«ont%ndLt(‡mesX¬`{e‹m{n+&ievtio!wl≥\`i7r#ﬂc|asQ95DgÊ1Ea_8x4∞u¶png"&À>( `‰<C/xen` Il+l5ee="cgntaox\ÙiÂEqcaÒg\eiÆ)viEd<iAo©sUy©csjygiÏeghu≠z˛f<_75]a„#wcc]0x;>mn«" o>™! "*lÔntejh†Ivanudg?"CoÊWeo4ÏthdleS\Sa5LynifiTe\kmbwe{]=--acÔj≥u602b22W256Y1t0éHcg#/>j  $|CnÂreo~ »ngl5dÂm2√sn∂ ot\dhEmo3bay%\˝ÈÓhf˘ddimag}z‹ui%ycfW2@|3&v3=6(:‰40Nj"&/	
+ § (<jnven"hNclqfe=&C˝n}eÊeTH%mesv!si\x{>hfil<Li-$uE3\uh%mcobwKt54Uú"%6ms<Úé2ng .<
+ `††OkÆte.Ù†INcÏude?0CÔje•Óf\tËeI-kXbrseLeinhbIedVkligg˚D{i≠ycKnuO<88x8^01>Y:40&¯fÔ&†/
+ `" <om0en¸`[‚lqdÂ"cCotÌ~t\DhemeÛM‚!WE]oanÌwye$iÏ°gacgy-ibmsˇc$xAëa_2µV¯r40,vng"†/<
+ !  Å/Ívf|T yo#ludm1∫s>Umnt\uha≠Es]d·kt\mÈni‡i°e\juUe“5-EHÆminßa7s"b?Ç6  (>ionteftHo"MÙde="Wk2Ùmv4paeowsyc1sg\yyN(fÈddx:pqeSy?ıÎÆa+cÔRda~j.i{~nwzq oZ
+  *†æCln|env'I,Cmue9dCgÊtW.tMthe/ag\j√{Ì\mmnink1DmjÛ}Â2y>’h=9}to omÙcDte-iif.grsr"/ª8 p"< o.peo‰ InB(u$e=;Snnt!nt\®eÌe{\base\ijibxe%^jduTcq*})&‚ttvıfmËo.cÛ„: <ç  ‡ <”on|eorIoclwlÂíCmf4en6Td‡e-e{¸ba3ÂmmLici•d\jQ}dr=.‘j.cÔr·}iË.bqp" ?	
+)0  aÔovE+t#MncluDE=.E;opentNxe%mr\rsoEUihn(~{qÏTZqugby.gj",ÈtEqxok%p:miÔ>csÎ  .?
+∏ 0@0Cndunt∏IJcNÂde=≤KonT`n4\qi!Mes\Ú}w·èmiÓIoiddŒj1UÂr9.tiÆliahoÁ>aennA;j2$o>j   8<Wo^e·Ó¥,Inchude5"CFŒtmitXtxeÌmq\Úa|ƒ^ÌioHF{e`njQterYlqI≠rr/¶rersbarÆhonKss"(ØæI  ¨I-n|DL ^klufa=&s)ntaldˇehe}up\%cse^minInxed^)c‘iY,qÈ'Ú&siYablE'ii/.ssc" £
+`""28C%nt‰j4(InvlÙd≈mBCgntgnpt%ieÌds\b`˜g\ÌkngÏhe$jqueÓy.uj.s‰llcDABme™hf*cs" b<M
+ 	∞ <”mÓTEjt0Ifc,ıte}@Ko|dldLthÂ-5sX"as‘miLk∂iUd\zqlgv˘~ty.(mi$Y".m!w.yss"‡/;""$8¸CÎftdm= Q&kHEe'=cCnhte,5]$l%·eTb!rwUmi~knÍ%l\hq’e‚y*}i/|iR=*lk>cÛ3"(^ •4G˛n}iÔtaInc,1d%Ω"CoÃpanU<heeq\basXlinidÌ·EXbgrx+ui™t(gOu¢mIl,cr”" Ø  † 4ÕlpenÙ#A^CLu‰eµ*â-agu7P@+c5mv&}vw" ?>*¬0 0ΩBg~t'n`(Ynaded%&Icge#bqÕhet,p.g&/<à
++! "<BNpaot K*c|Ule-bK}agez\`Áao	fkgÙPw"2:
+.†  >CoM5Â&taÈnsLul•=$Io`oe3\Øjt‡wee‡s˝4¶P.'b)/>	
+!h  <AofuÂ~t I&comdG9*B-`gww|oj$wrddÃad1åpng£®'?Mä   (<€on|/nT§K"fÓutd-"ImaEasoRDereL‹ist2np.v? o<
+4¶(ºCOnÙÂt IOc.uPw="qea'•s\or‰•re$\{[Ù3dogB ,?†  0<Gkndel<`M˛+Âu,u-"IMageÚ_oÚ†exe\liSx@~v&!/j  !"Cno‰-.t AŒA¯wLmø"IÏ·gdsÏØrdur•LksT5.0lv†.< `  = `tent†àé´lÙba/&@i°!esÃ/re'Ba`,i7¸2<`ng2 	>
+  ( 4CftenÙ0na|uÂe=ÇImQÃe+m|dm‚m$EIktw™dˇg""/æ
+00Ç ºoN‘%nt …n„l¥fg=¢IL #EsúÔÚeeretL)sT(.pöe"+6  ·!0<GmnïÁjtpIÓ!nueeπ#Ëm!'EÛ‘kP§evddj{rtÆqnf∂'>( (@ºCOnt`nu¢Ygbl}$g?2p1cacÂb.!IodÂ°-?
+  " ,NÌnd0InÍl5dd<2C)˚mppsjpufry,1&∑..hlTkllQse,sE,fw&"/4J0†$"<"oJtd˛db~glq‰Â"Sczax~rUjÒuepΩ±*7è0.*{. k^
+0  <WŒ~Tcrp0…<cluue<"AcÿhPv\jp]Ìpj!.'. .mi/>j{ $<4 %8√o^xenn XØbxµev=&”kripfs^jauÂry-]i=3.8+Ú¥>*s" '>I   9<KÎ~t%ht<	na|wte="S+r-2ts^j˘uezi)u…-!}pØ24.iMnÆj˜"f->( & 04Oojvgjt OÓcÕudg<Rb˙@t0v]lderÃibb,,5Vw.js  7.
+ · -<ÓndUjÙ#In`Lue}}f√gÚybtwtRcvvofmr‹@l‡K≠aFkeı.jsÇ +
+*8"!∞0Ckltent KnÂledi=¢Za2i}VsZV%@D/r{‹WKØ˝r/™s*0->K
+ †94<lÓÙ%Nx MNÈLvtu=&ScÚj0ysLWe`BpÔyﬁW*i(iaf.hs"§'?…
+ ¢0!º}ŒuqÆı0H}kl}l%=#”‚rhqts]EdbDotÌk@MEJe*jp"h/~M
+  r |.6Ejd IoclE`eΩ¢S`rypts\'EnFKrMS\MDT”Th%ar‰eÓn Æ¥
+Ä "=@kldÏt!Incmwde=2BozyxVs|Ge`FozÓ”\ESHjah\]i!6oqÁvEHa8.*ˆ" Áº
+b †h©ndut ijclµde="◊cpaptSWeÊWMpds\]SÄhat\mmcpocÁÊteNa¯M∏ˆlic„4C.nDe≤v	cE2,ns" /˛+
+ b%d|ﬂ.t5Ô‰ Afcl3|ee"Agript{\VecBo`oslMSne¸˙oycv-rÌdtAj·∏o≠xØ.MÓqEoFeDNÍv" ß.ç
+  e$cwj4dÍv`Ina|g`5¢”cba`tÚSmBD/rOq\{^jaTMi„“o3iftANQxKj2E™jr2¯-∑
+{ 0!lƒknenw`Inrl|d·-.QbrhxW|◊-|Vkr-{XE3bj°zXei«rlrnfvCihG.o`#lizAtinb2Íì"?>
+`!  <C-VViNv#@f+lufg="Wsry~tAWE‰ DOjms^…GYÍah\;bs/˚ÌvvPjexIIstnry.jsf&',
+`$ (cg*vtn‰$Incl’tM="CÛVi`tc|◊mfFÔrmgÿAjiX\M‰gRoftA+·<N‰|Nkzo$js:.}é
+"&$ 8R+Jpeb¥8I&c$uÂe#"Sbrkp~ı|w%bFOzÕs›DTAj!h|Oi„xmcgotAJMkClViafa9`Tπmn*`k"0/!("3<CÔÎlg.q0InßÌwtÂ=ScbIpt#\WEcLg!mST@jAxxMEcsoÒÔfAb!XXe-ed,csbìØæ¥  (,SŒte.t$IØ√luaM9rïcyps]re&F.Ric\Ej¡zax\	icrsonPzarWcbo‡Sjs" />
+ $†#$√g~|mHt(In+,wd≈]`Sb6ÈR∂:\dÂbFO[isVMsAbah\U®cr3oftkex‘GjSEbvm#%s/{" g≠J†∞  <Rmj}e~f∞IbAmweEm*S+pZydsúVe‚Fnrmq\CmaRt •◊.nÛ" =?M   $=Sov4e|t∞“\cCEÂ}`€e:Ò0¸˚LWebVÌÚic\bueNi$wÆjq¢¢/.Mä ¶ $ºContg~Ù In$d$%-≤S„ryPTs\W%‚ojm{\Sebobls.Ns" ?>J    $¬+Ët}nd†Onb,v`l=2„rqp<sW◊bFM2msﬁW,b‡a˙tslnÛ"†*-† $P=ongWv¥ Kncldde16—„rMt4˜\Vic“jresMTdcUHV·lhÂat
+c~¨N3‚$/>
+Ä) <¬Œ|dMt†IRclu'%=R#2ÌpUqÙ_rtdfruNge±.ns"bÆú
+¢ P&<mn7ÁNp ibgjUfe}¢ƒmFaıl4°VpxB*≠.D`(`$úCÔNV nu†Mncte55"v`xyÎon.iÁO"`/6#`(4Con|CnP ]ncy`ƒe"G¨/bam,◊sgx& -?
+" $"<¡ojÙe˙t"@c|udu.]ecnf/nVkg" +>  !(ºMontf&Ï AjWnuÏÂ>6BUNfle>cof„ig(/>-
+R)=/m}AÂG`oÒ—$ ¸tuFGtkup:™! `08CÂ}¯ÈÏ5$KnkLud„}£`8`_Shcr|\FuFeh%BofhO/bÛb`%>("  <”kÈX·,‡`Ifclqdd=!AzpÀ”8art\Eup<Clodig.ss "/>  * <BmMxi|a8	‰c,yÓg="«fÓu4,aspx,gr$>M b  §4.¿dÚMT.VXfz4abgqt¨esyp<=@e˙$NDmN–E8oJÆ	
+6 (  B_AbTÛqe6 VPCgdwFahhjp</Ku`q∞h∂K  ( /oC/ÕvÈÂu>è   =oep}|hA|kmqdu=™~ud,asph/des-fNir.k">≠
+ !†@0$@dEjd%vvupgn~¿bmu`ÆqWP|<øFEral‡mntEpo˛~
+$Ä <ØgLmpide
+   !6C/mpihe Inc¨q‡E-"¡kC.$npU,{fyn.¿S¸z/b{¶>,`*"!4 <¿Ex]nd$Óxtqon6LÔ7jÍ>asZ8</ƒfrgLTentUdoz/
+≤(0"†!:Suo’hqe”D@Pa$m@dhiod=æSWbTyÚe~Ç (!68/Bmpi‰aæh#0$ºk)ı}&q$Õn€l5dg=*Ac2oÅlt\LogIn>qqpÆlesÈ˜nÂ*#s`?ä 0$`!8|De0ljËej<mLof2LooAÍ.£wx$gDa`uo efpU`one
+ !! -/CompÌÏe.0$¥z<C/epi`e Iocfudd="Acco1fr\MqÔag%6a3p˝.ks*?   0  8AU|gdaJ|UrKÊe*if%aspp>+twpe>$mnPu`Îfm° 8   9S7bTyp•>@SPX@_deCm‡·nf8´S& y0Â"0`$/Somlil!>0e`<√oı`kl, KfglcdaA@„g}jvLM!neg-*as∞z&DebhgÍEr&ß#"9:$ (&  qPEn5entUto∆:Y·
+a$!@ÒP8<Ædm|e.deotQQnj~`$ 06$Aomfy·
+≠   <√om0inc(MNcHeÂe&@ccoq6¥–Ohen·iuyQrÎfx4ers+pSax"gs#>â* † 0:ƒepgÓfg,lUpnæOR5nAmrhpsowy|mrsÆ`sct</dpE>‰e~pxØk>	
+ `   Ä[`bPy`]8¡SPT[~$eBdÈ=nd=kR}x\x|a=
+"&  0/CY˝z)|e>›0$Ä <√ompÈl'$^n„le‰e"AS'mujÙﬂOTvÔC}bRZgwkd≈¯;,}ckX.Ù%|)en•Z.ss">Ö*¨‡0 " <VgpeoudnpUpoØ>OxeÓAst `vœvadpb3.a±cp±)Tet%/d¸"4’pon/MN0* <j√Ái`aÏd/Ç0 `&ºCMoqi‡%$Cdcl—gÂ5@AcqÔuhTTRÂÁiÛTgrVpxæGg":à
+    (†<De∞ij$aotS2{fvRdgËQtcÚ*`s¯z-a%.dhn’pgŒ>†    `<UCt9`u~UKRXaÎaeBdcÈ.e<7}†ty∞eÓ  <?C/qild?:·  <Aoopi}e en„)whm} agboujtFVm„jstSr.Gs‡pbdÂRignı"ØkS(
+†&0 c†¨erÂnd»fTTrmndoËs|ep-e3dZ</@WTeÓden4w`oN>4
+ 8&,/a)mpal‰<
+  Ä$<ClmpIle(…jÛhude=$ECaounvÚeE)ctÁ~D|fe2naÓlogin$„shx&·v"zJ    0 <Weru~denzWpo|>‚EhSt%rYe“nddNkfmÏ.A”Rz5Îƒetdl‘eÓvsno>ç!    08Sgf|Ùu*¡S`ÍCwLeB˘Ëynd?QqgRxQe> 0`(<*CompiMe. "  4Kˇm`Ëdw Hj#lqTe2√csqNÙ\R e{st}vUx4er.@l\jum~*a{v .!Ú®cnmr.cc?, , a" <D]0dnfentQ¯N~>“%ÖiSvlEx4Â2nÅlLkgan.aw0hØ»ÁPefduÓ`’to/NÄ , </omPm~G>û0` <_mÌvile I.clıde:Cøjt√„ua≥q|&`Z">  à(p<HeFl~FmÓt’pgÏ>Bom0°!vvqsPx=oDepwFlmnpU|z>IJ($0' `xSub‹˘`En@S@XbnlaRaH+/F8ØSızU;ÚA¶-
+∞ 8®ºmBmmQc\eE
+    han-qi(o I*a,ı‘d="Aoact™aSr|<deSisodr.fa"<û‡(   !<DDÛgndentUqoÓ>A?etÈbt>`sdh<,FurEnddJvMpOÕ~,é  +†=MAoÌq-lf>	0J  >KcMpild ¿ocugd+G,faeËy/`spxC;¢>M(!  $°2<DAde‡elxUxmŒ>e.exewn·{px<DGruJbE.pUpo/2
+ †b †!St“ƒyxÂj!PX—Bg%uBEhind./Ws R{t`O2 $0<Comvi†L>ã %  |Cœo0kla1InbÏtdc}bDefqul%oaspX.gesig~`Ú<#˜";L
+! atl<DupÁj`untU¯oÆæDGau|uÆaWi<?MÂpe~dmNL}–nd˛,	0"0®(/C/opM¨}> %   ºCmpÈdE$Ihclu&Â-"«ﬁnba\™asax>6s&<Õã`( §"-d‰`Ân Ânwﬂq/nWOgÍc-oÁsahxoDmve $ctU`oN>
+ 0j":>Cmmskle,
+a°"$<œompalA(I˛clU`e="Pr/DL{iu]]ÂÛwÂ}vlyQf&Ô>"c#%! § ,CoMpyla0Io,uÙe&€©dl.Mavtel.O”>û` "#  <mxuoÙaL4eponæsi¸d.]∑st #-/Ecpakde.pTpmn6M* 0 @$lSUby)5<As0CodebehmjdΩoS˝0Tp$,`8  </C}xiA?à*  †?2oL–ilO IjBlgf≈bSitÂ&ÕfsPdb.`msycNMsNc{2> ( !(Å<DapendMÓt’xon6KÕtbOasdUw</ƒepd^‡envYron>M
+≤,  2oC?JY·lÂ>å†(‡xK+m0ylm∞@nlqdu?#Wez~/xe/cq*$/~lY  </YteÊro’ ˛MJ$ |Itdl’ro5r>¬2 * úDOÏFgr!àÓcxuf‰]ÜAp`_Data\"$ø a.I÷Ïmfrow( |iteiWOWw>
+h‡  ¸o~|ant(AnRMtta=(AcsosnvWe`ncoœfiÁ" >ç*  $/Con'eL0$IncÏ}du"Cqtm.N`sÏe22 /
+ ‡<¡veÌCwo}~>( 4IÙ≈mW˙oqp>-   <None`IfÉ|5dd"WufG"uÁ:konfkw"=J 0 ††b<MDpejl‘~vUÂfj.Wb.cm.f¯f>´VAqej$dlw‘pnn∫5
+ (! ºCN}(e*
+0†)<NMÊ	 IŒc}Deû"Car“e@e•ji&c´ndxg(>ä "† !†-@ilndentUpgl|Smb*#Ônfig8/ebu.$-.tU0{*	!` †,'J{.Â>N*Âp(/I‰∆mC√.u>ç
+¢ /QrpurxıNrkıh> "Ä1>÷isuAÏStÂdÏkWAssiOR cg`emdioÎÌ"'0(TitdÌqºe|yge≤c)/di¨ y1 7¶2<10.†<.TÈtıal”ttp)_‘Brñmon>ç
+ l!<TSTnkDsP·uh(√ond-DmÔn,"'$(TS‘go,S yt(?g8==`#•&>$H\Bu ldFxr·ˇviKLÛPqvh12-–Eigx-ÚIvuÿVÌY=s£Stı$Im‹v4(VM„c hQpt¥È/VerÛMod!'wS÷gjMrp`uË~ä h'ropeÚ]Grhˇp>
+¢ <IM∏iÚTYÚ}jeGp5#6(MsEÒÈl•@iêA4i\E croY'fd8C[z%r.4@b'auk: -4
+  ,opos|†RfoJmÎu5¶4(VS6e'~X‘ct`)\[ebEpxligati'Ó˘lMÎaV+Pk‚|&WeBÕxp--˘ationÆtaf%ıt˜"ÄÉgÓÙaCion&§)VST/omVPAvl®'0!]!''" /<
+` 4h.xÎrd`öv+:5cw="$]fe`ndAx|edìio˙S–-$h#:e\ikr-sog|V)˜t:~[pdqˇUv1 .0ºe‰GXPmic``yonsLMÈe∫Î3oWt,ÂÚep|`kcuyon.¸cÚge8[™®CØjdh|IyÔ-"f"lsg"`/=m }PJ'Ó%atW|4qNÚmojp>-J† †<VisuilStuÁioû+†  †‡ 8WM ˆoBAro4es<kg;†CULƒ="{3p=C55±-¶=‡Ê%±d·µ?#8,0 0#5b847¶∫#}#æ%ä†!!‡!$  ,WlcQr/jm#(XwqevtsÂ6<
+ ´       0ïqe1IW<U“eg=/U˚EHMC6
+ "  !0 0(<AµtlsqÈg&R{3t'Qrı°4∑IˆTas'onRfˆt>Jd 0`2$l ":>MaVelØ–me~uSmÚvarZopu|∞ÿØEmvgonamenv@bv•zPoZd>-*††p$ `†1(xFcW«lO0muÆuSmrpUvP–!dh>+|gD%Ve$OxlÂˇ|W$ÚpErVPcti>	 †0 `"†(Åp-Ë@cErd>xtP¯~Ì/ÈÔcixflst:55µ 6*=*IM“Qpl
+`!Æ †(5 #!-NT]aumhdÍTi£cUio~6Falca¸NTML@uvad~vm√itiOvûçJd :`4†x	£z<W{eJe≥tomUAVmR>Ò~s‰-’sgBtcqomíur“dr=^3&!(3 !(!>BuwtÎmÒer~e2Qr§.=+CUstomSgdzd0Qvd>	
+ ,‡  !(†"Ò<_pWeueÚresBEvt-lecÌnUw 2F…de>NpdÂØ_AvSeÚveQAttyj∆sIlUrırW(\·*  ‡ . "<*_ÂbªkjtadPr*rw:‘mdˇ>çö a 0 †8-B/q2gvPvkpdr\iesÆ&
+    <-VhsUelS◊UdiÚ>âa49/XzoZmÛ$Dd0Ens™o~s6	
++Å<Iœ ort ‘pjub\?2 ,Sm|y4mk.d(v5]g~EgÌtXmuot.|·coes# .z?
+,!?!o-PTœ"Oo`iFy0yoa2©cuKlÓ pVÔcuzs, y$d†in|b uak"iNsid%@yn5·ob)ıxe®vare!zs ¢'loR anÏ§uncomlEÔt%ÈE( -ã   ,°p OthUz s)mi¸·b(w@ue.q(oo0ocnÙsdezY”|, sU'6NHkpcqmf|.C-Mmon.UaÛ∑e@s¢ 8˝Ta&/`t:^ame-+Zgf/r% Uyn‰&>  Ø‘!rgÂt?M:¢"Tasge¸$Jam<CftÂ2Bïin#ú*‡ <'T·2gu6>
+d∞%≠~	û</pznbe„t:

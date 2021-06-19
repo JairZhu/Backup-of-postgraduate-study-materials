@@ -1,0 +1,1 @@
+The End solution will not run, unless you configure the AdventureWorksLTConnectionString connection string in the web.config file to point to an AdventureWorksWeb SQL Database.

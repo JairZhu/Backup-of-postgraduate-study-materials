@@ -1,0 +1,512 @@
+﻿
+<!DOCTYPE html>
+<html class="no-js" lang="en" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
+<head id="ContentPlaceHolderDefault_Head1">
+    <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1" />
+    <meta charset="utf-8" />
+    <title>Windows Azure Training Kit - Getting Started with Windows Azure Mobile Services</title>
+    <link rel="Stylesheet" type="text/css" media="all" href="styles/master.css" />
+</head>
+<body id="top" class="page-">
+    <div id="page">
+        <div id="wrapper" class="landingPage getStartedPage">            
+            <div class="header">								
+				<img alt="Windows Azure" src="images/azure-logo.png" />
+				<span class="mainHomepageSubTitle">Training Kit - December 2012 Update</span>								
+			</div>			
+			<div class="nav-menu-header">
+				<nav>
+					<ul>
+						<li class="MenuLink-Selected">
+							<a href="#">Content</a>
+						</li>
+												<li class="MenuLink">
+							<a href="Source">Setup</a>
+						</li>
+											</ul>
+				
+										
+						<span id="github-btn" class="github-btn">
+						  <a id="gh-btn" title="Fork this repo in GitHub" href="https://github.com/WindowsAzure-TrainingKit/Demo-Windows8AndMobileServices" target="_blank" class="gh-btn">
+							<span class="gh-ico"></span>
+							<span id="gh-text" class="gh-text">Fork</span>
+						  </a>								  
+						</span>								
+						<span id="github-btn" class="github-btn github-watchers">
+						  <a id="gh-btn" title="Watch this repo in GitHub" href="https://github.com/WindowsAzure-TrainingKit/Demo-Windows8AndMobileServices" target="_blank" class="gh-btn">
+							<span class="gh-ico"></span>
+							<span id="gh-text" class="gh-text">Watch</span>
+						  </a>								  
+						</span>
+						
+									
+				</nav>
+			</div>	        
+		</span>
+			<div id="content" class="textpage">
+            <section id="content-container">
+				<div id="content" class="textpage">
+			    <a name="top"></a>
+				
+				
+
+		<div class="content">
+			<?xml version="1.0" encoding="iso-8859-1"?><span><p><a name="title"></a></p>
+
+<h1 id="Getting_Started_with_Windows_Azure_Mobile_Services">Getting Started with Windows Azure Mobile Services</h1>
+
+<hr />
+
+<p><a name="Overview"></a></p>
+
+<h2 id="Overview">Overview</h2>
+
+<p>This demo script demonstrates how you can leverage Visual Studio 2012 and Windows Azure Mobile Services to add structured storage, push notifications, integrated authentication and scheduled jobs to your Windows Store application.</p>
+<blockquote>
+<p><strong>Note:</strong> This is a demo script that can be used as a guide for demos when presenting on Windows Azure Mobile Services.  If you are looking for a Hands on Lab with step by step screenshots please refer to the HOL section of the Windows Azure Training Kit.</p>
+</blockquote>
+<p><a name="technologies"></a></p>
+
+<h3 id="Key_Technologies">Key Technologies</h3>
+
+<ul>
+<li>Windows Azure subscription - you can sign up for free trial <a href="http://bit.ly/WindowsAzureFreeTrial">here</a></li>
+<li>Windows Azure Mobile Services Preview enabled on your subscription</li>
+<li>Windows Azure Mobile Services Client SDK</li>
+<li>Visual Studio 2012 </li>
+</ul>
+
+<p><a name="setup-and-configuration"></a></p>
+
+<h3 id="Setup_and_Configuration">Setup and Configuration</h3>
+
+<p>In order to execute this demo you need to set up your environment.</p>
+
+<ol>
+<li><p>Download and Install Windows 8</p></li>
+<li><p>Download and Install Visual Studio 2012</p></li>
+<li><p>Download and Install the Windows Azure Mobile Services SDK</p></li>
+<li><p><strong>Code Snippets</strong> have been provided that you can add for use in Visual Studio 2012. You can find them in  /Source/Assets/ClientSnippets</p></li>
+</ol>
+
+<p><a name="Demo 1: Creating your first Mobile Service"></a></p>
+
+<h2 id="Demo_1_Creating_your_first_Mobile_Service">Demo 1: Creating your first Mobile Service</h2>
+
+<p>The goal of this demo is to use the quick start within the portal to quickly demonstrate the structured storage capability of Windows Azure Mobile services. The Push Notifications demo will demonstrate how you can add code to both the server and client to demonstrate the APIs used by the quick start.</p>
+
+<p><a name="create-a-new-mobile-service"></a></p>
+
+<h3 id="Create_a_new_mobile_service">Create a new mobile service</h3>
+
+<p>Follow these steps to create a new mobile service.</p>
+
+<ol>
+<li><p>Log into the <a href="https://manage.windowsazure.com">Windows Azure Management Portal</a> and navigate to Mobile Services in the </p></li>
+<li><p>Click the <strong>+New</strong> button then click <strong>Mobile Service</strong>, <strong>Create</strong> </p></li>
+<li><p>On the <strong>Create a Mobile Service</strong> dialog provide a unique subdomain in the <strong>URL</strong> field.  Once verification that the subdomain is unique proceed with the next steps.</p></li>
+<li><p>Select either to use an existing database or new database and region. <strong>Speaking Point:</strong> If you select an existing database Windows Azure Mobile Services will separate multiple Mobile Service tenants by schema. </p></li>
+<li><p>Complete the remainder of the database settings in the Create Mobile Service wizard</p></li>
+</ol>
+
+<p>You have now created a new mobile service that can be used by your mobile apps.</p>
+
+<p><a name="create-a-new-app"></a></p>
+
+<h3 id="Create_a_new_app">Create a new app</h3>
+
+<p>Once you have created your mobile service, you can follow an easy quick start in the Management Portal to either create a new Windows Store app or modify an existing app to connect to your mobile service.</p>
+
+<ol>
+<li><p>After the status updates to <strong>Ready</strong> for your mobile service in the <strong>Mobile Services</strong> tab of the Management portal. Click on your mobile service name to navigate into the service.</p></li>
+<li><p>Click on <img src="Images/image-16.png?raw=true" alt="Image 16" />
+ to see the Mobile Services quick start page.</p></li>
+<li><p>Select <strong>Create a new Windows 8 application</strong> and perform the three steps provided</p>
+
+<ul>
+<li>For the <strong>Get the tools</strong> step Install the Mobile Services SDK if you have not done so already.  The Mobile Services SDK provides a client side API that can be used within your Visual C++, XAML/C#/VB and HTML/JS Windows Store apps.</li>
+<li>Click <strong>Create Todoitem table</strong>.  This will create a table for the starter project.<br /></li>
+<li>In the Download and run your app step select your desired app language, in this case <strong>C#</strong>, and click <strong>Download</strong>.</li>
+</ul></li>
+</ol>
+
+<p>This downloads the project for the sample <em>To do list</em> application that is connected to your mobile service. Save the compressed project file to your local computer, and make a note of where you save it.</p>
+<blockquote>
+<p><strong>Speaking Point:</strong> You can add additional tables manually by clicking the &quot;Data&quot; tab and using the Create button within.  We will revisit adding tables through the Data tab further on in the Push Notification demo. </p>
+</blockquote>
+<p><a name="run-your-app"></a></p>
+
+<h3 id="Run_your_app">Run your app</h3>
+
+<p>The final stage of this tutorial is to run and explore your new Windows Store app.</p>
+
+<ol>
+<li><p>Browse to the location where you saved the compressed project files, expand the files on your computer, and open the solution file in Visual Studio 2012 Express for Windows 8.</p></li>
+<li><p>Press the <strong>F5</strong> key to rebuild the project and start the app.</p></li>
+<li><p>In the app, type meaningful text, such as <em>Complete the demo</em>, in the <strong>Insert a TodoItem</strong> textbox, and then click <strong>Save</strong>.</p>
+
+<p><strong>Speaking Point:</strong> Explain this sends a POST request to the new mobile service hosted in Windows Azure. Data from the request is inserted into the TodoItem table. Items stored in the table are returned by the mobile service, and the data is displayed in the second column in the app.</p></li>
+<li><p>Back in the Management Portal, click the <strong>Data</strong> tab and then click the <strong>TodoItems</strong> table and observe that the data as been successfully stored</p></li>
+</ol>
+
+<p><a name="Explore-your-app-code"></a></p>
+
+<h3 id="Explore_your_app_code">Explore your app code</h3>
+
+<p>In this step we explore <em>To do list</em> application code and see how simple the Windows Azure Mobile Services Client SDK makes it to interact with Windows Azure Mobile Services.</p>
+
+<ol>
+<li><p>Return to the downloaded To do list application Visual Studio 2012</p></li>
+<li><p>In solution explorer <strong>expand the references folder</strong> and show the Windows Azure Mobile Services Client SDK reference.  <strong>Speaking Point:</strong> you may also add references to the Windows Azure Mobile Services Client SDK from any Windows Store app.</p></li>
+<li><p>Open App.xaml.cs and show the MobileServiceClient class.  This is the key class provided by the client SDK that provides a way for your application to interact with Windows Azure Mobile Services. The first parameter in the constructor is the Mobile Service endpoint and the second parameter is the Application Key for your Mobile Service.</p>
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">public</span> <span style="color:#0000FF">static</span> MobileServiceClient MobileService 
+        = <span style="color:#0000FF">new</span> MobileServiceClient( 
+            <span style="color:#8B0000">&quot;https://cloudnick.azure-mobile.net/&quot;</span>
+            ,<span style="color:#8B0000">&quot;vIWepmcOXGPsYCJQDDcFBKsnOVxzLG52&quot;</span> );
+
+</code></pre></li>
+<li><p>Open <strong>MainPage.xaml.cs</strong> to see how the mobile service client is then used for Inserts, Updates, Reads and <strong>show</strong> the following:</p>
+
+<ul>
+<li><p>Creating a handle for operations on a table</p>
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">private</span> IMobileServiceTable&lt;TodoItem&gt; todoTable = App.MobileService.GetTable&lt;TodoItem&gt;();
+
+</code></pre></li>
+<li><p>Performing an Insert</p>
+
+<!-- mark:3;   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">private</span> <span style="color:#0000FF">async</span> <span style="color:#0000FF">void</span> InsertTodoItem(TodoItem todoItem)
+{
+<strong class="markLine">    <span style="color:#0000FF">await</span> todoTable.InsertAsync(todoItem);</strong>
+    items.Add(todoItem);                        
+}
+
+</code></pre></li>
+<li><p>Performing an Update</p>
+
+<!-- mark:3    -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">private</span> <span style="color:#0000FF">async</span> <span style="color:#0000FF">void</span> UpdateCheckedTodoItem(TodoItem item)
+{
+<strong class="markLine">    <span style="color:#0000FF">await</span> todoTable.UpdateAsync(item);</strong>
+    items.Remove(item);
+}
+</code></pre></li>
+<li><p>Performing a Read</p>
+
+<!-- mark:3-4    -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">private</span> <span style="color:#0000FF">void</span> RefreshTodoItems()
+{
+<strong class="markLine">    items = todoTable</strong>
+<strong class="markLine">         .Where(todoItem =&gt; todoItem.Complete == <span style="color:#0000FF">false</span>)</strong>
+         .ToCollectionView();
+    ListItems.ItemsSource = items;
+}
+</code></pre></li>
+</ul></li>
+<li><p>Note existence of todoTable.DeleteAsync(...) method</p></li>
+</ol>
+
+<p><a name="Demo 2: Adding Push Notifications to your app"></a></p>
+
+<h2 id="Demo_2_Adding_Push_Notifications_to_your_app">Demo 2: Adding Push Notifications to your app</h2>
+
+<p>In demo, you add push notifications, using the Windows Push Notification service (WNS), to the quickstart project. When complete, an insert in the mobile service will generate a push notification back to your app. </p>
+
+<p><a name="Register-your-app-for-push-notifications-and-configure-Mobile-Services"></a></p>
+
+<h3 id="Register_your_app_for_push_notifications_and_configure_Mobile_Services">Register your app for push notifications and configure Mobile Services</h3>
+
+<ol>
+<li><p>Navigate to the <a href="http://go.microsoft.com/fwlink/?LinkID=257677&amp;clcid=0x409">Windows Push Notifications &amp; Live Connect</a> page, login with your Microsoft account if needed, and then follow the instructions to register your app. <strong>Speaking Point:</strong> It's important that the CN that you supply in the Wizard matches that in your package.appxmanifest</p></li>
+<li><p>At the end of the registration process for your app you will be provided with WNS Credentials.  Keep the page open or make a note of the <strong>Package Name</strong>, <strong>Client Secret</strong> and <strong>Package SID</strong>.  </p></li>
+<li><p>Log on to the <a href="https://manage.windowsazure.com/">Windows Azure Management Portal</a>, click <strong>Mobile Services</strong>, and then click your app.</p></li>
+<li><p>Click the <strong>Push</strong> tab, enter the <strong>Client secret</strong> and <strong>Package SID</strong> values obtained for WNS above, and click <strong>Save</strong>.</p></li>
+</ol>
+
+<p><a name="Add-push-notifications-to-the-app"></a></p>
+
+<h3 id="Add_push_notifications_to_the_app">Add push notifications to the app</h3>
+
+<ol>
+<li><p>In Visual Studio open the <strong>package.appxmanifest</strong>, select the packaging tab and copy the <em>Package Name</em> from your WNS Credentials you recieved in the Windows Push Notifications &amp; Live Connect portal and paste it into the Package name field in visual studio.</p></li>
+<li><p>In the package.appxmanifest now select the <strong>Application UI</strong> tab and ensure <strong>toast capable</strong> is set to yes.  <strong>Speaking Point:</strong> If you wish to send Wide Tiles then you must provide a default wide tile in the Wide Logo field.</p></li>
+<li><p>Open the file <strong>App.xaml.cs</strong> </p></li>
+<li><p>Add a <strong>Channel.cs</strong> class as follows.  </p>
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">public</span> <span style="color:#0000FF">class</span> Channel
+{
+    <span style="color:#0000FF">public</span> <span style="color:#0000FF">int</span>? Id { <span style="color:#0000FF">get</span>; <span style="color:#0000FF">set</span>; }
+    <span style="color:#0000FF">public</span> <span style="color:#0000FF">string</span> Uri { <span style="color:#0000FF">get</span>; <span style="color:#0000FF">set</span>; }
+}
+
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> You can install and use the code snippet <em>wamschannelclass</em> located in /Source/Assets/ClientSnippets to perform this task</p>
+</blockquote></li>
+<li><p>add the following using statement:</p>
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">using</span> Windows.Networking.PushNotifications;
+</code></pre></li>
+<li><p>Find the OnLaunched method and mark it to be <strong>async</strong> as follows</p>
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">protected</span> <span style="color:#0000FF">async</span> <span style="color:#0000FF">override</span> <span style="color:#0000FF">void</span> OnLaunched(LaunchActivatedEventArgs args)
+</code></pre></li>
+<li><p>Add the following lines of code to request a notification channel and register it with your Mobile Services app</p>
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">var</span> ch = <span style="color:#0000FF">await</span> PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
+<span style="color:#0000FF">var</span> channelDTO = <span style="color:#0000FF">new</span> Channel()
+              {
+                    Id = ApplicationData.Current.LocalSettings.Values[<span style="color:#8B0000">&quot;ChannelId&quot;</span>] <span style="color:#0000FF">as</span> <span style="color:#0000FF">int</span>?,
+                    Uri = ch.Uri
+              };
+
+<span style="color:#0000FF">if</span> (ApplicationData.Current.LocalSettings.Values[<span style="color:#8B0000">&quot;ChannelId&quot;</span>] == <span style="color:#0000FF">null</span>)
+{
+     <span style="color:#0000FF">await</span> MobileService.GetTable&lt;Channel&gt;().InsertAsync(channelDTO);
+     ApplicationData.Current.LocalSettings.Values[<span style="color:#8B0000">&quot;ChannelId&quot;</span>] = channelDTO.Id;
+}
+<span style="color:#0000FF">else</span>
+{
+     <span style="color:#0000FF">await</span> MobileService.GetTable&lt;Channel&gt;().UpdateAsync(channelDTO);
+}
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> You can install and use the code snippet <em>wamschannelrequest</em> located in /Source/Assets/ClientSnippets to perform this task</p>
+</blockquote></li>
+</ol>
+
+<p>Now that we have the client wired up to request a channel and write it to our Mobile Service we now need to add a Channel table to our Mobile Service and add a server side script to send push notifications.</p>
+
+<p><a name="Insert-data-to-receive-notifications"></a></p>
+
+<h3 id="Insert_data_to_receive_notifications">Insert data to receive notifications</h3>
+
+<p>In this section we add a Channel table and server side scripts to send push notifications everytime someone inserts into our todolist.  <strong>Speaking Point:</strong> from a demo perspective and in ensuring it keeps the duration of the presentation within an 1 I would suggest for the demo you keep the server scripts somewhere that you can copy and paste them in, then walk through what they are doing as opposed to typing them out.</p>
+
+<ol>
+<li><p>Log on to the <a href="https://manage.windowsazure.com/">Windows Azure Management Portal</a>, click <strong>Mobile Services</strong>, and then click your app.</p></li>
+<li><p>Select the <strong>Data</strong> tab</p></li>
+<li><p>Click <strong>+ Create</strong> in the bottom toolbar</p></li>
+<li><p>In <strong>Table name</strong> type <em>Channel</em>, then click the check button.</p></li>
+<li><p>Click the new <strong>Channel</strong> table and verify that there are no data rows.</p></li>
+<li><p>Click the <strong>Columns</strong> tab and verify that there is only a single <strong>id</strong> column, which is automatically created for you.
+This is the minimum requirement for a table in Mobile Services.</p>
+
+<p><strong>Speaking Point:</strong> When dynamic schema is enabled on your mobile service, new columns are created automatically when JSON objects are sent to the mobile service by an insert or update operation.</p></li>
+<li><p>Select the <strong>TodoItem</strong> table </p></li>
+<li><p>Click the <strong>Script</strong> tab and select the <strong>Insert</strong> Operation and replace the existing script with the following and walk through the following code</p>
+
+<span class="codelanguage">JavaScript</span><pre><code class="JavaScript"><span style="color:#0000FF">function</span> insert(item, user, request) {       
+     request.execute({
+          success: <span style="color:#0000FF">function</span>(){
+                request.respond();
+                sendNotifications(item);
+          },
+          error: <span style="color:#0000FF">function</span>(err){
+                request.respond(500, <span style="color:#8B0000">&quot;Error&quot;</span>);
+          }
+     });
+}
+
+<span style="color:#0000FF">function</span> sendNotifications(item){                        
+  <span style="color:#0000FF">var</span> channelTable = tables.getTable(&#39;Channel&#39;); 
+  channelTable.read({ 
+     success: <span style="color:#0000FF">function</span>(channels){
+         channels.forEach(<span style="color:#0000FF">function</span>(channel){  
+
+             push.wns.sendToastText04(channel.Uri, {
+                  text1: item.text,
+                  text2: <span style="color:#8B0000">&quot;text line 2&quot;</span>,
+                  text3:  <span style="color:#8B0000">&quot;text line 3&quot;</span>
+             }, {
+                  success: <span style="color:#0000FF">function</span>(response){                                               
+                      console.log(response);
+                  },                                   
+                  error: <span style="color:#0000FF">function</span>(err){                                               
+                        console.error(err);                       
+                  }                    
+             });
+        });
+  }        
+});    
+}
+
+</code></pre>
+
+<p><strong>Note:</strong> This script is located in the <em>/Source/Assets/ServerSnippets</em> folder</p></li>
+</ol>
+
+<p><strong>Speaking Point:</strong> This script executes as a each time a the insert operation is executed on the Todoitem table.  The sendNotifications method we select all channels from the Channels table and iterate through them sending a push notification to each channel uri.  While we have only demonstrated toast the push.wns.* namespace provides simple to use methods required for sending toast, tile and badge updates. As you can see in this scenario we are sending a ToastText04 template which requires three lines of text.  When you build your applications we would advise that you do not send toast notifications so frequently but rather only at times when there is a critical or important message to deliver the user of your application.</p>
+
+<p>Next we will move on to look at how you can secure your Mobile Service endpoints using Live Connect</p>
+
+<p><a name="Demo 3: Adding Auth to Your App and Services"></a></p>
+
+<h2 id="Demo_3_Adding_Auth_to_Your_App_and_Services">Demo 3: Adding Auth to Your App and Services</h2>
+
+<p>This demo shows you how to authenticate users in Windows Azure Mobile Services from a Windows 8 app. In this demo, you add authentication to the quickstart project using Live Connect. When successfully authenticated by Live Connect, a logged-in the application will be able to consume your Mobile Service.</p>
+
+<p><a name="Register-your-app"></a></p>
+
+<h3 id="Register_your_app">Register your app</h3>
+
+<p>To be able to authenticate users, you must register your Windows 8 app at the Live Connect Developer Center. You must then register the client secret to integrate Microsoft Account with Mobile Services.</p>
+
+<ol>
+<li>Navigate to the <a href="http://go.microsoft.com/fwlink/?LinkID=257677&amp;clcid=0x409">Windows Push Notifications &amp; Live Connect</a> page, log on with your Microsoft account if needed, and then follow the instructions to register your app.</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> In this example we will use Microsoft Account.  If you wish to demonstrat Choose a supported identity provider from the list below and follow the steps to register your app with that provider:
+<a href="http://www.windowsazure.com/en-us/develop/mobile/how-to-guides/register-for-microsoft-authentication/">Microsoft Account</a>,
+<a href="http://www.windowsazure.com/en-us/develop/mobile/how-to-guides/register-for-facebook-authentication/">Facebook login</a>, 
+<a href="http://www.windowsazure.com/en-us/develop/mobile/how-to-guides/register-for-twitter-authentication/">Twitter login</a>,
+<a href="http://www.windowsazure.com/en-us/develop/mobile/how-to-guides/register-for-google-authentication/">Google login</a></p>
+</blockquote>
+<ol>
+<li><p>To enable auth you must now Navigate to the <a href="http://go.microsoft.com/fwlink/?LinkId=262039&amp;clcid=0x409">My Apps dashboard</a> in Live Connect Developer Center and click on your app in the <strong>My applications</strong> list.</p>
+
+<p><strong>Note:</strong>  This step is easier to demo if you leave the Live Connect portal open after doing the Push Notification demo script above</p></li>
+<li><p>Click <strong>Edit settings</strong>, then <strong>API Settings</strong> and make a note of the value of <strong>Client ID</strong> and <strong>Client secret</strong>.</p>
+
+<p>You must provide this value to Mobile Services to be able to use Live Connect for authentication.</p></li>
+<li><p>In <strong>Redirect domain</strong>, enter the domain of your mobile service, in the format <strong>https://</strong><strong>service-name</strong><strong>.azure-mobile.net/</strong>, where <em>service-name</em> is the name of your mobile service, then click <strong>Save</strong>.</p></li>
+<li><p>Log on to the <a href="https://manage.windowsazure.com/">Windows Azure Management Portal</a>, click <strong>Mobile Services</strong>, and then click your app.</p></li>
+<li><p>Click the <strong>Identity</strong> tab, enter the <strong>Client secret</strong> obtained from Live Connect, and click <strong>Save</strong>.</p></li>
+</ol>
+
+<p><a name="Restrict-permissions"></a></p>
+
+<h3 id="Restrict_permissions">Restrict permissions</h3>
+
+<ol>
+<li><p>In the Management Portal, click the <strong>Data</strong> tab, and then click the <strong>TodoItem</strong> table.</p></li>
+<li><p>Click the <strong>Permissions</strong> tab, set all permissions to <strong>Only authenticated users</strong>, and then click <strong>Save</strong>. This will ensure that all operations against the <strong>TodoItem</strong> table require an authenticated user.</p></li>
+<li><p>Return to Visual Studio 2012 aand press the <strong>F5</strong> key to run this quickstart-based app; verify that an exception with a status code of 401 (Unauthorized) is raised.
+This happens because the app is accessing Mobile Services as an unauthenticated user, but the <em>TodoItem</em> table now requires authentication.</p></li>
+</ol>
+
+<p>Next, you will update the app to authenticate users with a Microsoft Account before requesting resources from the mobile service.</p>
+
+<p><a name="Add-authentication"></a></p>
+
+<h3 id="Add_authentication_to_your_app">Add authentication to your app</h3>
+
+<ol>
+<li><p>Now that your Authentication provider is now configured lets wire up the application. Return to Visual Studio and select <strong>MainPage.xaml.cs</strong></p></li>
+<li><p>Locate the <strong>OnNavigatedTo</strong> and the existing <strong>OnNavigatedTo</strong> method override with the following method that calls the new <strong>Authenticate</strong> method:</p></li>
+</ol>
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">protected</span> <span style="color:#0000FF">override</span> <span style="color:#0000FF">async</span> <span style="color:#0000FF">void</span> OnNavigatedTo(NavigationEventArgs e) 
+{ 
+    <span style="color:#0000FF">await</span> App.MobileService.LoginAsync(MobileServiceAuthenticationProvider.MicrosoftAccount);
+    RefreshTodoItems();
+}
+
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> Both your mobile service and your app are now configured to work with your chosen authentication provider.</p>
+</blockquote>
+<ol>
+<li>Press the F5 key to run the app and sign into the app with your chosen identity provider.</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> When you are successfully logged-in, the app will run without errors, and you will be able to query Mobile Services and make updates to data.</p>
+</blockquote>
+<p><a name="Exercise4"></a></p>
+
+<h2 id="Exercise_4_Adding_a_Scheduled_Job_to_your_Mobile_Service">Exercise 4: Adding a Scheduled Job to your Mobile Service</h2>
+
+<p>In this demo you learn how to execute script on a scheduled basis using <strong>Windows Azure Mobile Services</strong>.  In this scenario we will configure the scheduler to poll Twitter every 15 minutes and then send a Tile update with the latest tweets.</p>
+
+<h3 id="Task_1_-_Configure_your_Windows_store_app_for_Wide_Tiles">Task 1 - Configure your Windows store app for Wide Tiles</h3>
+
+<ol>
+<li><p>In Visual Studio Open your <strong>package.appxmanifest</strong></p></li>
+<li><p>Select the Application UI tab</p></li>
+<li><p>Provide a Wide Tile Logo of 310x150 pixels.  </p></li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> Note if you do not have an image of these dimensions available you can use Microsoft Paint to quickly create one</p>
+</blockquote>
+<h3 id="Task_2_-_Configure_the_Mobile_Services_scheduler">Task 2 - Configure the Mobile Services scheduler</h3>
+
+<ol>
+<li><p>Create the scheduler job that will send push notifications to registered clients every 15 minutes with the latest Twitter updates for a particular twitter handle.</p></li>
+<li><p>Specify a name for the job and make sure the schedule frequency is set to <strong>every 15 minutes</strong>. Click the check mark to create the job.</p></li>
+<li><p>Select the created job from the job list.</p></li>
+<li><p>Select the <strong>Script</strong> tab and paste the code snippet below that both polls Twitter and then composes a push notification to update your start screens tile using push.wns.*</p>
+
+<span class="codelanguage">JavaScript</span><pre><code class="JavaScript"><span style="color:#0000FF">function</span> CheckFeed() {
+     getUpdatesAndNotify();
+}
+
+<span style="color:#0000FF">var</span> request = require(&#39;request&#39;);
+<span style="color:#0000FF">function</span> getUpdatesAndNotify() {  
+     request(&#39;http:<span style="color:#008000">//search.twitter.com/search.json?q=@cloudnick&amp;rpp=2&#39;, </span>
+          <span style="color:#0000FF">function</span> tweetsLoaded (error, response, body) {
+              <span style="color:#0000FF">var</span> results = JSON.parse(body).results;
+              <span style="color:#0000FF">if</span>(results){
+                    results.forEach(<span style="color:#0000FF">function</span> visitResult(tweet){
+                     sendNotifications(tweet);
+                    });
+              }            
+          });
+}
+
+<span style="color:#0000FF">function</span> sendNotifications(tweet){    
+
+     <span style="color:#0000FF">var</span> channelTable = tables.getTable(&#39;Channel&#39;);
+      channelTable.read({
+            success: <span style="color:#0000FF">function</span>(channels) {
+                 channels.forEach(<span style="color:#0000FF">function</span>(channel) {   
+
+                      push.wns.sendTileWideSmallImageAndText04(channel.uri, {
+                            image1src: tweet.profile_image_url,                            
+                            text1: &#39;@&#39; + tweet.from_user,
+                            text2: tweet.text
+                      });                  
+
+                 });
+            }
+         });
+}
+</code></pre></li>
+<li><p>Once you paste the script into the editor, click the <strong>Save</strong> button to store the changes to the script</p></li>
+<li><p>In Visual Studio, press <strong>F5</strong> to build and run the application.  This will ensure your channel URI is up to date and will ensure the Default Wide tile is now on your Start screen</p></li>
+<li><p>Go back to the Windows Azure Management Portal, select the <strong>Scheduler</strong> tab of your mobile service, and then click <strong>Enable</strong> in the command bar to allow the job to run.</p></li>
+<li><p>To test your script immediately rather than wait 15 minutes for it to be scheduled, click <strong>Run Once</strong> in the command bar.</p></li>
+<li><p>Return to the start screen and see the latest update on your application tile</p></li>
+</ol>
+
+</span>
+		</div>
+	<br />
+	<p><a href="#top">top of page</a></p>
+
+
+				</div>
+			</section>
+			<footer>
+				<div class="footer-sitemap" style="border-top:0"></div>
+				<div class="footer-bottom">
+					<ul>
+						<li class="footer-copyright"><a href="http://www.microsoft.com"><img alt="microsoft" src="images/microsoft.png" /></a></li>					
+												<li><a href="https://github.com/WindowsAzure-TrainingKit/Demo-Windows8AndMobileServices/issues" target="_new">File an Issue</a></li>
+												<li><a href="mailto:azcfeed@microsoft.com?subject=Windows Azure Training Kit">Contact Us</a></li>
+						<li><a href="EULA.htm">Terms of Use</a></li>
+						<li><a href=".\">Browse Content</a></li>
+						<li>&copy; 2012 Microsoft</li>
+					</ul>
+				</div>
+			</footer>
+			</div>
+        </div>
+    </div>
+</body>
+</html>
+

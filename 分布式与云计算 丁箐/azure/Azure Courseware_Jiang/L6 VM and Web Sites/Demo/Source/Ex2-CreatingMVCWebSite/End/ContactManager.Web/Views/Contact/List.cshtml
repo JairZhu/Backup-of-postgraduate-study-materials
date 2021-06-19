@@ -1,0 +1,105 @@
+﻿@model IEnumerable<ContactManager.Web.Models.Contact>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<section class="featured">
+ <div class="content-wrapper">
+      <hgroup class="title">
+            <h1>Contact Manager Sample</h1>
+            <h2>for Windows Azure Web Sites</h2>
+      </hgroup>
+      <p>
+          Create and search for contacts using Full-Text Search in SQL Server 2012 - try queries like &quot;Joh*&quot; (with the quotation marks) and john OR smith OR contoso
+      </p>
+ </div>
+</section>
+
+@using (Html.BeginForm())
+{
+ <fieldset class="search">
+      <label>Search Contacts by First Name/Last Name/Company: </label>
+      @Html.TextBox("searchQuery")
+      <input type="submit" value="Search" />
+ </fieldset>
+}
+
+<h3>Results</h3>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Company)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BusinessPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MobilePhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zip)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Company)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BusinessPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MobilePhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zip)
+        </td>
+    </tr>
+}
+@if (Model.Count() == 0)
+{
+     <tr>
+          <td colspan="10">
+                No contacts found
+          </td>
+     </tr>
+}
+
+</table>
+
+<p>
+@Html.ActionLink("Create New", "Create")
+</p>

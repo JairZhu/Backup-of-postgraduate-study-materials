@@ -1,0 +1,860 @@
+﻿
+<!DOCTYPE html>
+<html class="no-js" lang="en" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
+<head id="ContentPlaceHolderDefault_Head1">
+    <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1" />
+    <meta charset="utf-8" />
+    <title>Windows Azure Training Kit - Windows Azure Web Sites and Virtual Machines using ASP.NET and SQL Server - for Visual Studio 2012</title>
+    <link rel="Stylesheet" type="text/css" media="all" href="styles/master.css" />
+</head>
+<body id="top" class="page-">
+    <div id="page">
+        <div id="wrapper" class="landingPage getStartedPage">            
+            <div class="header">								
+				<img alt="Windows Azure" src="images/azure-logo.png" />
+				<span class="mainHomepageSubTitle">Training Kit - December 2012 Update</span>								
+			</div>			
+			<div class="nav-menu-header">
+				<nav>
+					<ul>
+						<li class="MenuLink-Selected">
+							<a href="#">Content</a>
+						</li>
+												<li class="MenuLink">
+							<a href="Source">Setup</a>
+						</li>
+											</ul>
+				
+										
+						<span id="github-btn" class="github-btn">
+						  <a id="gh-btn" title="Fork this repo in GitHub" href="https://github.com/WindowsAzure-TrainingKit/HOL-ASPNETAzureWebSitesVMSQL-VS2012" target="_blank" class="gh-btn">
+							<span class="gh-ico"></span>
+							<span id="gh-text" class="gh-text">Fork</span>
+						  </a>								  
+						</span>								
+						<span id="github-btn" class="github-btn github-watchers">
+						  <a id="gh-btn" title="Watch this repo in GitHub" href="https://github.com/WindowsAzure-TrainingKit/HOL-ASPNETAzureWebSitesVMSQL-VS2012" target="_blank" class="gh-btn">
+							<span class="gh-ico"></span>
+							<span id="gh-text" class="gh-text">Watch</span>
+						  </a>								  
+						</span>
+						
+									
+				</nav>
+			</div>	        
+		</span>
+			<div id="content" class="textpage">
+            <section id="content-container">
+				<div id="content" class="textpage">
+			    <a name="top"></a>
+				
+				
+
+		<div class="content">
+			<?xml version="1.0" encoding="iso-8859-1"?><span><p><a name="handsonlab"></a></p>
+
+<h1 id="Windows_Azure_Web_Sites_and_Virtual_Machines_using_ASPNET_and_SQL_Server_-_for_Visual_Studio_2012">Windows Azure Web Sites and Virtual Machines using ASP.NET and SQL Server - for Visual Studio 2012</h1>
+
+<hr />
+
+<p><a name="Overview"></a></p>
+
+<h2 id="Overview">Overview</h2>
+
+<p>In this lab, you will learn how to create ASP.NET web applications that connect to virtual machines running in Windows Azure. First, you will create a virtual machine with SQL Server 2012 installed using the Windows Azure Management Portal and configure it to allow external connections. Then, you will create a simple ASP.NET MVC 4 web application using Entity Framework that accesses the database in the SQL Server virtual machine. The web application will take advantage of Full-Text Search features in SQL Server 2012 to search for contacts data.  You will complete the lab by deploying the application to Windows Azure Web Sites using Visual Studio.</p>
+
+<p><a name="Objectives"></a></p>
+
+<h3 id="Objectives">Objectives</h3>
+
+<p>In this hands-on lab, you will learn how to:</p>
+
+<ul>
+<li>Create and configure a SQL Server 2012 Virtual Machine in Windows Azure</li>
+<li>Create a public endpoint for the virtual machine to allow web applications</li>
+<li>Create an ASP.NET web application using Entity Framework that connects to the SQL Server Virtual Machine</li>
+<li>Configure full-text search in SQL Server 2012 database and perform full-text search queries from a web application</li>
+<li>Publish the web application to Windows Azure Web Sites using Visual Studio publishing feature</li>
+</ul>
+
+<p><a name="Prerequisites"></a></p>
+
+<h3 id="Prerequisites">Prerequisites</h3>
+
+<p>The following is required to complete this hands-on lab:</p>
+
+<ul>
+<li><a href="http://www.microsoft.com/visualstudio/">Visual Studio Express 2012 for Web</a> or greater </li>
+<li>A Windows Azure subscription with the Web Sites and Virtual Machines Preview enabled - <a href="http://aka.ms/WATK-FreeTrial">sign up for a free trial</a></li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> This lab was designed to use Windows 8 operating system.</p>
+</blockquote>
+<p><a name="Setup"></a></p>
+
+<h3 id="Setup">Setup</h3>
+
+<p>In order to execute the exercises in this hands-on lab you need to set up your environment.</p>
+
+<ol>
+<li><p>Open a Windows Explorer window and browse to the lab's <strong>source</strong> folder.</p></li>
+<li><p>Execute <strong>Setup.cmd</strong> with Administrator privileges to launch the setup process that will configure your environment and install the Visual Studio code snippets for this lab.</p></li>
+<li><p>If the User Account Control dialog is shown, confirm the action to proceed.</p></li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> Make sure you have checked all the dependencies for this lab before running the setup.</p>
+</blockquote>
+<p><a name="UsingCodeSnippets"></a></p>
+
+<h3 id="Using_the_Code_Snippets">Using the Code Snippets</h3>
+
+<p>Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of that code is provided as Visual Studio Code Snippets, which you can use from within Visual Studio Express 2012 for Web to avoid having to add it manually. </p>
+
+<hr />
+
+<p><a name="Exercises"></a></p>
+
+<h2 id="Exercises">Exercises</h2>
+
+<p>This hands-on lab includes the following exercises:</p>
+
+<ol>
+<li><p><a href="#Exercise1">Setup Windows Server Virtual Machine with SQL Server 2012</a></p></li>
+<li><p><a href="#Exercise2">Creating an MVC 4 Web Application that Connects to the SQL Server 2012 Virtual Machine</a></p></li>
+</ol>
+
+<p>Estimated time to complete this lab: <strong>60 minutes</strong>.</p>
+<blockquote>
+<p><strong>Note:</strong> Each exercise is accompanied by a starting solution located in the Begin folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and that they will not necessarily work until you complete the exercise. Inside the source code for an exercise, you will also find an End folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.</p>
+
+<p>When you first start Visual Studio, you must select one of the predefined settings collections. Every predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the <strong>General Development Settings</strong> collection. If you choose a different settings collection for your development environment, there may be differences in these procedures that you need to take into account.</p>
+</blockquote>
+<p><a name="Exercise1"></a></p>
+
+<h3 id="Exercise_1_Creating_a_SQL_Server_2012_Virtual_Machine">Exercise 1: Creating a SQL Server 2012 Virtual Machine</h3>
+
+<p>In this exercise, you will create a new Virtual Machine with SQL Server and configure a public endpoint in order to access it remotely. Then you will connect to the database using Remote Desktop and create and configure a database in the server. </p>
+
+<p>You will also create a database in the SQL Server that will be used by the MVC 4 application you will create in <a href="#Exercise2">Exercise 2</a>.</p>
+
+<p><a name="Ex1Task1"></a></p>
+
+<h4 id="Task_1_-_Creating_a_Virtual_Machine_Using_the_Windows_Azure_Portal">Task 1 - Creating a Virtual Machine Using the Windows Azure Portal</h4>
+
+<p>In this task, you will create a new Virtual Machine using the Windows Azure Portal.</p>
+
+<p>A virtual machine in Windows Azure is a server in the cloud that you can control and manage. After you create a virtual machine in Windows Azure, you can start, stop, and delete it whenever you need to, and you can access the virtual machine just as you do with a server in your office.</p>
+
+<ol>
+<li><p>Go to the <a href="https://manage.windowsazure.com">Windows Azure Management Portal</a> and sign in using your Windows account.</p></li>
+<li><p>Click <strong>New</strong> and select <strong>Compute | Virtual Machine</strong> option and then <strong>Quick Create</strong>. Select the <strong>SQL Server 2012 Evaluation</strong> virtual machine and type a <strong>DNS Name</strong> for the virtual machine that is available (for example, <em>SQLServer2012</em>). Also provide a password. Finally, click <strong>Create Virtual Machine</strong>.</p>
+<blockquote>
+<p><strong>Note:</strong> You will use the password in future steps to connect to the virtual machine using remote desktop.</p>
+</blockquote>
+<p><img src="Images/creating-a-new-vm.png?raw=true" alt="Creating a New Virtual Machine" title="Creating a New Virtual Machine" />
+</p>
+
+<p><em>Creating a New Virtual Machine</em></p></li>
+<li><p>In the <strong>Virtual Machines</strong> section, you will see the Virtual Machine you created displaying a <em>provisioning</em> status. Wait until it changes to <em>Running</em> in order to continue with the following step.</p>
+<blockquote>
+<p><strong>Note:</strong> Please notice that the provisioning process might take a considerable amount of time.</p>
+</blockquote>
+<p><img src="Images/vm-running.png?raw=true" alt="New virtual machine running " title="New virtual machine running" />
+</p>
+
+<p><em>New virtual machine running</em></p></li>
+<li><p>In the <strong>Virtual Machines</strong> section, locate the Virtual Machine you just created and click on its name. Once in the <strong>Dashboard</strong> page, click <strong>Endpoints</strong>.</p>
+<blockquote>
+<p><strong>Note:</strong> Virtual machines use endpoints to communicate within Windows Azure and with other resources on the Internet. All virtual machines that you create in Windows Azure can automatically communicate with other virtual machines in the same cloud service or virtual network. However, you need to add an endpoint to a machine for other resources on the Internet, like web applications, or other virtual networks to communicate with it.</p>
+</blockquote></li>
+<li><p>Click <strong>Add Endpoint</strong>, select <strong>Add Endpoint</strong> and then click the next button to continue.</p>
+
+<p>In this lab you will create a web application that communicates to the SQL Server in the virtual machine, so you will now create an endpoint for allowing external connections.</p>
+
+<p><img src="Images/adding-a-new-endpoint.png?raw=true" alt="Adding a new Endpoint" title="Adding a new Endpoint" />
+</p>
+
+<p><em>Adding a new Endpoint</em></p></li>
+<li><p>In the <strong>Specify endpoint details</strong> page, set the <strong>Name</strong> to <em>sqlserver</em>, the <strong>Protocol</strong> to <em>TCP</em>, the <strong>Public Port</strong> to 57501 and the <strong>Private Port</strong> to 1433.</p>
+
+<p>You can choose other public port number if you decide so, but make note of it as you will use it when creating the web application in exercise 2. The Internet Assigned Numbers Authority (IANA) suggests the range 49152 to 65535 for dynamic or private ports. The 1433 private port matches the default port used by SQL Server to accept incoming TCP connections.</p>
+
+<p><img src="Images/new-endpoint-details.png?raw=true" alt="New Endpoint Details" title="New Endpoint Details" />
+</p>
+
+<p><em>New Endpoint Details</em></p>
+<blockquote>
+<p><strong>Note:</strong> An endpoint is defined with a public port and a private port. The public port is used to access the virtual machine from the Internet. The private port is used to control internal access to the virtual machine through the firewall. Later in the lab you will configure the firewall to allow connections in the private port. The public and private ports can be the same. In this case, the private port is set to the default port where SQL Server accepts incoming TCP connections.</p>
+
+<p>You can associate specific ports and a protocol to endpoints. In this case the web application you will create in exercise 2 will communicate with the SQL Server using the TCP protocol. Notice that the TCP protocol also includes HTTP and HTTPS communication.</p>
+</blockquote></li>
+<li><p>Click the <strong>tick</strong> and wait until the endpoint configuration is complete.</p></li>
+</ol>
+
+<p><a name="Ex1Task2"></a></p>
+
+<h4 id="Task_2_-_Configuring_the_Virtual_Machine_and_SQL_Server_2012_for_External_Access">Task 2 - Configuring the Virtual Machine and SQL Server 2012 for External Access</h4>
+
+<p>In this task, you will install a SQL Server and configure it to enable external access. This means, you will make sure the SQL Server is has the TCP/IP protocol enabled and you will configure the virtual machine firewall for allowing external connections to the SQL Server port.</p>
+
+<ol>
+<li><p>In the Windows Azure Management Portal, click <strong>Virtual Machines</strong> on the left menu.</p>
+
+<p><img src="./Images/Windows-Azure-Portal.png?raw=true" alt="Windows Azure Portal" title="Windows Azure Portal" />
+</p>
+
+<p><em>Windows Azure Portal</em></p></li>
+<li><p>Click the row of the virtual machine you created in the previous task from the virtual machines list and click <strong>Connect</strong> from the command bar below to connect using a Remote Desktop Connection. Download and open the <em>.rdp</em> file when prompted.</p>
+<blockquote>
+<p><strong>Note</strong>: You can access the programs running on a virtual machine by remotely connecting to it. For example, a virtual machine running Windows Server 2008 R2 uses a Remote Desktop connection, and a virtual machine running Linux uses a Secure Shell (SSH) connection.</p>
+</blockquote></li>
+<li><p>Click <strong>Connect</strong> when warned about the publisher of the remote connection.</p></li>
+<li><p>When prompted for credentials, type the password you've configured when creating the virtual machine. Wait until the remote connection is ready.</p>
+
+<p><img src="./Images/entering-vm-credentials.png?raw=true" alt="Entering virtual machine credentials" title="Windows Azure Portal" />
+</p>
+
+<p><em>Entering virtual machine credentials</em></p></li>
+<li><p>When warned about the identity of the remote computer, click <strong>Yes</strong> to connect.</p></li>
+<li><p>Once connected to the virtual machine, open <strong>SQL Server Configuration Manager</strong> from <strong>Start | All Programs | Microsoft SQL Server 2012 | Configuration Tools</strong>.</p></li>
+<li><p>Expand the <strong>SQL Server Network Configuration</strong> node and select <strong>Protocols for MSSQLSERVER</strong>. Make sure <strong>Shared Memory</strong>, <strong>Named Pipes</strong> and <strong>TCP/IP</strong> protocols are enabled. To enable a protocol, right-click the protocol name and select <strong>Enable</strong>.</p>
+
+<p><img src="./Images/Enabling-SQL-Server-Protocols.png?raw=true" alt="Enabling SQL Server Protocols" title="Enabling SQL Server Protocols" />
+</p>
+
+<p><em>Enabling SQL Server Protocols</em></p>
+<blockquote>
+<p><strong>Note:</strong> For more information about the SQL Server Network Configuration see <a href="http://msdn.microsoft.com/en-us/library/ms189083.aspx">http://msdn.microsoft.com/en-us/library/ms189083.aspx</a>.</p>
+</blockquote></li>
+<li><p>Go to the <strong>SQL Server Services</strong> node and right-click the <strong>SQL Server (MSSQLSERVER)</strong> item and select <strong>Restart.</strong></p></li>
+<li><p>To allow internet applications to access the SQL Server instance in the virtual machine through the Windows Firewall, you must configure a firewall rule. To do this, you will need to add an <strong>Inbound Rule</strong> for the SQL Server requests in the <strong>Windows Firewall</strong>. To do this, open <strong>Windows Firewall with Advance Security</strong> from <strong>Start | All Programs | Administrative Tools</strong>.</p>
+<blockquote>
+<p><strong>Note:</strong> By default, Microsoft Windows enables the Windows Firewall, which closes port 1433 to prevent Internet computers from connecting to a default instance of SQL Server on any computer. Connections to the default instance using TCP/IP are not possible unless you reopen port 1433. For more information about SQL Server and the Window Firewall see <a href="http://msdn.microsoft.com/en-us/library/ms175043.aspx">http://msdn.microsoft.com/en-us/library/ms175043.aspx</a></p>
+</blockquote></li>
+<li><p>Right-click <strong>Inbound Rules</strong> node and select <strong>New Rule</strong>.</p>
+
+<p><img src="./Images/Creating-an-Inbound-Rule.png?raw=true" alt="Creating an Inbound Rule" title="Creating an Inbound Rule" />
+</p>
+
+<p><em>Creating an Inbound Rule</em></p></li>
+<li><p>In the <strong>New Inbound Rule Wizard</strong>, select <em>Port</em> as <strong>Rule Type</strong> and click <strong>Next</strong>.</p>
+
+<p><img src="Images/new-inbound-rule-type.png?raw=true" alt="New Inbound Rule Type" title="Inbound Rule Type" />
+</p>
+
+<p><em>Inbound Rule's Type</em></p></li>
+<li><p>In <strong>Protocols and Ports</strong> step, select <strong>Specific local ports</strong> and set its value to <em>1433</em>. Click <strong>Next</strong> to continue.</p>
+
+<p><img src="Images/inbound-rules-local-port.png?raw=true" alt="Inbound Rule's Local Port" title="Inbound Rule's Local Port" />
+</p>
+
+<p><em>Inbound Rule's Local Port</em></p></li>
+<li><p>In the <strong>Action</strong> step, make sure the <strong>Allow the connection</strong> option is selected and click <strong>Next</strong>.</p>
+
+<p><img src="Images/inbound-rules-action.png?raw=true" alt="Inbound Rule's Action" title="Inbound Rule's Action" />
+</p>
+
+<p><em>Inbound Rule's Action</em></p></li>
+<li><p>In the <strong>Profile</strong> step, leave the default values and click <strong>Next</strong>.</p></li>
+<li><p>Finally, set the Inbound Rule's <strong>Name</strong> to <em>SQL Server Rule</em> and click <strong>Finish</strong>.</p>
+
+<p><img src="Images/new-inbound-rule.png?raw=true" alt="New Inbound Rule" title="New Inbound Rule" />
+</p>
+
+<p><em>New Inbound Rule</em></p></li>
+<li><p>Close <strong>Windows Firewall with Advanced Security</strong> window.</p></li>
+</ol>
+
+<p><a name="Ex1Task3"></a></p>
+
+<h4 id="Task_3_-_Creating_the_Web_Application_Database_in_the_Virtual_Machine">Task 3 - Creating the Web Application Database in the Virtual Machine</h4>
+
+<p>In this task, you will create and populate the sample database that will be used by the MVC 4 application.</p>
+
+<ol>
+<li><p>In the virtual machine, open SQL Server Management Studio from <strong>Start | All Programs | Microsoft SQL Server 2012 | SQL Server Management Studio</strong>. In the <strong>Connect to Server</strong> dialog, click <strong>Connect</strong>, to connect to the SQL Server using Windows Authentication.</p></li>
+<li><p>Press <strong>CTRL+N</strong> to open a new query window. Go to the <strong>\Source\Assets</strong> folder of this lab and copy all the content of the <strong>CreateDatabase.sql</strong> file. Then paste the content of the file in the new query window.</p>
+<blockquote>
+<p><strong>Note:</strong> Remote desktop connections allow you to copy and paste across different machines.</p>
+</blockquote></li>
+<li><p>Press <strong>F5</strong> to run the script. This will create the <strong>ContactManagerDb</strong> database, with only one <em>Contacts</em> table. It will also populate the <em>Contacts</em> table with sample data.</p>
+
+<p><img src="Images/running-the-create-database-script.png?raw=true" alt="Running the create database script" />
+</p>
+
+<p><em>Running the create database script</em></p>
+
+<p>Now you will configure the database table to allow full-text search queries. You will use this feature in the web application you will build in the next exercise.</p>
+<blockquote>
+<p><strong>Note:</strong> Full-Text Search in SQL Server lets users and applications run full-text queries against character-based data in SQL Server tables. You can learn more about full-text search on the following article: <a href="http://msdn.microsoft.com/en-us/library/ms142497.aspx">http://msdn.microsoft.com/en-us/library/ms142497.aspx</a></p>
+</blockquote></li>
+<li><p>Create a Full Text Catalog for the database. To do this, in Object Explorer, expand <strong>Storage</strong> node within <strong>ContactManagerDb</strong> database.</p>
+
+<p>A full-text catalog is a logical concept required for configuring full-text search. It groups a set of full-text indexes.</p></li>
+<li><p>Right-click <strong>Full Text Catalogs</strong> folder and select <strong>New Full-Text Catalog</strong>.</p>
+
+<p><img src="Images/new-full-text-catalog.png?raw=true" alt="New Full-Text Catalog" title="New Full-Text Catalog" />
+</p>
+
+<p><em>New Full-Text Catalog</em></p></li>
+<li><p>In the <strong>New Full-Text Catalog</strong> dialog, set the <strong>Name</strong> value to <em>ContactManagerCatalog</em> and press <strong>OK</strong>.</p>
+
+<p><img src="Images/new-full-text-catalog-name.png?raw=true" alt="New Full-Text Catalog Name" title="New Full-Text Catalog Name" />
+</p>
+
+<p><em>Full-Text Catalog Name</em></p></li>
+<li><p>Right-click the <strong>ContactManagerCatalog</strong> and select <strong>Properties</strong>. Select the <strong>Tables/Views</strong> menu item. Add the <strong>Contacts</strong> table to the <strong>Table/View objects assigned to the Catalog</strong> list. Check <em>FirstName</em>, <em>LastName</em> and <em>Company</em> from <strong>Eligible columns</strong> and click <strong>OK</strong>.</p>
+
+<p>This will add the FirstName, LastName and Company columns to the full-text catalog, allowing you to perform full-text queries on the text in the columns.</p>
+
+<p><img src="Images/full-text-catalog-properties.png?raw=true" alt="Full-Text Catalog Properties" title="Full-Text Catalog Properties" />
+</p>
+
+<p><em>Full-Text Catalog Properties</em></p></li>
+<li><p>Add a new user to connect to the database with the web application you will deploy in the following exercise. To do this, expand <strong>Security</strong> folder within the SQL Server instance node in Object Explorer. Right-click <strong>Logins</strong> folder and select <strong>New Login</strong>.</p>
+
+<p><img src="./Images/create-new-login.png?raw=true" alt="Creating a New Login" title="Creating a New Login" />
+</p>
+
+<p><em>Creating a New Login</em></p></li>
+<li><p>In the <strong>General</strong> section, type a <strong>Login name</strong>, for example <em>TestUser</em>. Select <strong>SQL Server authentication</strong> option and set the <strong>Password</strong>.</p>
+<blockquote>
+<p><strong>Note:</strong> Make note of the username and password as you will need them to update the web.config file for the MVC 4 application you will use in the next exercise to match those values.</p>
+</blockquote></li>
+<li><p>Uncheck <strong>Enforce password policy</strong> option to avoid having to change the User's password the first time you log on and set the <strong>Default database</strong> to <em>ContactManagerDb</em>.</p>
+
+<p><img src="Images/new-logins-general-settings.png?raw=true" alt="New Login's General Settings" title="New Login's General Settings" />
+</p>
+
+<p><em>Creating a New Login</em></p></li>
+<li><p>Go to <strong>User Mapping</strong> section. Map the user to the <em>ContactManagerDb</em> database, select the <strong>db_owner</strong> role for the login, and click <strong>OK</strong>.</p>
+
+<p><img src="./Images/Mapping-the-new-User.png?raw=true" alt="Mapping the new User to the AdventureWorks Database" title="Mapping the new User to the ContactManagerDb Database" />
+</p>
+
+<p><em>Mapping the new User to the ContactManagerDb Database</em></p></li>
+<li><p>Now you need to make sure the database server has SQL Server Authentication enabled, allowing connections with username and password from SQL Login. To do this, in Object Explorer, right-click the database server node and click <strong>Properties</strong> to open the server properties. </p>
+<blockquote>
+<p><strong>Note:</strong> To learn more about SQL Server Authentication modes check out this article <a href="http://technet.microsoft.com/en-us/library/ms144284.aspx">http://technet.microsoft.com/en-us/library/ms144284.aspx</a></p>
+</blockquote></li>
+<li><p>Select the <strong>Security</strong> page and make sure the <strong>Server authentication</strong> is set to <strong>SQL Server and Windows Authentication mode</strong> and click <strong>OK</strong>.</p>
+
+<p><img src="./Images/enabling-sqlserver-authentication.png?raw=true" alt="Enabling SQL Server Authentication" title="Enabling SQL Server Authentication" />
+</p>
+
+<p><em>Enabling SQL Server Authentication</em></p></li>
+<li><p>To apply the change you need to restart SQL Server service. To do this, open <strong>SQL Server Configuration Manager</strong> from <strong>Start | All Programs | Microsoft SQL Server 2012 | Configuration Tools</strong>. Go to the <strong>SQL Server Services</strong> node and right-click the <strong>SQL Server (MSSQLSERVER)</strong> item and select <strong>Restart.</strong></p></li>
+<li><p>Finally, you will create a <em>stored procedure</em> that will be used by the web application in order to perform searches using <strong>Full Text Search</strong>. To do so, copy and run the following code in a new query window.</p>
+
+<span class="codelanguage">T-SQL</span><pre><code class="T-SQL">USE [ContactManagerDb]
+GO
+CREATE PROCEDURE SearchContacts
+(@searchQuery nvarchar(4000))
+AS
+BEGIN
+SET NOCOUNT ON;
+
+SELECT * 
+FROM [dbo].Contacts
+WHERE CONTAINS((FirstName, LastName, Company), @searchQuery);
+END
+GO
+</code></pre></li>
+<li><p>Close the <strong>SQL Server Management Studio</strong> and close the remote desktop connection.</p></li>
+</ol>
+
+<hr />
+
+<p><a name="Exercise2"></a></p>
+
+<h3 id="Exercise_2_Creating_an_MVC_4_Web_Application_that_Connects_to_the_SQL_Server_2012_Virtual_Machine">Exercise 2: Creating an MVC 4 Web Application that Connects to the SQL Server 2012 Virtual Machine</h3>
+
+<p>In this exercise you will create a simple ASP.NET MVC 4 Web application that will connect to the SQL Server created previously using a public endpoint. By the end of the exercise, you will deploy the application to Windows Azure Web Sites using Visual Studio publishing feature and Web Deploy.</p>
+<blockquote>
+<p><strong>Note:</strong> To reduce typing, you can right-click where you want to insert source code, select Insert Snippet, select My Code Snippets and then select the entry matching the current exercise step.</p>
+</blockquote>
+<p><a name="Ex2Task1"></a></p>
+
+<h4 id="Task_1_-_Creating_the_Web_Application">Task 1 - Creating the Web Application</h4>
+
+<p>In this task you will create a simple MVC 4 Web application.</p>
+
+<ol>
+<li><p>In a new instance of Visual Studio Express 2012 for Web, open the <strong>Begin.sln</strong> starting solution from the <strong>Source\Ex2-CreatingMVCWebSite\Begin</strong> folder of this lab.</p></li>
+<li><p>Press <strong>CTRL+SHIFT+B</strong> to build the solution and download the NuGet packages required.</p></li>
+<li><p>Create a new class under the <strong>Models</strong> folder of the ContactManager.Web project. To do this, right-click the folder, select <strong>Add</strong> and then <strong>Class</strong>. In the <strong>Add New Item</strong> dialog, set the class name to <strong>Contact</strong>.</p>
+
+<!-- build to download dependencies    --></li>
+<li><p>Replace all the code in the class with following code.</p>
+
+<p>(Code Snippet - Web Sites and Virtual Machines using ASP.NET - <em>Ex2 Contact class</em>)</p>
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">namespace</span> ContactManager.Web.Models
+{
+     <span style="color:#0000FF">using</span> System.ComponentModel;
+     <span style="color:#0000FF">using</span> System.ComponentModel.DataAnnotations;
+
+     <span style="color:#0000FF">public</span> <span style="color:#0000FF">class</span> Contact
+     {        
+          <span style="color:#0000FF">public</span> <span style="color:#0000FF">int</span> Id { <span style="color:#0000FF">get</span>; <span style="color:#0000FF">set</span>; }
+
+          [Required]
+          [DisplayName(<span style="color:#8B0000">&quot;First Name&quot;</span>)]
+          <span style="color:#0000FF">public</span> <span style="color:#0000FF">string</span> FirstName { <span style="color:#0000FF">get</span>; <span style="color:#0000FF">set</span>; }
+
+          [DisplayName(<span style="color:#8B0000">&quot;Last Name&quot;</span>)]
+          [Required]        
+          <span style="color:#0000FF">public</span> <span style="color:#0000FF">string</span> LastName { <span style="color:#0000FF">get</span>; <span style="color:#0000FF">set</span>; }
+
+          [DataType(DataType.EmailAddress)]
+          [StringLength(50)]
+          <span style="color:#0000FF">public</span> <span style="color:#0000FF">string</span> Email { <span style="color:#0000FF">get</span>; <span style="color:#0000FF">set</span>; }
+
+          [StringLength(50, MinimumLength = 3, ErrorMessage = <span style="color:#8B0000">&quot;Must have a minimum length of 3.&quot;</span>)]
+          <span style="color:#0000FF">public</span> <span style="color:#0000FF">string</span> Company { <span style="color:#0000FF">get</span>; <span style="color:#0000FF">set</span>; }
+
+          [DisplayName(<span style="color:#8B0000">&quot;Business Phone&quot;</span>)]
+          [DataType(DataType.PhoneNumber)]        
+          <span style="color:#0000FF">public</span> <span style="color:#0000FF">string</span> BusinessPhone { <span style="color:#0000FF">get</span>; <span style="color:#0000FF">set</span>; }
+
+          [DisplayName(<span style="color:#8B0000">&quot;Mobile Phone&quot;</span>)]
+          [DataType(DataType.PhoneNumber)]        
+          <span style="color:#0000FF">public</span> <span style="color:#0000FF">string</span> MobilePhone { <span style="color:#0000FF">get</span>; <span style="color:#0000FF">set</span>; }
+
+          [StringLength(50, MinimumLength = 3, ErrorMessage = <span style="color:#8B0000">&quot;Must have a minimum length of 3.&quot;</span>)]
+          [DataType(DataType.Text)]
+          <span style="color:#0000FF">public</span> <span style="color:#0000FF">string</span> Address { <span style="color:#0000FF">get</span>; <span style="color:#0000FF">set</span>; }
+
+          [StringLength(50, MinimumLength = 3, ErrorMessage = <span style="color:#8B0000">&quot;Must have a minimum length of 3.&quot;</span>)]
+          [DataType(DataType.Text)]
+          <span style="color:#0000FF">public</span> <span style="color:#0000FF">string</span> City { <span style="color:#0000FF">get</span>; <span style="color:#0000FF">set</span>; }
+
+          [StringLength(10)]
+          [DataType(DataType.Text)]        
+          <span style="color:#0000FF">public</span> <span style="color:#0000FF">string</span> Zip { <span style="color:#0000FF">get</span>; <span style="color:#0000FF">set</span>; }
+     }
+}
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> This class uses data annotations to provide more information to the Entity Framework (and to MVC 4) about the classes and the database to which they map to. For example, you can specify that a property be used as the primary key, or you can also set the length of a text field, which will override the default length. These data annotations will also serve as validation rules for your model.
+The Entity Framework Code First allows you to use the System.ComponentModel.DataAnnotations namespace to provide additional information about classes, properties and validation rules. </p>
+</blockquote></li>
+<li><p>Create a new class under the <strong>Models</strong> folder. To do this, right-click the  <strong>Models</strong> folder and select <strong>Add | Class</strong>. In the <strong>Add New Item</strong> dialog, set the class name to <strong>ContactContext</strong>.</p></li>
+<li><p>Replace all the code in the class with the following code.</p>
+
+<p>(Code Snippet - Web Sites and Virtual Machines using ASP.NET - <em>Ex2 ContactContext class</em>)</p>
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">namespace</span> ContactManager.Web.Models
+{
+     <span style="color:#0000FF">using</span> System.Collections.Generic;
+     <span style="color:#0000FF">using</span> System.Data.Entity;
+     <span style="color:#0000FF">using</span> System.Data.SqlClient;        
+
+     <span style="color:#0000FF">public</span> <span style="color:#0000FF">class</span> ContactContext : DbContext
+     {
+          <span style="color:#0000FF">public</span> ContactContext()
+                : <span style="color:#0000FF">base</span>(<span style="color:#8B0000">&quot;ContactManagerDb&quot;</span>)
+          {
+          }
+
+          <span style="color:#0000FF">public</span> DbSet&lt;Contact&gt; Contacts { <span style="color:#0000FF">get</span>; <span style="color:#0000FF">set</span>; }
+     }
+}
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> The <em>ContactContext</em> class above is the context class used to map the <em>Contact</em> class to/from the database. It derives from the DbContext base class, provided by Entity Framework, and exposes a <em>DbSet</em> property for the root entity of the model. This set is automatically initialized when the <em>ContactContext</em> class instance is created.
+DbContext wraps the ObjectContext and exposes the most commonly used features of ObjectContext by using more simplified and intuitive API.</p>
+</blockquote></li>
+<li><p>Now you will create a method for calling the stored procedure that performs the <strong>full text search</strong>. To do this, add the highlighted code at the end of the <strong>ContactContext</strong> class.</p>
+
+<p>(Code Snippet - Web Sites and Virtual Machines using ASP.NET - <em>Ex2 SearchContacts method</em>)</p>
+
+<!-- mark:5-9    -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">public</span> <span style="color:#0000FF">class</span> ContactContext : DbContext
+{
+    ...
+
+<strong class="markLine">    <span style="color:#0000FF">public</span> IEnumerable&lt;Contact&gt; SearchContacts(<span style="color:#0000FF">string</span> searchQuery)</strong>
+<strong class="markLine">    {            </strong>
+<strong class="markLine">        <span style="color:#0000FF">return</span> <span style="color:#0000FF">this</span>.Database.SqlQuery&lt;Contact&gt;(<span style="color:#8B0000">&quot;EXECUTE [dbo].[SearchContacts] @searchQuery&quot;</span>, <span style="color:#0000FF">new</span> SqlParameter(<span style="color:#8B0000">&quot;searchQuery&quot;</span>, searchQuery ?? <span style="color:#0000FF">string</span>.Empty));</strong>
+<strong class="markLine">    }</strong>
+<strong class="markLine">}</strong>
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> the <strong>DbContext.Database.SqlQuery()</strong> method offers a way to execute a SQL command against the database and map the returning result set to a strongly typed object or a list of strongly typed objects that has properties that match the names of the columns returned from the query.</p>
+</blockquote></li>
+<li><p>In <strong>Solution Explorer</strong>, right-click the <strong>Controllers</strong> folder and select <strong>Add | Controller</strong>.</p></li>
+<li><p>In the <strong>Add Controller</strong> dialog, set the controller name to <strong>ContactController</strong>, select the <strong>Empty controller</strong> template and click <strong>Add</strong>.</p>
+
+<p><img src="Images/adding-a-controller.png?raw=true" alt="Adding a controller" title="Adding a controller" />
+</p>
+
+<p><em>Adding a controller</em></p></li>
+<li><p>Add the following using statements.</p>
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">using</span> ContactManager.Web.Models;    
+</code></pre></li>
+<li><p>Add the following code at the end of the <strong>ContactController</strong> class to create a method that will return a list  of contacts based on search criteria.</p>
+
+<p>(Code Snippet - Web Sites and Virtual Machines using ASP.NET - <em>Ex2 List Contacts Controller Method</em>)</p>
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#008000">// GET: /Contact/List</span>
+<span style="color:#0000FF">public</span> ActionResult List(<span style="color:#0000FF">string</span> searchQuery)
+{
+     IEnumerable&lt;Contact&gt; contacts;
+
+     <span style="color:#0000FF">using</span> (ContactContext context = <span style="color:#0000FF">new</span> ContactContext())
+     {
+          <span style="color:#0000FF">if</span> (!<span style="color:#0000FF">string</span>.IsNullOrEmpty(searchQuery))
+          {
+                contacts = context.SearchContacts(searchQuery).ToList();
+          }
+          <span style="color:#0000FF">else</span>
+          {
+                contacts = context.Contacts.ToList();
+          }
+     }
+
+     <span style="color:#0000FF">return</span> View(contacts);
+}
+</code></pre></li>
+<li><p>Build the project. To do this, right-click on the application's project in <strong>Solution Explorer</strong> and select <strong>Build</strong>.</p>
+
+<p><img src="Images/build-application.png?raw=true" alt="Building the project" title="Building the project" />
+</p>
+
+<p><em>Building the project</em></p></li>
+<li><p>Now you will create a new view using the <strong>Scaffolding</strong> MVC feature. Right-click the <strong>List</strong> method you just created and select <strong>Add View...</strong> from the context menu.</p>
+
+<p><img src="Images/adding-a-new-view.png?raw=true" alt="Adding a new view" title="Adding a new view" />
+</p>
+
+<p><em>Adding a new view</em></p></li>
+<li><p>In the <strong>Add View</strong> dialog, check the <strong>Create a strongly-typed view</strong> option and select <strong>Contact</strong> from the <em>Model class</em> list. From the <strong>Scaffold template:</strong> drop-down list, select the <strong>List</strong> option. Click <strong>Add</strong> to create the view.</p>
+
+<p><img src="Images/new-view-properties.png?raw=true" alt="New view properties" title="New view properties" />
+</p>
+
+<p><em>New view properties</em></p></li>
+<li><p>Remove the following code from the <strong>List</strong> view.</p>
+
+<!-- strike:1-5    -->
+
+<span class="codelanguage">HTML</span><pre><code class="HTML"><span class="strikeLine" style="text-decoration:line-through;"><span style="color:#0000FF">&lt;</span><span style="color:#800000">h2</span><span style="color:#0000FF">&gt;</span>List<span style="color:#0000FF">&lt;/</span><span style="color:#800000">h2</span><span style="color:#0000FF">&gt;</span></span>
+<span class="strikeLine" style="text-decoration:line-through;"></span>
+<span class="strikeLine" style="text-decoration:line-through;"><span style="color:#0000FF">&lt;</span><span style="color:#800000">p</span><span style="color:#0000FF">&gt;</span></span>
+<span class="strikeLine" style="text-decoration:line-through;">     @Html.ActionLink(&quot;Create New&quot;, &quot;Create&quot;)</span>
+<span class="strikeLine" style="text-decoration:line-through;"><span style="color:#0000FF">&lt;/</span><span style="color:#800000">p</span><span style="color:#0000FF">&gt;</span></span>
+</code></pre></li>
+<li><p>Add the highlighted code to the <strong>List</strong>
+view you just created to add the title and the search textbox. </p>
+
+<!-- mark:5-25    -->
+
+<span class="codelanguage">HTML</span><pre><code class="HTML">@{
+ViewBag.Title = &quot;List&quot;;
+}
+
+<strong class="markLine"><span style="color:#0000FF">&lt;</span><span style="color:#800000">section</span> <span style="color:#FF0000">class</span>=<span style="color:#0000FF">&quot;featured&quot;</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine"> <span style="color:#0000FF">&lt;</span><span style="color:#800000">div</span> <span style="color:#FF0000">class</span>=<span style="color:#0000FF">&quot;content-wrapper&quot;</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">      <span style="color:#0000FF">&lt;</span><span style="color:#800000">hgroup</span> <span style="color:#FF0000">class</span>=<span style="color:#0000FF">&quot;title&quot;</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">            <span style="color:#0000FF">&lt;</span><span style="color:#800000">h1</span><span style="color:#0000FF">&gt;</span>Contact Manager Sample<span style="color:#0000FF">&lt;/</span><span style="color:#800000">h1</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">            <span style="color:#0000FF">&lt;</span><span style="color:#800000">h2</span><span style="color:#0000FF">&gt;</span>for Windows Azure Web Sites<span style="color:#0000FF">&lt;/</span><span style="color:#800000">h2</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">      <span style="color:#0000FF">&lt;/</span><span style="color:#800000">hgroup</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">      <span style="color:#0000FF">&lt;</span><span style="color:#800000">p</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">          Create and search for contacts using Full-Text Search in SQL Server 2012 - try queries like &amp;quot;Joh*&amp;quot; (with the quotation marks) and john OR smith OR contoso</strong>
+<strong class="markLine">      <span style="color:#0000FF">&lt;/</span><span style="color:#800000">p</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine"> <span style="color:#0000FF">&lt;/</span><span style="color:#800000">div</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine"><span style="color:#0000FF">&lt;/</span><span style="color:#800000">section</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine"></strong>
+<strong class="markLine">@using (Html.BeginForm())</strong>
+<strong class="markLine">{</strong>
+<strong class="markLine"> <span style="color:#0000FF">&lt;</span><span style="color:#800000">fieldset</span> <span style="color:#FF0000">class</span>=<span style="color:#0000FF">&quot;search&quot;</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">      <span style="color:#0000FF">&lt;</span><span style="color:#800000">label</span><span style="color:#0000FF">&gt;</span>Search Contacts by First Name/Last Name/Company: <span style="color:#0000FF">&lt;/</span><span style="color:#800000">label</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">      @Html.TextBox(&quot;searchQuery&quot;)</strong>
+<strong class="markLine">      <span style="color:#0000FF">&lt;</span><span style="color:#800000">input</span> <span style="color:#FF0000">type</span>=<span style="color:#0000FF">&quot;submit&quot;</span> <span style="color:#FF0000">value</span>=<span style="color:#0000FF">&quot;Search&quot;</span> <span style="color:#0000FF">/&gt;</span></strong>
+<strong class="markLine"> <span style="color:#0000FF">&lt;/</span><span style="color:#800000">fieldset</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">}</strong>
+<strong class="markLine"></strong>
+<span style="color:#0000FF">&lt;</span><span style="color:#800000">table</span><span style="color:#0000FF">&gt;</span>
+    <span style="color:#0000FF">&lt;</span><span style="color:#800000">tr</span><span style="color:#0000FF">&gt;</span>
+        <span style="color:#0000FF">&lt;</span><span style="color:#800000">th</span><span style="color:#0000FF">&gt;</span>
+            @Html.DisplayNameFor(model =&gt; model.FirstName)
+...
+</code></pre></li>
+<li><p>Remove the highlighted lines of code, as the action links will not be used in this sample.</p>
+
+<!-- strike:30-34    -->
+
+<span class="codelanguage">CSHTML</span><pre><code class="CSHTML">@foreach (var item in Model) {
+     <span style="color:#0000FF">&lt;</span><span style="color:#800000">tr</span><span style="color:#0000FF">&gt;</span>
+          <span style="color:#0000FF">&lt;</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span>
+                @Html.DisplayFor(modelItem =&gt; item.FirstName)
+          <span style="color:#0000FF">&lt;/</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span>
+          <span style="color:#0000FF">&lt;</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span>
+                @Html.DisplayFor(modelItem =&gt; item.LastName)
+          <span style="color:#0000FF">&lt;/</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span>
+          <span style="color:#0000FF">&lt;</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span>
+                @Html.DisplayFor(modelItem =&gt; item.Email)
+          <span style="color:#0000FF">&lt;/</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span>
+          <span style="color:#0000FF">&lt;</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span>
+                @Html.DisplayFor(modelItem =&gt; item.Company)
+          <span style="color:#0000FF">&lt;/</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span>
+          <span style="color:#0000FF">&lt;</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span>
+                @Html.DisplayFor(modelItem =&gt; item.BusinessPhone)
+          <span style="color:#0000FF">&lt;/</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span>
+          <span style="color:#0000FF">&lt;</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span>
+                @Html.DisplayFor(modelItem =&gt; item.MobilePhone)
+          <span style="color:#0000FF">&lt;/</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span>
+          <span style="color:#0000FF">&lt;</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span>
+                @Html.DisplayFor(modelItem =&gt; item.Address)
+          <span style="color:#0000FF">&lt;/</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span>
+          <span style="color:#0000FF">&lt;</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span>
+                @Html.DisplayFor(modelItem =&gt; item.City)
+          <span style="color:#0000FF">&lt;/</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span>
+          <span style="color:#0000FF">&lt;</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span>
+                @Html.DisplayFor(modelItem =&gt; item.Zip)
+          <span style="color:#0000FF">&lt;/</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span>
+<span class="strikeLine" style="text-decoration:line-through;">          <span style="color:#0000FF">&lt;</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span></span>
+<span class="strikeLine" style="text-decoration:line-through;">                @Html.ActionLink(&quot;Edit&quot;, &quot;Edit&quot;, new { id=item.Id }) |</span>
+<span class="strikeLine" style="text-decoration:line-through;">                @Html.ActionLink(&quot;Details&quot;, &quot;Details&quot;, new { id=item.Id }) |</span>
+<span class="strikeLine" style="text-decoration:line-through;">                @Html.ActionLink(&quot;Delete&quot;, &quot;Delete&quot;, new { id=item.Id })</span>
+<span class="strikeLine" style="text-decoration:line-through;">          <span style="color:#0000FF">&lt;/</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span></span>
+     <span style="color:#0000FF">&lt;/</span><span style="color:#800000">tr</span><span style="color:#0000FF">&gt;</span>
+}
+</code></pre></li>
+<li><p>Add the highlighted code to show a message when there are no results.</p>
+
+<!-- mark:3-10    -->
+
+<span class="codelanguage">HTML</span><pre><code class="HTML">     <span style="color:#0000FF">&lt;/</span><span style="color:#800000">tr</span><span style="color:#0000FF">&gt;</span>
+}
+<strong class="markLine">@if (Model.Count() == 0)</strong>
+<strong class="markLine">{</strong>
+<strong class="markLine">     <span style="color:#0000FF">&lt;</span><span style="color:#800000">tr</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">          <span style="color:#0000FF">&lt;</span><span style="color:#800000">td</span> <span style="color:#FF0000">colspan</span>=<span style="color:#0000FF">&quot;10&quot;</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">                No contacts found</strong>
+<strong class="markLine">          <span style="color:#0000FF">&lt;/</span><span style="color:#800000">td</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">     <span style="color:#0000FF">&lt;/</span><span style="color:#800000">tr</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">}</strong>
+
+<span style="color:#0000FF">&lt;/</span><span style="color:#800000">table</span><span style="color:#0000FF">&gt;</span>
+</code></pre></li>
+<li><p>Add the following code at the end of the view.</p>
+
+<span class="codelanguage">HTML</span><pre><code class="HTML"><span style="color:#0000FF">&lt;</span><span style="color:#800000">p</span><span style="color:#0000FF">&gt;</span>
+@Html.ActionLink(&quot;Create New&quot;, &quot;Create&quot;)
+<span style="color:#0000FF">&lt;/</span><span style="color:#800000">p</span><span style="color:#0000FF">&gt;</span>
+</code></pre></li>
+<li><p>Press <strong>CTRL+SHIFT+S</strong> to save the changes.</p></li>
+<li><p>Open the <strong>ContactController</strong> class and add the following code to create methods that will handle the <strong>Create</strong> Action.</p>
+
+<p>(Code Snippet - Web Sites and Virtual Machines using ASP.NET - <em>Ex2 Create Contact Controller Method</em>)</p>
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#008000">// GET: /Contact/Create</span>
+<span style="color:#0000FF">public</span> ActionResult Create()
+{
+     <span style="color:#0000FF">return</span> View();
+}
+
+<span style="color:#008000">// POST: /Contact/Create</span>
+[HttpPost]
+[ValidateAntiForgeryToken]
+<span style="color:#0000FF">public</span> ActionResult Create(Contact contact)
+{
+     <span style="color:#0000FF">if</span> (!ModelState.IsValid)
+     {
+          <span style="color:#0000FF">return</span> View(contact);
+     }
+
+     <span style="color:#0000FF">using</span> (ContactContext context = <span style="color:#0000FF">new</span> ContactContext())
+     {
+          context.Contacts.Add(contact);
+
+          context.SaveChanges();
+     }
+
+     <span style="color:#0000FF">return</span> <span style="color:#0000FF">this</span>.RedirectToAction(<span style="color:#8B0000">&quot;List&quot;</span>);
+}
+</code></pre></li>
+<li><p>Right-click the <strong>Create</strong> method you just created and select <strong>Add View...</strong> from the context menu.</p>
+
+<p><img src="Images/adding-a-new-view2.png?raw=true" alt="Adding a new view" title="Adding a new view" />
+</p>
+
+<p><em>Adding a new view</em></p></li>
+<li><p>In the <strong>Add View</strong> dialog, check the <strong>Create a strongly-typed view</strong> option and select <strong>Contact</strong> from the <em>Model class</em> list. From the <strong>Scaffold template:</strong> list select the <strong>Create</strong> option. Click the <strong>Add</strong> button the create the view.</p>
+
+<p><img src="Images/new-view-properties2.png?raw=true" alt="New view properties" title="New view properties" />
+</p>
+
+<p><em>New view properties</em></p></li>
+<li><p>Add the <strong>AntiForgeryToken</strong> validation as shown below.</p>
+
+<!-- mark: 5    -->
+
+<span class="codelanguage">HTML</span><pre><code class="HTML">...
+
+@using (Html.BeginForm()) {
+     @Html.ValidationSummary(true)
+<strong class="markLine">     @Html.AntiForgeryToken()</strong>
+
+     <span style="color:#0000FF">&lt;</span><span style="color:#800000">fieldset</span><span style="color:#0000FF">&gt;</span>
+          <span style="color:#0000FF">&lt;</span><span style="color:#800000">legend</span><span style="color:#0000FF">&gt;</span>Contact<span style="color:#0000FF">&lt;/</span><span style="color:#800000">legend</span><span style="color:#0000FF">&gt;</span>
+
+...
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> The <strong>AntiForgery</strong> token renders a hidden token which is validated during post back, ensuring that your app is protected against cross-site request forgery.</p>
+</blockquote></li>
+<li><p>Press <strong>CTRL+SHIFT+S</strong> to save the changes.</p></li>
+<li><p>Open the <strong>ContactController</strong> class and replace the <strong>Index</strong> method with the following code to show the contacts list when you load the site.</p>
+
+<p>(Code Snippet - Web Sites and Virtual Machines using ASP.NET - <em>Ex2 Index Controller Method</em>)</p>
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#008000">// GET: /Contact/</span>
+<span style="color:#0000FF">public</span> ActionResult Index()
+{
+     <span style="color:#0000FF">return</span> <span style="color:#0000FF">this</span>.RedirectToActionPermanent(<span style="color:#8B0000">&quot;List&quot;</span>);
+}
+</code></pre></li>
+<li><p>Finally, you will configure the <strong>connection string</strong> which will give <strong>Entity Framework</strong> information regarding your SQL Server and your database. To do this, open the <strong>Web.config</strong> file and locate the following code within the <strong>configuration</strong> section. Replace the <strong>{yourServerAdress}</strong> token with your SQL Server Virtual Machine public URL, <strong>{yourPort}</strong> token with the port number you assigned to your virtual machine public endpoint and <strong>{username}</strong> and <strong>{password}</strong> tokens with the data of the database user you created in Exercise 1. </p>
+
+<!-- mark:3    -->
+
+<span class="codelanguage">XML</span><pre><code class="XML"><span style="color:#0000FF">&lt;</span><span style="color:#800000">connectionStrings</span><span style="color:#0000FF">&gt;</span>    
+<span style="color:#008000">&lt;!-- Windows Azure SQL Database Connection String --&gt;</span>
+<strong class="markLine">    <span style="color:#0000FF">&lt;</span><span style="color:#800000">add</span> <span style="color:#FF0000">name</span>=<span style="color:#0000FF">&quot;ContactManagerDb&quot;</span> <span style="color:#FF0000">connectionString</span>=<span style="color:#0000FF">&quot;Data Source={yourServerAdress},{yourPort};Initial Catalog=ContactManagerDb;User Id={username};Password={password};&quot;</span> <span style="color:#FF0000">providerName</span>=<span style="color:#0000FF">&quot;System.Data.SqlClient&quot;</span> <span style="color:#0000FF">/&gt;</span>       </strong>
+<span style="color:#0000FF">&lt;/</span><span style="color:#800000">connectionStrings</span><span style="color:#0000FF">&gt;</span>
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> You can grab your server address from Windows Azure Portal by going to <strong>Virtual Machines</strong>, then clicking on your virtual machine name and then going to <strong>Dashboard</strong>. Once there, under <strong>Quick glance</strong>, locate <strong>DNS Name</strong> and copy the URL.</p>
+</blockquote></li>
+<li><p>Press <strong>F5</strong> to run the solution and verify the site is working properly.</p>
+
+<p><img src="Images/application-running-locally.png?raw=true" alt="Application running locally" title="Application running locally" />
+</p>
+
+<p><em>Application running locally</em></p></li>
+</ol>
+
+<p><a name="Ex2Task2"></a></p>
+
+<h4 id="Task_2_-_Publishing_the_Web_Application_using_Visual_Studio">Task 2 - Publishing the Web Application using Visual Studio</h4>
+
+<p>In this task you will publish using Windows Azure Web Sites the ASP.NET MVC 4 application you have created on the previous task. To do this, you will use Visual Studio web publishing to deploy the web application through Web Deploy.</p>
+
+<ol>
+<li><p>Go to the <a href="https://manage.windowsazure.com">Windows Azure Management Portal</a> and sign with your Windows account credentials.</p>
+
+<p><img src="Images/login.png?raw=true" alt="Log on to Windows Azure portal" title="Log on to Windows Azure portal" />
+</p>
+
+<p><em>Log on to Windows Azure Management Portal</em></p></li>
+<li><p>Click <strong>New</strong> on the command bar. Click <strong>Compute | Web Site</strong> and then <strong>Quick Create</strong>. Provide a URL for the new web site that is available (e.g. <em>contactmanager</em>) and click <strong>Create Web Site</strong>. You can leave the <strong>Region</strong> by default.</p>
+<blockquote>
+<p><strong>Note:</strong> A Windows Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to Windows Azure Web Sites from outside the portal. It does not include steps for setting up a database.</p>
+</blockquote>
+<p><img src="Images/create-website.png?raw=true" alt="Creating a new Web Site using Quick Create" title="Creating a new Web Site using Quick Create" />
+</p>
+
+<p><em>Creating a new web site using Quick Create</em></p>
+<blockquote>
+<p><strong>Note:</strong> The <strong>Quick Create</strong> option doesn't give you options for setting up a database. In this lab you don't require it as you are using a Virtual Machine with SQL Server 2012 as database server.</p>
+</blockquote></li>
+<li><p>Wait until the new web site is created. In the <strong>web sites</strong> list, click the new Web Site under the Name column to access the <strong>Dashboard</strong>.</p></li>
+<li><p>In the <strong>Dashboard</strong> page, under the <strong>quick glance</strong> section, click <strong>Download publish profile</strong>.</p>
+<blockquote>
+<p><strong>Note:</strong> The <em>publish profile</em> contains all of the information required to publish a web application to a Windows Azure Web Site for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. <strong>Microsoft Visual Studio</strong> supports reading publish profiles to automate configuration of these programs for publishing web applications to Windows Azure Web Sites. </p>
+</blockquote>
+<p><img src="Images/download-publish-profile.png?raw=true" alt="Downloading the web site publish profile" title="Downloading the web site publish profile" />
+</p>
+
+<p><em>Downloading the web site publish profile</em></p></li>
+<li><p>Download the publish profile file to a known location. Later on in this exercise you will see how to use this file to publish a web application to Windows Azure Web Sites from Visual Studio.</p>
+
+<p><img src="Images/save-link.png?raw=true" alt="Saving the publish profile file" title="Saving the publish profile" />
+</p>
+
+<p><em>Saving the publish profile file</em></p></li>
+<li><p>If not already opened, open the MVC 4 application you obtained in the previous task. In the <strong>Solution Explorer</strong>,  right-click the web site project and select <strong>Publish</strong>.</p>
+
+<p><img src="Images/publishing-the-web-site.png?raw=true" alt="Publishing the web site" title="Publishing the web site" />
+</p>
+
+<p><em>Publishing the web site</em></p></li>
+<li><p>In the <strong>Profile</strong> page, click <strong>Import</strong> and select the profile settings file you downloaded earlier in this Exercise. Click <strong>Next</strong>.</p>
+
+<p><img src="Images/importing-the-profile-settings-file.png?raw=true" alt="Importing the Profile Settings File" title="Importing the Profile Settings File" />
+</p>
+
+<p><em>Importing the Profile Settings File</em></p></li>
+<li><p>In the <strong>Connection</strong> page, leave the imported values and click <strong>Next</strong>.</p>
+
+<p><img src="Images/setting-up-web-deploy-connection.png?raw=true" alt="Setting up Web Deploy connection" title="Setting up Web Deploy connection" />
+</p>
+
+<p><em>Setting up Web Deploy connection</em></p></li>
+<li><p>In the <strong>Settings</strong> page, leave the default values and click <strong>Next</strong>.</p>
+
+<p><img src="Images/setting-up-additional-settings.png?raw=true" alt="Setting up additional Settings" title="Setting up additional Settings" />
+</p>
+
+<p><em>Setting up additional Settings</em></p></li>
+<li><p>In the <strong>Publish</strong> page, click <strong>Publish</strong> to begin the application publishing process.</p>
+
+<p><img src="Images/publish-web-application-preview-page.png?raw=true" alt="Publish web application preview page" title="Publish web application preview page" />
+</p>
+
+<p><em>Publish web application preview page</em></p></li>
+<li><p>Once the publishing process finishes, switch back to the Windows Azure Management Portal.</p></li>
+<li><p>In the <strong>Dashboard</strong> page of the web site, under the <strong>quick glance</strong> section, click the <strong>Site URL</strong> link in order to browse to your published web site.</p>
+
+<p><img src="Images/opening-the-published-site.png?raw=true" alt="Opening the Published Site" title="Opening the Published Site" />
+</p>
+
+<p><em>Opening the published web site</em></p></li>
+<li><p>Verify that the web site was successfully published in Windows Azure and then close the browser.</p>
+
+<p><img src="Images/application-published-to-windows-azure.png?raw=true" alt="Application published to Windows Azure" title="Application published to Windows Azure" />
+</p>
+
+<p><em>Application published to Windows Azure Web Sites</em></p></li>
+</ol>
+
+<hr />
+
+<p><a name="Summary"></a></p>
+
+<h2 id="Summary">Summary</h2>
+
+<p>In this lab, you have learned how to create ASP.NET web applications that connect to virtual machines running in Windows Azure. First, created a virtual machine with SQL Server 2012 installed using the Windows Azure Management Portal and configured it to allow external connections. Then, you created a simple ASP.NET MVC 4 web application using Entity Framework that accessed the database in the SQL Server virtual machine. The web application took advantage of Full-Text Search features in SQL Server 2012 to search for contact data.  You completed the lab by deploying the application to Windows Azure Web Sites using Visual Studio.</p>
+
+</span>
+		</div>
+	<br />
+	<p><a href="#top">top of page</a></p>
+
+
+				</div>
+			</section>
+			<footer>
+				<div class="footer-sitemap" style="border-top:0"></div>
+				<div class="footer-bottom">
+					<ul>
+						<li class="footer-copyright"><a href="http://www.microsoft.com"><img alt="microsoft" src="images/microsoft.png" /></a></li>					
+												<li><a href="https://github.com/WindowsAzure-TrainingKit/HOL-ASPNETAzureWebSitesVMSQL-VS2012/issues" target="_new">File an Issue</a></li>
+												<li><a href="mailto:azcfeed@microsoft.com?subject=Windows Azure Training Kit">Contact Us</a></li>
+						<li><a href="EULA.htm">Terms of Use</a></li>
+						<li><a href=".\">Browse Content</a></li>
+						<li>&copy; 2012 Microsoft</li>
+					</ul>
+				</div>
+			</footer>
+			</div>
+        </div>
+    </div>
+</body>
+</html>
+

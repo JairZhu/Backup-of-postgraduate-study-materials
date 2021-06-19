@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MyTodo.WebUx.Models.TaskList>
+@{ 
+    ViewBag.Title = "myTODO"; 
+}
+@section MainContent {
+    <h2>
+        myTODO Lists</h2>
+    @foreach (var item in Model)
+    {
+        <ul>
+            <li>@(Html.ActionLink(item.Name, item.ListId, "Get"))</li>
+        </ul>    
+    }
+    <div>
+        @if (User.IsInRole("Owner"))
+        {
+            <p>
+                @using (Html.BeginForm("CreateList", "Task"))
+                {
+                    <text>@(Html.TextBox("Name", "New List Name"))<br />
+                    @(Html.CheckBox("IsPublic", true))
+                    Share this TODO List?</text>
+                }
+            </p>
+        }
+        else
+        {
+            <span>@(Html.ActionLink("Log In", "LogIn", "Account"))
+                to create new lists</span>
+        }
+    </div>
+}

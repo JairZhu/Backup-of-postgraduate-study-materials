@@ -1,0 +1,12 @@
+﻿@{ 
+    ViewBag.Title = "myTODO - Welcome";
+}
+@section MainContent {
+    <div class="welcome">
+        <h2>Welcome!</h2>
+        <p>
+            Before you start using myTODO you need to prepare the application for the first time
+        </p>        
+        @(Html.ActionLink("Start", "Register", "Account"))
+    </div>
+}

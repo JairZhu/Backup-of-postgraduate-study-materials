@@ -1,0 +1,39 @@
+﻿@{ 
+    ViewBag.Title = "myTODO - Log In"; 
+}
+@section MainContent {
+    <div class="infoBox">
+        <h2>
+            Log In</h2>
+        <p>
+        </p>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <div class="form">
+            <p>
+                Please enter your username and password.
+            </p>
+            <p>
+                <label for="username">
+                    Username:</label><br />
+                @(Html.TextBox("username"))
+                @(Html.ValidationMessage("username"))
+            </p>
+            <p>
+                <label for="password">
+                    Password:</label><br />
+                @(Html.Password("password"))
+                @(Html.ValidationMessage("password"))
+            </p>
+            <p>
+                @(Html.CheckBox("rememberMe"))
+                <label class="inline" for="rememberMe">
+                    Remember me?</label>
+            </p>
+            <div class="submit">
+                <input type="submit" value="Log In »" />
+            </div>
+        </div>
+    }
+}

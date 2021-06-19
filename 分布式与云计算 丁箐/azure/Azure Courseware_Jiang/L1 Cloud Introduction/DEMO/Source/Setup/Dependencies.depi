@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DependencyCheckerConfiguration version="2.0">
+	<title>Hello ASP Demo</title>
+	<dependencies>	
+		<dependency
+			hint="azurenodesdk"
+			name="Windows Azure SDK for Node.js"
+			helpLink=""
+			type="WebPI" />			
+	</dependencies>
+	<setupCommands>
+      <setup command=".\DoSetup.cmd" name="HelloASP"
+	description="HelloASP demo setup..." />
+  </setupCommands>
+</DependencyCheckerConfiguration>

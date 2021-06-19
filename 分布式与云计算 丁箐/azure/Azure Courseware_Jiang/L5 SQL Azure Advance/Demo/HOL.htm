@@ -1,0 +1,1315 @@
+﻿
+<!DOCTYPE html>
+<html class="no-js" lang="en" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
+<head id="ContentPlaceHolderDefault_Head1">
+    <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1" />
+    <meta charset="utf-8" />
+    <title>Windows Azure Training Kit - Introduction to Windows Azure SQL Database - for Visual Studio 2012</title>
+    <link rel="Stylesheet" type="text/css" media="all" href="styles/master.css" />
+</head>
+<body id="top" class="page-">
+    <div id="page">
+        <div id="wrapper" class="landingPage getStartedPage">            
+            <div class="header">								
+				<img alt="Windows Azure" src="images/azure-logo.png" />
+				<span class="mainHomepageSubTitle">Training Kit - December 2012 Update</span>								
+			</div>			
+			<div class="nav-menu-header">
+				<nav>
+					<ul>
+						<li class="MenuLink-Selected">
+							<a href="#">Content</a>
+						</li>
+												<li class="MenuLink">
+							<a href="Source">Setup</a>
+						</li>
+											</ul>
+				
+										
+						<span id="github-btn" class="github-btn">
+						  <a id="gh-btn" title="Fork this repo in GitHub" href="https://github.com/WindowsAzure-TrainingKit/HOL-IntroSQLDatabase-VS2012" target="_blank" class="gh-btn">
+							<span class="gh-ico"></span>
+							<span id="gh-text" class="gh-text">Fork</span>
+						  </a>								  
+						</span>								
+						<span id="github-btn" class="github-btn github-watchers">
+						  <a id="gh-btn" title="Watch this repo in GitHub" href="https://github.com/WindowsAzure-TrainingKit/HOL-IntroSQLDatabase-VS2012" target="_blank" class="gh-btn">
+							<span class="gh-ico"></span>
+							<span id="gh-text" class="gh-text">Watch</span>
+						  </a>								  
+						</span>
+						
+									
+				</nav>
+			</div>	        
+		</span>
+			<div id="content" class="textpage">
+            <section id="content-container">
+				<div id="content" class="textpage">
+			    <a name="top"></a>
+				
+				
+
+		<div class="content">
+			<?xml version="1.0" encoding="iso-8859-1"?><span><p><a name="HOLTop"></a></p>
+
+<h1 id="Introduction_to_Windows_Azure_SQL_Database_-_for_Visual_Studio_2012">Introduction to Windows Azure SQL Database - for Visual Studio 2012</h1>
+
+<hr />
+
+<p><a name="Overview"></a></p>
+
+<h2 id="Overview">Overview</h2>
+
+<p>SQL Database makes the power of Microsoft SQL Server available in a Cloud Hosted offering. Working with SQL Database should be a familiar experience for most developers because, for the most part, it supports the same tooling and development practices currently used for on premises SQL Server applications.</p>
+
+<p>This hands-on lab will walk through a series of simple use cases for SQL Database such as provisioning your account, creating, and using a database. You will create a simple Windows Azure application to allow you to manipulate the data in the Contact table of a database running in SQL Database.</p>
+
+<p><a name="Objectives"></a></p>
+
+<h3 id="Objectives">Objectives</h3>
+
+<p>In this hands-on lab, you will learn how to:</p>
+
+<ul>
+<li>  Use SQL Database as a cloud hosted database platform for your applications.</li>
+<li>  Provision a new SQL Database server and create new databases.</li>
+<li>  Create new SQL Database users and grant them appropriate permissions.</li>
+<li>  Use SQL Database to execute statements to create tables and indexes and to insert and query rows.</li>
+<li>  Build a simple data driven ASP.NET page using the graphical controls in Visual Studio.</li>
+<li>  Connect to SQL Database via Client Libraries. </li>
+</ul>
+
+<p><a name="Prerequisites"></a></p>
+
+<h3 id="Prerequisites">Prerequisites</h3>
+
+<p>The following is required to complete this hands-on lab:</p>
+
+<ul>
+<li><a href="http://www.microsoft.com/visualstudio/">Visual Studio Express 2012 for Web</a> or higher</li>
+<li><a href="http://www.microsoft.com/visualstudio/">Visual Studio Express 2012 for Desktop</a> or higher</li>
+<li><a href="http://www.microsoft.com/windowsazure/sdk/">Windows Azure Tools for Microsoft Visual Studio 1.8</a></li>
+<li><a href="http://www.microsoft.com/en-us/download/details.aspx?id=29062">SQL Server Management Studio 2012 Express Edition</a> or higher</li>
+<li>Access to a <strong>SQL Database</strong> account with a server created</li>
+<li><strong>SQL Database Firewall</strong> enabled for machine running this lab</li>
+<li>A Windows Azure subscription - <a href="http://aka.ms/WATK-FreeTrial">sign up for a free trial</a></li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> This lab was designed to use Windows 8 operating system.</p>
+</blockquote>
+<p><a name="Setup"></a></p>
+
+<h3 id="Setup">Setup</h3>
+
+<p>In order to execute the exercises in this hands-on lab you need to set up your environment.</p>
+
+<ol>
+<li><p>Open a Windows Explorer window and browse to the lab's <strong>Source</strong> folder.</p></li>
+<li><p>Execute the <strong>Setup.cmd</strong> file with Administrator privileges to launch the setup process that will configure your environment and install the Visual Studio code snippets for this lab.</p></li>
+<li><p>If the User Account Control dialog is shown, confirm the action to proceed.</p></li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> Make sure you have checked all the dependencies for this lab before running the setup. </p>
+</blockquote>
+<p><a name="CodeSnippets"></a></p>
+
+<h3 id="Using_the_Code_Snippets">Using the Code Snippets</h3>
+
+<p>Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of that code is provided as Visual Studio Code Snippets, which you can use from within Visual Studio 2012 to avoid having to add it manually.</p>
+<blockquote>
+<p><strong>Note:</strong> Each exercise is accompanied by a starting solution located in the Begin folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and that they will not necessarily work until you complete the exercise. Inside the source code for an exercise, you will also find an End folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab</p>
+</blockquote>
+<hr />
+
+<p><a name="Exercises"></a></p>
+
+<h2 id="Exercises">Exercises</h2>
+
+<p>This hands-on lab includes the following exercises:</p>
+
+<ol>
+<li><a href="#Exercise1">Preparing Your SQL Database Account</a></li>
+<li><a href="#Exercise2">Basic DDL and DML - Creating Tables and Indexes</a></li>
+<li><a href="#Exercise3">Build a Windows Azure Application that Accesses SQL Database</a></li>
+<li><a href="#Exercise4">Connecting via Client Libraries</a></li>
+</ol>
+
+<p>Estimated time to complete this lab: <strong>60 minutes</strong>.</p>
+<blockquote>
+<p><strong>Note:</strong> When you first start Visual Studio, you must select one of the predefined settings collections. Every predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the <strong>General Development Settings</strong> collection. If you choose a different settings collection for your development environment, there may be differences in these procedures that you need to take into account.</p>
+</blockquote>
+<p><a name="Exercise1"></a></p>
+
+<h3 id="Exercise_1_Preparing_Your_SQL_Database_Account">Exercise 1: Preparing Your SQL Database Account</h3>
+
+<p>In this exercise, you will connect to your SQL Database account and create a database server, add a new user and then reconnect to SQL Database so that you can begin working with your new database.</p>
+
+<p><a name="Ex1Task1"></a></p>
+
+<h4 id="Task_1_-_Retrieving_your_SQL_Database_Server_Name">Task 1 - Retrieving your SQL Database Server Name</h4>
+
+<p>In this task, you will log into the SQL Database portal to obtain the name of the SQL Database server assigned to your account.</p>
+
+<ol>
+<li><p>Open <strong>Internet Explorer</strong> and navigate to the Windows Azure portal at <a href="https://manage.windowsazure.com"><a href="https://manage.windowsazure.com">https://manage.windowsazure.com</a></a>.</p></li>
+<li><p>Log in to your Microsoft account.</p>
+
+<p><img src="Images/loggingintotheazureservicesportal.png?raw=true" alt="LoggingIntoTheAzureServicesPortal" />
+</p>
+
+<p><em>Logging into the Azure Services Portal</em></p></li>
+<li><p>At the Windows Azure portal home page, click <strong>SQL Databases</strong> from the left pane, and select <strong>Servers</strong> to list your SQL servers.</p>
+
+<p><img src="Images/viewing-sql-servers.png?raw=true" alt="Viewing SQL Servers" />
+</p>
+
+<p><em>Viewing SQL Servers</em> </p></li>
+<li><p>If you have not previously created a server, you will need to do so now; otherwise, you may skip this exercise. </p></li>
+<li><p>To create a new server, click <strong>Add</strong> in the bottom menu.</p>
+
+<p><img src="Images/add-a-new-sql-server.png?raw=true" alt="Add a new SQL Server" title="Add a new SQL Server" />
+</p>
+
+<p><em>Add a new SQL Server</em> </p></li>
+<li><p>Insert an <strong>Admin Name</strong> (e.g. SQLAdmin) and a <strong>Password</strong> for the database administrator. Select a <strong>Region</strong> where the server database will be created. Ensure <strong>Allow Windows Azure Services to access the server</strong> is checked, and click <strong>Tick</strong> to create the new server. You will configure firewall rules later on this exercise.</p>
+
+<p><img src="Images/server-settings.png?raw=true" alt="Server settings" />
+</p>
+
+<p><em>Server settings</em></p>
+<blockquote>
+<p><strong>Note:</strong> An administrator account is a master account used to manage the new server. You should avoid using this account in connection strings where the username and password may be exposed.
+The password policy requires that the password follow certain rules.</p>
+
+<p><img src="Images/passwordpolicy.png?raw=true" alt="PasswordPolicy" />
+</p>
+</blockquote></li>
+<li><p>Finally, the new server information, including <strong>Fully Qualified Server Name</strong>, is shown. </p>
+
+<p><img src="Images/sqldatabaseserverlist.png?raw=true" alt="SQL Database server list" />
+</p>
+
+<p><em>SQL Database server list</em> </p>
+<blockquote>
+<p><strong>Note:</strong> The fully qualified domain name of the server uses the following format:
+ <em>&lt;ServerName&gt;.database.windows.net</em> where <em>&lt;ServerName&gt;</em> identifies the server, for example, <em>udi4slmm7g.database.windows.net</em>.</p>
+</blockquote></li>
+<li><p>Click on your server name from the list of SQL servers created, and select <strong>Dashboard</strong> from the top menu. Review the information displayed from your SQL Server.</p>
+
+<p><img src="Images/sql-server-information-page.png?raw=true" alt="SQL Server Information Page" title="SQL Server Information Page" />
+</p>
+
+<p><em>SQL Server Information Page</em></p></li>
+<li><p>Click <strong>Configure</strong> from the top menu to setup firewall rules for the server.</p>
+
+<p><img src="Images/sql-database-server-allowed-ip-addresses.png?raw=true" alt="SQL Server allowed IP addresses" />
+</p>
+
+<p><em>SQL Database server information page</em> </p>
+<blockquote>
+<p><strong>Note:</strong> The <strong>allowed ip addresses</strong> allows you to specify a list of IP addresses that can access your SQL Database Server. The firewall will deny all connections by default, so <strong>be sure to configure your allow list</strong> so that existing clients can connect to the server.</p>
+</blockquote></li>
+<li><p>Click on <strong>Add to allowed IP addresses</strong> to allow yourself access the server. In <strong>Windows Azure Services</strong> make sure that <em>YES</em> is selected to allow Azure accessing your SQL Server, and then click <strong>Save</strong>.</p>
+
+<p><img src="Images/adding-new-allowed-ip.png?raw=true" alt="Adding a new Allowed IP" />
+</p>
+
+<p><em>Adding a new Allowed IP</em></p>
+<blockquote>
+<p><strong>Note:</strong> Changes to your firewall settings can take some time to become effective.</p>
+</blockquote>
+<p>You now have a database server created and ready for the next steps in this lab. This database can be connected to from anywhere in the world.</p></li>
+</ol>
+
+<p><a name="Exercise2"></a></p>
+
+<h3 id="Exercise_2_Working_with_Data_Basic_DDL_and_DML">Exercise 2: Working with Data Basic DDL and DML</h3>
+
+<p>In this exercise, you will create a new database and work with its data. This means you will create some tables, index those tables appropriately, and then insert and query data. For this purpose, you will use two different tools. The first tool, the Database Manager for SQL Database, is a browser based Silverlight database administration tool that you can access from the Windows Azure portal. The other tool is SQL Server Management Studio, a tool normally associated with SQL Server management. You will see that this tool is equally useful for managing your SQL Databases.</p>
+
+<p><a name="Ex2Task1"></a></p>
+
+<h4 id="Task_1_-_Creating_a_New_Database">Task 1 - Creating a New Database</h4>
+
+<ol>
+<li><p>In the Windows Azure Management portal UI, select <strong>New</strong> from the bottom pane, <strong>Data Services</strong> | <strong>SQL Database</strong> | <strong>Custom Create</strong>.</p>
+
+<p><img src="Images/new-sql-database.png?raw=true" alt="New SQL Database" />
+</p>
+
+<p><em>Creating a new database</em>  </p></li>
+<li><p>In the <strong>Specify database settings</strong> dialog, set the <strong>Name</strong> to <em>HoLTestDB</em>, select the <em>Web</em> <strong>Edition</strong>, leave the <strong>Limit database size</strong> and <strong>Collation</strong> values with the suggested values, and select the <strong>Server</strong> you created in the previous exercise.</p>
+
+<p><img src="Images/new-database-settings.png?raw=true" alt="ChoosingDatabaseFeatures" />
+</p>
+
+<p><em>New database's features</em></p>
+<blockquote>
+<p><strong>Note:</strong> In this hands-on lab, you create a database using the Windows Azure portal. Databases can also be created by executing a DDL query against your assigned server using the T-SQL CREATE DATABASE statement, specifying which SQL Database edition (Web or Business) to create as well as its maximum size. For example, to create a Business Edition database with a maximum size of 30GB, use the following T-SQL command: </p>
+
+<p><strong>CREATE DATABASE HolTestDB (MAXSIZE = 30GB)</strong> </p>
+
+<p>Once a database reaches its maximum size, you cannot insert additional data until you delete some data to free storage space or increase its maximum size.</p>
+</blockquote></li>
+</ol>
+
+<p><a name="Ex2Task2"></a></p>
+
+<h4 id="Task_2_-_Managing_your_Database_with_the_Database_Manager_for_SQL_Database">Task 2 - Managing your Database with the Database Manager for SQL Database</h4>
+
+<p>In this task, you use the Database Manager for SQL Database, a Silverlight client that runs in your browser, to connect to your SQL Database, create and populate a table, and then query its contents.</p>
+
+<ol>
+<li><p>In the Windows Azure Management portal UI Home Page, select <strong>SQL Databases</strong> from the left pane, select <em>HoLTestDB</em> database and click <strong>Manage</strong> on the bottom pane.</p>
+
+<p><img src="Images/manage-database.png?raw=true" alt="Managing a Database" />
+</p>
+
+<p><em>Managing a database</em> </p></li>
+<li><p>You will be redirected to the <strong>SQL Database Management Portal</strong>. Enter your Server Administrator username and password and then click <strong>Log on</strong>.</p>
+
+<p><img src="Images/signingsqldatabasemanagementportal.png?raw=true" alt="SigningSQLDatabaseManagementPortal" />
+</p>
+
+<p><em>Signing in to the SQL Database Management Portal</em> </p></li>
+<li><p>Wait until you are connected to your database and the <strong>Administration</strong> page is shown.</p></li>
+<li><p>Select the <strong>HoLTestDB</strong> database on the left pane.</p>
+
+<p><img src="Images/sqldatabasemanagementportaladministrationpage.png?raw=true" alt="SQLDatabaseManagementPortalAdministrationPage" />
+</p>
+
+<p><em>SQL Database Management Portal Administration page</em> </p></li>
+<li><p>On the left pane, click <strong>Design</strong> option.</p>
+
+<p><img src="Images/sqldatabasedesignview.png?raw=true" alt="SQLDatabaseDesignView" />
+</p>
+
+<p><em>SQL Database Design view</em> </p></li>
+<li><p>Make sure <strong>Tables</strong> option is selected in the navigation menu and click <strong>New table</strong>.</p>
+
+<p><img src="Images/creatingnewtable.png?raw=true" alt="CreatingNewTable" />
+</p>
+
+<p><em>Creating a new table</em></p></li>
+<li><p>In the table creation UI, set the <strong>Name</strong> of the table to <em>People</em>. </p></li>
+<li><p>Next, define three table columns using the information shown below and click <strong>Save</strong>.</p>
+
+<table><thead>
+<tr>
+<td><strong>Column</strong></td>
+<td><strong>Type</strong></td>
+<td><strong>Is Identity?</strong></td>
+<td><strong>Is Required?</strong></td>
+<td><strong>Is Primary Key?</strong></td>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>Int</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>nvarchar(50)</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Age</td>
+<td>Int</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<p><img src="Images/creatingtableschema.png?raw=true" alt="CreatingTableSchema" />
+</p>
+
+<p><em>Creating the table schema</em></p></li>
+<li><p>Once the table is saved, click <strong>Data</strong> in the navigation menu.</p>
+
+<p><img src="Images/insertcaption.png?raw=true" alt="Selecting Data in the navigation menu" />
+</p>
+
+<p><em>Selecting Data in the navigation menu</em></p></li>
+<li><p>Now, click <strong>Add Row</strong> and enter sample data for the <em>Name</em> and <em>Age</em> columns. </p>
+
+<table><thead>
+<tr>
+<td><strong>Name</strong></td>
+<td><strong>Age</strong></td>
+</tr>
+</thead><tbody>
+<tr>
+<td>Alexandra</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Ian</td>
+<td>18</td>
+</tr>
+<tr>
+<td>Marina</td>
+<td>45</td>
+</tr>
+</tbody></table>
+<p><img src="Images/addingrowstable.png?raw=true" alt="AddingRowsTable" />
+</p>
+
+<p><em>Adding rows to the table</em></p></li>
+<li><p>Once you finished adding sample data, click <strong>Save</strong> to commit the data to the table.</p>
+
+<p><img src="Images/savingdata.png?raw=true" alt="SavingData" />
+</p>
+
+<p><em>Saving Data</em></p></li>
+<li><p>Next, click <strong>New Query</strong> in the ribbon.</p></li>
+<li><p>In the query window, enter the following T-SQL statement to select all the rows in the <em>People</em> table and then click <strong>Run</strong>. Verify that the results grid shows the rows that you entered previously.</p>
+
+<span class="codelanguage">T-SQL</span><pre><code class="T-SQL">select * from People
+</code></pre>
+
+<p><img src="Images/queryingdatabase.png?raw=true" alt="QueryingDatabase" />
+</p>
+
+<p><em>Querying the database</em></p></li>
+</ol>
+
+<p><a name="Ex2Task3"></a></p>
+
+<h4 id="Task_3_-_Managing_your_Database_with_SQL_Server_Management_Studio">Task 3 - Managing your Database with SQL Server Management Studio</h4>
+
+<p>In this task, you use SQL Server Management Studio, a tool typically used for managing SQL Server, to connect to your SQL Database server and administer it.</p>
+
+<ol>
+<li><p>Open <strong>SQL Server Management Studio</strong>. You will be presented with a logon dialog.</p></li>
+<li><p>In the <strong>Connect to Server</strong> dialog, enter your login information ensuring that you select <strong>SQL Server Authentication</strong>. SQL Database currently only supports SQL Server Authentication. </p>
+
+<p><img src="Images/connectingsqldatabasessms.png?raw=true" alt="ConnectingSQLDatabaseSSMS" />
+</p>
+
+<p><em>Connecting to SQL Database with SQL Server Management Studio</em> </p></li>
+<li><p>Click <strong>Connect</strong>.</p></li>
+<li><p>You should now see in your <strong>Object Explorer</strong> the structure of your database. Notice that your SQL Database is no different to an on-premises relational database.</p>
+
+<p><img src="Images/objectexplorershowingdatabase.png?raw=true" alt="ObjectExplorerShowingDatabase" />
+</p>
+
+<p><em>Object Explorer showing the HoLTestDB database</em> </p></li>
+<li><p>In Object Explorer, select the <strong>HoLTestDB</strong> database in the tree view and then click <strong>New Query</strong> on the toolbar.</p>
+
+<p><img src="Images/creatingnewquerywindow.png?raw=true" alt="CreatingNewQueryWindow" />
+</p>
+
+<p><em>Creating a new query window</em> </p></li>
+<li><p>You now have a query window with an active connection to your account. You can test your connection by displaying the result of the <strong>@@version</strong> scalar function. To do this, type the following statement into the query window and press the <strong>Execute</strong> button. You will get back a scalar result that indicates the edition as Microsoft SQL Database.</p>
+
+<span class="codelanguage">T-SQL</span><pre><code class="T-SQL">SELECT @@version
+</code></pre>
+
+<p><img src="Images/retrievingsqlazureversion.png?raw=true" alt="RetrievingSQLDatabaseVersion" />
+</p>
+
+<p><em>Retrieving the SQL Database version</em> </p></li>
+<li><p>Replace the previous query with the statement shown below and click <strong>Execute.</strong> Notice that the results grid shows the databases currently accessible.</p>
+
+<span class="codelanguage">T-SQL</span><pre><code class="T-SQL">SELECT * FROM sys.databases
+</code></pre>
+
+<p><img src="Images/queryresultsshwoinglistdatabases.png?raw=true" alt="QueryResultsShwoingListDatabases" />
+</p>
+
+<p><em>Query results showing the list of databases in your subscription</em></p></li>
+<li><p>You can check that you are now in the context of your user database by executing the following query. Make sure that you replace the previous query.</p>
+
+<span class="codelanguage">T-SQL</span><pre><code class="T-SQL">SELECT db_name()
+</code></pre>
+
+<p><img src="Images/queryingdatabasecurrentlyuse.png?raw=true" alt="QueryingDatabaseCurrentlyUse" />
+</p>
+
+<p><em>Querying the database currently in use</em> </p></li>
+<li><p>Do not close the query window. You will need it during the next task.</p></li>
+</ol>
+
+<p><a name="Ex2Task4"></a></p>
+
+<h4 id="Task_4_-_Creating_Logins_and_Database_Users">Task 4 - Creating Logins and Database Users</h4>
+
+<p>Much like SQL Server, SQL Database allows you to create additional logins and then assign those logins as users with permissions on a database. In this task, you will create a new login and then create a user that uses the new login in your <em>HoLTestDB</em> database.</p>
+
+<ol>
+<li><p>Open a new query window connected to the <em>master</em> database. To do this, in <strong>Object Explorer</strong>, expand the <strong>System Databases</strong> node inside <strong>Databases</strong> and then select <em>master</em>. Then, click <strong>New Query</strong> on the toolbar.</p>
+
+<p><img src="Images/queryingmasterdatabase.png?raw=true" alt="QueryingMasterDatabase" />
+</p>
+
+<p><em>Querying the master database</em> </p>
+<blockquote>
+<p><strong>Note:</strong> You cannot reuse the previous query window connected to the <em>HoLTestDB</em> database because you cannot change the database context without closing the current connection. The USE &lt;database_name&gt; command does not work with SQL Database. Therefore, you need to open a new query window or disconnect and reconnect in order to change from the <em>HoLTestDB</em> to the <em>master</em> database. </p>
+</blockquote></li>
+<li><p>Create a new login by executing the following statement:</p>
+
+<!-- mark: 1    -->
+
+<span class="codelanguage">SQL</span><pre><code class="SQL"><strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=CREATE&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">CREATE</a> LOGIN HoLUser <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=WITH&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">WITH</a> password=<span style="color:#8B0000">&#39;Password1&#39;</span></strong>
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> You should choose your own password for this login account and use it where appropriate throughout the lab. If you do not choose a unique password, you should ensure that you remove this login when you finish the lab. To do this, execute the following statement in the <em>master</em> database:</p>
+
+<p><strong>DROP LOGIN HoLUser</strong> </p>
+</blockquote></li>
+<li><p>Go back to the query window connected to the <em>HoLTestDB</em> database. If you closed this window, open it again by selecting the <em>HoLTestDB</em> database in <strong>Object Explorer</strong> and then click <strong>New Query</strong>. </p></li>
+<li><p>In the query window, execute the following statement to create a new user in the HoLTestDB database for the login <em>HoLUser</em>.</p>
+
+<!-- mark: 1-2    -->
+
+<span class="codelanguage">SQL</span><pre><code class="SQL"><strong class="markLine"><span style="color:#008000">-- Create a new user from the login and execute</span></strong>
+<strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=CREATE&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">CREATE</a> <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=USER&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">USER</a> HoLUser <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=FROM&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">FROM</a> LOGIN HoLUser</strong>
+</code></pre></li>
+<li><p>Next, add the user to the <strong>db_owner</strong> role of your <em>HoLTestDB</em> database by executing the following:</p>
+
+<!-- mark: 1-2    -->
+
+<span class="codelanguage">SQL</span><pre><code class="SQL"><strong class="markLine"><span style="color:#008000">-- Add the new user to the db_owner role and execute</span></strong>
+<strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=EXEC&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">EXEC</a> <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=sp_addrolemember&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#FFA500">sp_addrolemember</a> <span style="color:#8B0000">&#39;db_owner&#39;</span>, <span style="color:#8B0000">&#39;HoLUser&#39;</span></strong>
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> By making your user a member of the <strong>db_owner</strong> role, you have granted a very extensive permission set to the user. In a real world scenario, you should be careful to ensure that you grant users only the smallest privilege set possible.</p>
+</blockquote></li>
+<li><p>Change the user associated with the current connection to the newly created <em>HoLUser</em>. To do this, right-click the query window, point to <strong>Connection</strong>, and then select <strong>Change Connection</strong>.</p>
+
+<p><img src="Images/changingdatabaseconnectionproperties.png?raw=true" alt="ChangingDatabaseConnectionProperties" />
+</p>
+
+<p><em>Changing the database connection properties</em></p></li>
+<li><p>In the <strong>Connect to Database Engine</strong> dialog, replace the <strong>Login</strong> name with <em>HoLUser</em> and set the <strong>Password</strong> to the value that you chose earlier when you created the database user.</p>
+
+<p><img src="Images/connectingdatabasedifferentuser.png?raw=true" alt="ConnectingDatabaseDifferentUser" />
+</p>
+
+<p><em>Connecting to the database as a different user</em></p></li>
+<li><p>Click <strong>Options</strong> to show additional connection settings. Switch to the <strong>Connection Properties</strong> tab and ensure that the name of the database for the connection is <em>HoLTestDB</em>. If the current value is different, you will need to type this rather than use the drop down list, then press the <strong>Connect</strong> button.</p>
+
+<p><img src="Images/connectingspecificdatabase.png?raw=true" alt="ConnectingSpecificDatabase" />
+</p>
+
+<p><em>Connecting to a specific database</em> </p>
+<blockquote>
+<p><strong>Note:</strong> You are now connected to the database as the <em>HoLUser</em> database user. You will continue with this user for the remaining steps of this exercise.</p>
+</blockquote></li>
+</ol>
+
+<p><a name="Ex2Task5"></a></p>
+
+<h4 id="Task_5_-_Creating_Tables_Indices_and_Queries">Task 5 - Creating Tables, Indices, and Queries</h4>
+
+<ol>
+<li><p>In the query window, replace the current content with the following SQL query to create a <em>Contact</em> table and execute it.</p>
+
+<!-- mark: 1-9    -->
+
+<span class="codelanguage">SQL</span><pre><code class="SQL"><strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=CREATE&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">CREATE</a> <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=TABLE&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">TABLE</a> [Contact](</strong>
+<strong class="markLine">    [ContactID] [<a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=int&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">int</a>] <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=IDENTITY&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">IDENTITY</a>(1,1) <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=NOT&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">NOT</a> <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=NULL&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">NULL</a> <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=PRIMARY&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">PRIMARY</a> <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=KEY&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">KEY</a> <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=CLUSTERED&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">CLUSTERED</a>,</strong>
+<strong class="markLine">    [Title] [<a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=nvarchar&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">nvarchar</a>](8) <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=NULL&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">NULL</a>,</strong>
+<strong class="markLine">    [FirstName] [<a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=nvarchar&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">nvarchar</a>](50) <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=NOT&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">NOT</a> <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=NULL&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">NULL</a>,</strong>
+<strong class="markLine">    [LastName] [<a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=nvarchar&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">nvarchar</a>](50) <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=NOT&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">NOT</a> <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=NULL&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">NULL</a>,</strong>
+<strong class="markLine">    [EmailAddress] [<a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=nvarchar&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">nvarchar</a>](50) <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=NULL&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">NULL</a>,</strong>
+<strong class="markLine">    [Phone] [<a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=nvarchar&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">nvarchar</a>](30) <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=NULL&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">NULL</a>,</strong>
+<strong class="markLine">    [<a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=Timestamp&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">Timestamp</a>] [<a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=timestamp&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">timestamp</a>] <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=NOT&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">NOT</a> <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=NULL&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">NULL</a></strong>
+<strong class="markLine">)</strong>
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> SQL Database requires that every table has a clustered index. If you create a table without a clustered index, you will not be able to insert rows into the table until you have created one.
+Because the clustered index determines the order of rows on disk, and thus affects certain queries, you may choose to place the clustered index on a column other than the primary key column.</p>
+</blockquote></li>
+<li><p>You will add an index on the <em>EmailAddress</em> field. To do this, execute the following query:</p>
+
+<!-- mark: 1-2    -->
+
+<span class="codelanguage">SQL</span><pre><code class="SQL"><strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=CREATE&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">CREATE</a> <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=INDEX&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">INDEX</a> IX_Contact_EmailAddress</strong>
+<strong class="markLine">    <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=ON&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">ON</a> Contact(EmailAddress)</strong>
+</code></pre></li>
+<li><p>Execute the following query to add a row to the new <em>Contact</em> table:</p>
+
+<!-- mark: 1-4    -->
+
+<span class="codelanguage">SQL</span><pre><code class="SQL"><strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=INSERT&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">INSERT</a> <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=INTO&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">INTO</a> [Contact]</strong>
+<strong class="markLine">([Title],[FirstName],[LastName],[EmailAddress],[Phone])</strong>
+<strong class="markLine">     <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=VALUES&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">VALUES</a></strong>
+<strong class="markLine">(<span style="color:#8B0000">&#39;Mr&#39;</span>,<span style="color:#8B0000">&#39;David&#39;</span>,<span style="color:#8B0000">&#39;Alexander&#39;</span>,<span style="color:#8B0000">&#39;davida@fabrikam.com&#39;</span>,<span style="color:#8B0000">&#39;555-1234-5555&#39;</span>)</strong>
+</code></pre></li>
+<li><p>Now, query the data back out, but start by enabling the SHOWPLAN_ALL option to show the execution plan. To do that, execute the following query:</p>
+
+<!-- mark: 1-5    -->
+
+<span class="codelanguage">SQL</span><pre><code class="SQL"><strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=SET&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">SET</a> SHOWPLAN_ALL <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=ON&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">ON</a></strong>
+<strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=GO&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">GO</a></strong>
+<strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=SELECT&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">SELECT</a> * <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=FROM&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">FROM</a> Contact <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=WHERE&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">WHERE</a> EmailAddress =<span style="color:#8B0000">&#39;davida@fabrikam.com&#39;</span></strong>
+<strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=GO&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">GO</a></strong>
+<strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=SET&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">SET</a> SHOWPLAN_ALL <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=OFF&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">OFF</a></strong>
+</code></pre>
+
+<p><img src="Images/queryexecutionplansmallset.png?raw=true" alt="QueryExecutionPlanSmallSet" />
+</p>
+
+<p><em>Query execution plan for a small set</em> </p></li>
+<li><p>Next, you will add a large number of rows to the database and then examine the query plan again. To do this, execute the following query to create a stored procedure named <em>AddData</em>. This stored procedure will loop incrementing a counter each time through and add a new record with an email address with the pattern [Counter]<a href="mailto:davida@fabrikam.com">davida@fabrikam.com</a>:</p>
+
+<!-- mark: 1-13    -->
+
+<span class="codelanguage">SQL</span><pre><code class="SQL"><strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=CREATE&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">CREATE</a> <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=PROCEDURE&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">PROCEDURE</a> AddData</strong>
+<strong class="markLine">@NumRows <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=int&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">int</a></strong>
+<strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=AS&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">AS</a></strong>
+<strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=DECLARE&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">DECLARE</a> @counter <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=int&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">int</a></strong>
+<strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=SELECT&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">SELECT</a> @counter = 1</strong>
+<strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=WHILE&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">WHILE</a> (@counter &lt; @NumRows)</strong>
+<strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=BEGIN&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">BEGIN</a></strong>
+<strong class="markLine">    <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=INSERT&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">INSERT</a> <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=INTO&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">INTO</a> [Contact]</strong>
+<strong class="markLine">        ([Title],[FirstName],[LastName],[EmailAddress],[Phone])</strong>
+<strong class="markLine">        <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=VALUES&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">VALUES</a></strong>
+<strong class="markLine">        (<span style="color:#8B0000">&#39;Mr&#39;</span>,<span style="color:#8B0000">&#39;David&#39;</span>,<span style="color:#8B0000">&#39;Alexander&#39;</span>,<a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=CAST&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">CAST</a>(@counter <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=as&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">as</a> <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=nvarchar&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">nvarchar</a>)+<span style="color:#8B0000">&#39;davida@fabrikam.com&#39;</span>,<span style="color:#8B0000">&#39;555-1234-5555&#39;</span>)</strong>
+<strong class="markLine">        <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=SELECT&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">SELECT</a> @counter = @counter + 1</strong>
+<strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=END&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">END</a></strong>
+</code></pre></li>
+<li><p>Now, insert 10,000 rows into the <em>Contact</em> table by executing the new stored procedure. Each row will have a unique email address. To do this, execute the following T-SQL statement:</p>
+
+<!-- mark: 1    -->
+
+<span class="codelanguage">SQL</span><pre><code class="SQL"><strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=EXEC&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">EXEC</a> AddData 10000</strong>
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> It may take some time to generate the 10,000 rows.</p>
+</blockquote></li>
+<li><p>Execute the following query again and examine the generated plan. Compare the result with the one obtained previously, when the table contained few rows.</p>
+
+<!-- mark: 1-5    -->
+
+<span class="codelanguage">SQL</span><pre><code class="SQL"><strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=SET&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">SET</a> SHOWPLAN_ALL <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=ON&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">ON</a></strong>
+<strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=GO&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">GO</a></strong>
+<strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=SELECT&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">SELECT</a> * <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=FROM&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">FROM</a> Contact <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=WHERE&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">WHERE</a> EmailAddress =<span style="color:#8B0000">&#39;davida@fabrikam.com&#39;</span></strong>
+<strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=GO&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">GO</a></strong>
+<strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=SET&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">SET</a> SHOWPLAN_ALL <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=OFF&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">OFF</a></strong>
+</code></pre>
+
+<p><img src="Images/queryexecutionplanlargeset.png?raw=true" alt="QueryExecutionPlanLargeSet" />
+</p>
+
+<p><em>Query execution plan for a large set</em> </p>
+<blockquote>
+<p><strong>Note:</strong> Notice that the second time around the query optimizer is likely to use the index that you defined: This is the Index Seek line in the query plan.</p>
+</blockquote></li>
+<li><p>For the most part, you can use any tool that you might have previously used with SQL Server on-premises. For an example of this, look at the query plan graphically. In SQL Server Management Studio, press <strong>Ctrl-L</strong> to display the <strong>Estimated Execution Plan</strong>.</p>
+
+<p><img src="Images/showingqueryexecutionplangraphically.png?raw=true" alt="ShowingQueryExecutionPlanGraphically" />
+</p>
+
+<p><em>Showing the query execution plan graphically</em></p></li>
+</ol>
+
+<p><a name="Exercise3"></a></p>
+
+<h3 id="Exercise_3_Build_a_Windows_Azure_Application_that_Accesses_SQL_Database">Exercise 3: Build a Windows Azure Application that Accesses SQL Database</h3>
+
+<p>In this exercise, you will create a simple Windows Azure application to manipulate the data in the <em>Customer</em> table of the <em>AdventureWorksLT2008</em> database.</p>
+
+<p>The purpose of this exercise is to demonstrate just how simple it is to work with SQL Database and Windows Azure using the graphical Visual Studio 'drag and drop' approach.</p>
+
+<p><a name="Ex3Task1"></a></p>
+
+<h4 id="Task_1_-_Loading_the_Sample_Database_into_SQL_Database">Task 1 - Loading the Sample Database into SQL Database</h4>
+
+<ol>
+<li>Connect to the <em>HoLTestDB</em> database on your SQL Database server using the <em>HoLUser</em> login that you created in the previous exercises. You can use either SQL Server Management Studio or the Database Manager for SQL Database to perform these steps.</li>
+<li><p>If you are using SQL Server Management Studio, in the <strong>File</strong> menu, select <strong>Open</strong> | <strong>File</strong> and then navigate to the <strong>Assets</strong> folder inside the <strong>Source</strong> folder of this lab; if you use the Database Manager for SQL Database, select the <strong>Database</strong> context on the upper left corner and click the <strong>Open Query</strong> button in the <strong>File</strong> group. Select the <strong>AdventureWorks2008LT_Azure.sql</strong> file and click <strong>Open</strong>.</p>
+<blockquote>
+<p><strong>Note:</strong> This script contains a cleaned up export script from the <em>AdventureWorksLT2008</em> sample database available for download in the <a href="http://msftdbprodsamples.codeplex.com/">Codeplex sample databases project site</a>. </p>
+</blockquote></li>
+<li><p>Execute the query. This may take a few minutes, as you are creating a subset of the Adventure Works database.</p></li>
+</ol>
+
+<p><a name="Ex3Task2"></a></p>
+
+<h4 id="Task_2_-_Creating_the_Visual_Studio_Project">Task 2 - Creating the Visual Studio Project</h4>
+
+<p>In this task, you create a new Visual Studio project for a Windows Azure Web Site. </p>
+
+<ol>
+<li><p>Open Microsoft Visual Studio Express 2012 for Web in elevated administrator mode by right-clicking the <strong>Microsoft Visual Studio Express 2012 for Web</strong> shortcut and choosing <strong>Run as Administrator</strong>. </p></li>
+<li><p>If the <strong>User Account Control</strong> dialog appears, click <strong>Continue</strong>.</p></li>
+<li><p>From the <strong>File</strong> menu, choose <strong>New</strong> and then <strong>Project</strong>. </p></li>
+<li><p>In the <strong>New Project</strong> dialog, expand <strong>Visual C#</strong> in the <strong>Installed Templates</strong> list and select <strong>Cloud</strong>.</p></li>
+<li><p>In the <strong>Templates</strong> list, select <strong>Windows Azure Cloud Service</strong>. Set the name of the project to <strong>&quot;AdventureWorks&quot;</strong> and the location inside <strong>Ex3-BuildingSQLAzureApp</strong> in the <strong>Source</strong> folder of the lab. Ensure that <strong>Create directory for solution</strong> is checked and then set the name of the solution to <strong>&quot;Begin&quot;</strong>. Click <strong>OK</strong> to create the project.</p>
+
+<p><img src="Images/creatingnewwebcloudservice.png?raw=true" alt="CreatingNewWebCloudService" />
+</p>
+
+<p><em>Creating a new Web Cloud Service</em> </p></li>
+<li><p>In the <strong>New Windows Azure Project</strong> dialog, inside the <strong>Roles</strong> panel, expand the tab for Visual C#, select <strong>ASP.NET Web Role</strong> from the list of available roles and click the right button <strong>(&gt;)</strong> to add an instance of this role to the solution. Before closing the dialog, select the new role in the right panel, click the pencil icon and rename the role as <strong>AdventureWorksWeb</strong>. Click <strong>OK</strong> to create the cloud service solution.</p>
+
+<p><img src="Images/addingwebrolesolution.png?raw=true" alt="AddingWebRoleSolution" />
+</p>
+
+<p><em>Adding a Web Role to the Solution</em> </p></li>
+<li><p>When the project template has finished creating items, you should be presented with the <strong>Default.aspx</strong> page. If not, open this file.</p></li>
+<li><p>Ensure that you are viewing the Default.aspx page in Design View by clicking the <strong>Design</strong> button.</p></li>
+<li><p>Drag and drop a <strong>GridView</strong> control from the <em>Data</em> section of the Toolbox onto the design canvas.</p>
+
+<p><img src="Images/addinggridviewcontrol.png?raw=true" alt="AddingGridViewControl" />
+</p>
+
+<p><em>Adding a GridView control</em></p></li>
+<li><p>From the <em>SmartTag</em> on the upper right corner of the newly created GridView, choose the <strong>New data source</strong> option on the <strong>Choose Data Source</strong> combo box.</p>
+
+<p><img src="Images/creatingnewdatasource.png?raw=true" alt="CreatingNewDataSource" />
+</p>
+
+<p><em>Creating a new data source</em></p></li>
+<li><p>In the <strong>Data Source Configuration Wizard</strong>, choose a data source type of <strong>Database</strong> and leave the default ID. Click <strong>OK</strong>.</p>
+
+<p><img src="Images/choosingdatasource.png?raw=true" alt="ChoosingDataSource" />
+</p>
+
+<p><em>Choosing a Data Source</em></p></li>
+<li><p>In the <strong>Configure Data Source</strong> dialog, click <strong>New Connection</strong>.</p>
+
+<p><img src="Images/creatingnewconnection.png?raw=true" alt="CreatingNewConnection" />
+</p>
+
+<p><em>Creating a new Connection</em></p></li>
+<li><p>If prompted by a <strong>Choose data source</strong> dialog, select <strong>Microsoft SQL Server</strong> and click <strong>Continue</strong>.</p></li>
+<li><p>Now, configure a connection to your SQL Database. In the <strong>Add Connection</strong> dialog, ensure your provider is <strong>Microsoft SQL Server (SqlClient)</strong> selecting <strong>Microsoft SQL Server</strong> inside <strong>Data Source</strong> list and <strong>.NET Framework Data Provider for SQL Server</strong> in the Data Provider combo. Then set the <strong>Server name</strong> to the name of your SQL Database. Next, change the authentication type to <strong>Use SQL Server Authentication</strong> and type the credentials for your SQL Database. Finally, enter <em>HoLTestDB</em> in the database name drop down list.</p>
+
+<p><img src="Images/configuringconnectiondatabasesqldatabase.png?raw=true" alt="ConfiguringConnectionDatabaseSQLDatabase" />
+ </p>
+
+<p><em>Configuring a connection to the HolTestDB database in SQL Database</em></p></li>
+<li><p>Press <strong>Test Connection</strong>. If the connection information is correct, you should receive a dialog indicating success. Click <strong>OK</strong> to proceed.</p>
+
+<p><img src="Images/confirmationsuccesfulconnection.png?raw=true" alt="ConfirmationSuccesfulConnection" />
+</p>
+
+<p><em>Confirmation of a successful connection</em> </p></li>
+<li><p>Click <strong>OK</strong> to close the <strong>Add Connection</strong> dialog.</p></li>
+<li><p>Click <strong>Next</strong> to proceed with the <strong>Data Source Configuration Wizard</strong>.</p></li>
+<li><p>Ensure that the option labeled <strong>Yes, save this connection as</strong> is checked, set the name of the connection to <strong>AdventureWorksLTConnectionString</strong>, and then click <strong>Next</strong>.</p>
+
+<p><img src="Images/savingconnectionstring.png?raw=true" alt="SavingConnectionString" />
+</p>
+
+<p><em>Saving the connection string in the application configuration file</em> </p></li>
+<li><p>Select the option labeled <strong>Specify a custom SQL statement or stored procedure</strong> and then click <strong>Next</strong>. </p>
+
+<p><img src="Images/usingcustomsqlstatement.png?raw=true" alt="UsingCustomSQLStatement" />
+</p>
+
+<p><em>Using a custom SQL statement to query the database</em> </p>
+<blockquote>
+<p><strong>Note:</strong> You cannot use the <strong>Specify columns from a table or view</strong> option because <em>AdventureWorks</em> uses a named Schema (SalesLT) that you need to explicitly reference.</p>
+</blockquote></li>
+<li><p>Paste the following statement into the <strong>SQL Statement</strong> box and click <strong>Next</strong>.</p>
+
+<!-- mark: 1    -->
+
+<span class="codelanguage">SQL</span><pre><code class="SQL"><strong class="markLine"><a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=SELECT&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">SELECT</a> [FirstName], [LastName], [CompanyName], [EmailAddress] <a href="http://search.microsoft.com/default.asp?so=RECCNT&siteid=us%2Fdev&p=1&nq=NEW&qu=FROM&IntlSearch=&boolean=PHRASE&ig=01&i=09&i=99" style="color:#0000FF">FROM</a> [SalesLT].[Customer]</strong>
+</code></pre>
+
+<p><img src="Images/definingcustomsqlstatement.png?raw=true" alt="DefiningCustomSQLStatement" />
+</p>
+
+<p><em>Defining a custom SQL statement</em> </p></li>
+<li><p>Press <strong>Test Query</strong> and you should see results returned.</p>
+
+<p><img src="Images/testingqueryagainstdatabase.png?raw=true" alt="TestingQueryAgainstDatabase" />
+</p>
+
+<p><em>Testing the query against the database</em> </p></li>
+<li><p>Click <strong>Finish</strong>.</p></li>
+<li><p>Press <strong>F5</strong> to run the application in the compute emulator.</p></li>
+<li><p>The application will execute and you will see the list of all customers in the browser:</p>
+
+<p><img src="Images/retrievinglistcustomersdatabase.png?raw=true" alt="RetrievingListCustomersDatabase" />
+</p>
+
+<p><em>Retrieving a list of customers from the database</em> </p></li>
+<li><p>Close the browser window.</p></li>
+</ol>
+
+<p><a name="Exercise4"></a></p>
+
+<h3 id="Exercise_4_Connecting_via_Client_Libraries">Exercise 4: Connecting via Client Libraries</h3>
+
+<p>In this exercise, you will learn how to use ADO.NET, ODBC, OLEDB and LINQ to SQL technologies to connect to your SQL Database and perform some simple T-SQL operations. In addition, you will see how to connect to the database from other technologies like Java and PHP.</p>
+
+<p>Using Microsoft Technologies, you will see that the way in which you interact with your Windows Azure SQL Database from your applications is the same as a traditional SQL Database. The main differences between the technologies lie in the type of connection and the connection strings used to connect to Windows Azure SQL Database. After the connection is established, you can then use the appropriate inheritor of the `DbCommand' to issue your commands.</p>
+
+<p><a name="Ex4Task1"></a></p>
+
+<h4 id="Task_1_-_Opening_the_Begin_Solution_and_Exploring_the_Common_Functionalities">Task 1 - Opening the Begin Solution and Exploring the Common Functionalities</h4>
+
+<p>You will test the different Microsoft technologies connecting to SQL Database and performing some tasks against a new table. To avoid spending time implementing logic that creates, inserts, queries and deletes a table, this exercise provides a begin solution that implements these common functionalities. This allows you to focus on learning how to connect to SQL Database and explore the differences between the proposed technologies. </p>
+
+<p>In this task, you will open the <strong>ConnectDemoApp</strong> solution and explore the <strong>SQLDatabaseConnectionDemo</strong> class. During the exercise, you will inherit from this class for each different implementation of a data access technology.</p>
+
+<ol>
+<li><p>Open <strong>Microsoft Visual Studio Express 2012 for Desktop</strong>.</p></li>
+<li><p>Open the begin solution provided for this exercise. To do this, from the <strong>File</strong> menu, choose <strong>Open Project</strong>. In the <strong>Open Project</strong> dialog, navigate to <strong>Ex4-ConnectingViaClientLibraries\Begin</strong> inside the <strong>Source</strong> folder of this lab and then open the solution <strong>Begin.sln</strong>. A solution with the following structure should open.</p>
+
+<p><img src="Images/connectdemoappsolutionstructure.png?raw=true" alt="ConnectDemoAppSolutionStructure" />
+  </p>
+
+<p><em>Connect Demo App solution's structure</em> </p></li>
+<li><p>As mentioned before, you will create a class per technology inheriting from the <strong>SQLDatabaseConnectionDemo</strong> abstract class. This class provides common functionality to perform basic operations against SQL Database using the provider that you  implement in the derived class. The table below explains each of the methods in this class to understand how it works and determine which methods you need to implement in the derived classes: </p>
+
+<table><thead>
+<tr>
+<td><strong>Method</strong></td>
+<td><strong>Type</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+</thead><tbody>
+<tr>
+<td>CreateConnection</td>
+<td>Abstract</td>
+<td>A derived class implements this method in order to create the connection according to the underlying technology.</td>
+</tr>
+<tr>
+<td>CreateCommand</td>
+<td>Abstract</td>
+<td>A derived class implements this method to create a command according to the underlying technology.</td>
+</tr>
+<tr>
+<td>GetServerName</td>
+<td></td>
+<td>Returns the server name from the data source. It is a common task required to create the connection to the database.</td>
+</tr>
+<tr>
+<td>ConnectToSQLDatabase</td>
+<td></td>
+<td>Sets the connection property based on the result of the CreateConnection abstract method that will be implemented on the derived class. Executes the demo flow against the SQL Database. It gets a command from the derived class using the CreateCommand method and then executes the Execute* methods to create, fill, query and delete a demo table.</td>
+</tr>
+<tr>
+<td>ExecuteCreateDemoTableStatement</td>
+<td></td>
+<td>Executes a create table statement to create the &quot;DemoTable&quot; table.</td>
+</tr>
+<tr>
+<td>ExecuteInsertTestDataStatement</td>
+<td></td>
+<td>Executes an insert statement against the &quot;DemoTable&quot; table.</td>
+</tr>
+<tr>
+<td>ExecuteReadInsertedTestData</td>
+<td></td>
+<td>Executes a select statement trying to retrieve the data inserted by the previous method and calls the ReadData method to show it in the Console.</td>
+</tr>
+<tr>
+<td>ReadData</td>
+<td></td>
+<td>Reads the data retrieved from the table and displays it in the Console.</td>
+</tr>
+<tr>
+<td>ExecuteDropDemoTable</td>
+<td></td>
+<td>Executes a delete statement removing the &quot;DemoTable&quot; table from the SQL Database.</td>
+</tr>
+</tbody></table>
+<p>Notice that you will only have to override the <strong>CreateConnection</strong> and <strong>CreateCommand</strong> methods on the implementation of each technology to create a connection to SQL Database successfully.</p></li>
+</ol>
+
+<p><a name="Ex4Task2"></a></p>
+
+<h4 id="Task_2_-_Connecting_to_SQL_Database_Using_ADONET">Task 2 - Connecting to SQL Database Using ADO.NET</h4>
+
+<p>In this task, you will create a class that inherits from the <strong>SQLDatabaseConnectionDemo</strong> class and implements the methods to connect to SQL Database using ADO.NET.</p>
+
+<ol>
+<li><p>Add a new class to the project named <strong>AdoConnectionDemo</strong>. To do this, right-click the <strong>ConnectDemoApp</strong> project in <strong>Solution Explorer</strong> and select <strong>Add</strong> | <strong>Class</strong>. In the <strong>Add New Item</strong> dialog, make sure that you select the <strong>Class</strong> template and set the name to <strong>AdoConnectionDemo.cs</strong>.</p></li>
+<li><p>Make sure that you have the following namespace directives at the top of the file:</p>
+
+<!-- mark: 1-2   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">using</span> System.Data.Common;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> System.Data.SqlClient;</strong>
+</code></pre></li>
+<li><p>Update the class definition to inherit from <strong>SQLDatabaseConnectionDemo</strong>. It should look like the following:</p>
+
+<!-- mark: 1    -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">public</span> <span style="color:#0000FF">class</span> AdoConnectionDemo : SQLDatabaseConnectionDemo</strong>
+{
+}
+</code></pre></li>
+<li><p>The <strong>SQLDatabaseConnectionDemo</strong> class delegates the connection construction to the derived class. Override the <strong>CreateConnection</strong> method to create a <strong>SQLDatabaseConnection</strong> in your <strong>AdoConnectionDemo</strong> class:</p>
+
+<p>(Code Snippet - <em>WindowsAzureSQLDatabase - Ex4 ADO CreateConnection - C#</em>)</p>
+
+<!-- mark: 1-4   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">protected</span> <span style="color:#0000FF">override</span> DbConnection CreateConnection(<span style="color:#0000FF">string</span> userName, <span style="color:#0000FF">string</span> password, <span style="color:#0000FF">string</span> dataSource, <span style="color:#0000FF">string</span> databaseName)</strong>
+<strong class="markLine">{</strong>
+<strong class="markLine">  <span style="color:#0000FF">return</span> <span style="color:#0000FF">new</span> SqlConnection(<span style="color:#0000FF">this</span>.CreateAdoConnectionString(userName, password, dataSource, databaseName));</strong>
+<strong class="markLine">}</strong>
+</code></pre></li>
+<li><p>Implement the <strong>CreateAdoConnectionString</strong> method used by the <strong>CreateConnection</strong> method. This method is responsible for building up the connection string for the ADO.NET Connection, which takes advantage of the <strong>SqlConnectionStringBuilder</strong> class in the underlying implementation. </p>
+
+<p>(Code Snippet - <em>WindowsAzureSQLDatabase - Ex4 ADO CreateAdoConnectionString method - C#</em>)</p>
+
+<!-- mark: 1-15   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">private</span> <span style="color:#0000FF">string</span> CreateAdoConnectionString(<span style="color:#0000FF">string</span> userName, <span style="color:#0000FF">string</span> password, <span style="color:#0000FF">string</span> dataSource, <span style="color:#0000FF">string</span> databaseName)</strong>
+<strong class="markLine">{</strong>
+<strong class="markLine">  <span style="color:#008000">// create a new instance of the SQLConnectionStringBuilder</span></strong>
+<strong class="markLine">  SqlConnectionStringBuilder connectionStringBuilder = <span style="color:#0000FF">new</span> SqlConnectionStringBuilder</strong>
+<strong class="markLine">  {</strong>
+<strong class="markLine">    DataSource = dataSource,</strong>
+<strong class="markLine">    InitialCatalog = databaseName,</strong>
+<strong class="markLine">    Encrypt = <span style="color:#0000FF">true</span>,</strong>
+<strong class="markLine">    TrustServerCertificate = <span style="color:#0000FF">false</span>,</strong>
+<strong class="markLine">    UserID = userName,</strong>
+<strong class="markLine">    Password = password,</strong>
+<strong class="markLine">  };</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">  <span style="color:#0000FF">return</span> connectionStringBuilder.ToString();</strong>
+<strong class="markLine">}</strong>
+</code></pre></li>
+<li><p>Override the <strong>CreateCommand</strong> method to create an ADO.NET command. Remember that this abstract method is called in the parent class to get the connection and execute the different SQL statement samples.</p>
+
+<p>(Code Snippet - <em>WindowsAzureSQLDatabase - Ex4 ADO CreateCommand method - C#</em>)</p>
+
+<!-- mark: 1-4    -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">protected</span> <span style="color:#0000FF">override</span> DbCommand CreateCommand(DbConnection connection)</strong>
+<strong class="markLine">{</strong>
+<strong class="markLine">  <span style="color:#0000FF">return</span> <span style="color:#0000FF">new</span> SqlCommand() { Connection = connection <span style="color:#0000FF">as</span> SqlConnection };</strong>
+<strong class="markLine">}</strong>
+</code></pre>
+
+<p>That is all the code required to use an ADO.NET connection. Now you will include some code on the <strong>Program.cs</strong> file to test the connection and see how the different operations work.</p></li>
+<li><p>Open the <strong>Program.cs</strong> file double-clicking it in the <strong>Solution Explorer</strong> inside the <strong>ConnectDemoApp</strong> project.</p></li>
+<li><p>Implement the logic to create an instance of the <strong>AdoConnectionDemo</strong> class and execute the demo against SQL Database.</p>
+
+<p>(Code Snippet - <em>WindowsAzureSQLDatabase - Ex4 ADO demo implementation - C#</em>)</p>
+
+<!-- mark: 3-8 -   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">static</span> <span style="color:#0000FF">void</span> Main(<span style="color:#0000FF">string</span>[] args)
+{
+<strong class="markLine">  <span style="color:#008000">// Invoke the ADO.NET connection demo</span></strong>
+<strong class="markLine">  Console.WriteLine(<span style="color:#8B0000">&quot;Starting the ADO.NET Connection Demo...&quot;</span>);</strong>
+<strong class="markLine">  AdoConnectionDemo demo1 = <span style="color:#0000FF">new</span> AdoConnectionDemo();</strong>
+<strong class="markLine">  demo1.ConnectToSQLDatabase(userName, password, datasource, databaseName);</strong>
+<strong class="markLine">  Console.WriteLine(<span style="color:#8B0000">&quot;Demo Complete... Press any key&quot;</span>);</strong>
+<strong class="markLine">  Console.ReadKey();</strong>
+}
+</code></pre></li>
+<li><p>Locate the member variables declared immediately above method <strong>Main</strong> and update the placeholders with the connection information for your SQL Database.</p>
+
+<p><img src="Images/configuringconnectionparameterssqlazure.png?raw=true" alt="ConfiguringConnectionParametersSQLDatabase" />
+</p>
+
+<p><em>Configuring connection parameters for SQL Database</em> </p>
+<blockquote>
+<p><strong>Note:</strong> Ensure to insert the username without the server reference, for example, use <em>sqladmin</em> instead of <em>sqladmin@[SERVERNAME]</em>.</p>
+</blockquote></li>
+<li><p>Run the application by pressing <strong>F5</strong>. You should see the following output in a console window.</p>
+
+<p><img src="Images/expectedoutputadonetconnectiondemo.png?raw=true" alt="ExpectedOutputADONetConnectionDemo" />
+</p>
+
+<p><em>Expected output from the ADO.NET connection demo</em></p></li>
+</ol>
+
+<p><a name="Ex4Task3"></a></p>
+
+<h4 id="Task_3_-_Connecting_to_SQL_Database_Using_ODBC">Task 3 - Connecting to SQL Database Using ODBC</h4>
+
+<p>In this task, you will create a class that inherits from the <strong>SQLDatabaseConnectionDemo</strong> class and implement the methods for connecting to SQL Database using ODBC.</p>
+
+<ol>
+<li><p>Add a new class to the project named <strong>OdbcConnectionDemo</strong>. To do this, right-click the <strong>ConnectDemoApp</strong> project in <strong>Solution Explorer</strong> and select <strong>Add</strong> | <strong>Class</strong>. In the <strong>Add New Item</strong> dialog, make sure that you select the <strong>Class</strong> template and set the name to <strong>OdbcConnectionDemo.cs</strong>.</p></li>
+<li><p>Make sure that you have the following namespace directives at the top of the file:</p>
+
+<!-- mark: 1-2    -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">using</span> System.Data.Common;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> System.Data.Odbc;</strong>
+</code></pre></li>
+<li><p>Update the class definition to inherit from <strong>SQLDatabaseConnectionDemo</strong>. It should look like the following:</p>
+
+<!-- mark: 1    -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">public</span> <span style="color:#0000FF">class</span> OdbcConnectionDemo : SQLDatabaseConnectionDemo</strong>
+{
+}
+</code></pre></li>
+<li><p>Override the <strong>CreateConnection</strong> method to create an <strong>OdbcConnection</strong> in your <strong>OdbcConnectionDemo</strong> class:</p>
+
+<p>(Code Snippet - <em>WindowsAzureSQLDatabase - Ex4 ODBC CreateConnection - C#</em>)</p>
+
+<!-- mark: 1-4    -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">protected</span> <span style="color:#0000FF">override</span> DbConnection CreateConnection(<span style="color:#0000FF">string</span> userName, <span style="color:#0000FF">string</span> password, <span style="color:#0000FF">string</span> dataSource, <span style="color:#0000FF">string</span> databaseName)</strong>
+<strong class="markLine">{</strong>
+<strong class="markLine">  <span style="color:#0000FF">return</span> <span style="color:#0000FF">new</span> OdbcConnection(<span style="color:#0000FF">this</span>.CreateOdbcConnectionString(userName, password, dataSource, databaseName));</strong>
+<strong class="markLine">}</strong>
+</code></pre></li>
+<li><p>Implement the <strong>CreateOdbcConnectionString</strong> method used by the <strong>CreateConnection</strong> method. This method is responsible for building up the ODBC Drivers connection string. The proposed implementation is using <strong>SQL Server Native Client 11.0</strong> as its driver. You can specify any other ODBC driver of your preference here. </p>
+
+<p>(Code Snippet - <em>WindowsAzureSQLDatabase - Ex4 ODBC CreateOdbcConnectionString method - C#</em>)</p>
+
+<!-- mark: 1-14    -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">private</span> <span style="color:#0000FF">string</span> CreateOdbcConnectionString(<span style="color:#0000FF">string</span> userName, <span style="color:#0000FF">string</span> password, <span style="color:#0000FF">string</span> dataSource, <span style="color:#0000FF">string</span> databaseName)</strong>
+<strong class="markLine">{</strong>
+<strong class="markLine">  <span style="color:#0000FF">string</span> serverName = GetServerName(dataSource);</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">  OdbcConnectionStringBuilder connectionStringBuilder = <span style="color:#0000FF">new</span> OdbcConnectionStringBuilder</strong>
+<strong class="markLine">  {</strong>
+<strong class="markLine">    Driver = <span style="color:#8B0000">&quot;SQL Server Native Client 11.0&quot;</span>,</strong>
+<strong class="markLine">  };</strong>
+<strong class="markLine">  connectionStringBuilder[<span style="color:#8B0000">&quot;Server&quot;</span>] = <span style="color:#8B0000">&quot;tcp:&quot;</span> + dataSource;</strong>
+<strong class="markLine">  connectionStringBuilder[<span style="color:#8B0000">&quot;Database&quot;</span>] = databaseName;</strong>
+<strong class="markLine">  connectionStringBuilder[<span style="color:#8B0000">&quot;Uid&quot;</span>] = userName + <span style="color:#8B0000">&quot;@&quot;</span> + serverName;</strong>
+<strong class="markLine">  connectionStringBuilder[<span style="color:#8B0000">&quot;Pwd&quot;</span>] = password;</strong>
+<strong class="markLine">  <span style="color:#0000FF">return</span> connectionStringBuilder.ConnectionString;</strong>
+<strong class="markLine">}</strong>
+</code></pre></li>
+<li><p>Override the <strong>CreateCommand</strong> method to create an <strong>OdbcCommand</strong>. Remember that this abstract method is called in the parent class to get the connection and execute the different SQL statement samples.</p>
+
+<p>(Code Snippet - <em>WindowsAzureSQLDatabase - Ex4 ODBC CreateCommand method - C#</em>)</p>
+
+<!-- mark: 1-4    -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">protected</span> <span style="color:#0000FF">override</span> DbCommand CreateCommand(DbConnection connection)</strong>
+<strong class="markLine">{</strong>
+<strong class="markLine">  <span style="color:#0000FF">return</span> <span style="color:#0000FF">new</span> OdbcCommand() { Connection = connection <span style="color:#0000FF">as</span> OdbcConnection };</strong>
+<strong class="markLine">}</strong>
+</code></pre>
+
+<p>That is the specific code required to use an ODBC connection. Now you will include some code in the <strong>Program.cs</strong> file to test the connection and see how the different operations work.</p></li>
+<li><p>Open the <strong>Program.cs</strong> file double-clicking it in the <strong>Solution</strong> <strong>Explorer</strong> inside the <strong>ConnectDemoApp</strong> project.</p></li>
+<li><p>In method <strong>Main</strong>, implement the logic to create a new instance of the <strong>OdbcConnectionDemo</strong> class and execute the demo against SQL Database. You can add or replace the code from the previous tasks based on whether you want to test all the technologies at once or only this one.</p>
+
+<p>(Code Snippet - <em>WindowsAzureSQLDatabase - Ex4 ODBC demo implementation - C#</em>)</p>
+
+<!-- mark: 5-10    -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">static</span> <span style="color:#0000FF">void</span> Main(<span style="color:#0000FF">string</span>[] args)
+{
+  <span style="color:#008000">//...</span>
+
+<strong class="markLine">  <span style="color:#008000">// Invoke the ODBC connection demo</span></strong>
+<strong class="markLine">  Console.WriteLine(<span style="color:#8B0000">&quot;Starting the ODBC Connection Demo...&quot;</span>);</strong>
+<strong class="markLine">  OdbcConnectionDemo demo2 = <span style="color:#0000FF">new</span> OdbcConnectionDemo();</strong>
+<strong class="markLine">  demo2.ConnectToSQLDatabase(userName, password, datasource, databaseName);</strong>
+<strong class="markLine">  Console.WriteLine(<span style="color:#8B0000">&quot;Demo Complete... Press any key&quot;</span>);</strong>
+<strong class="markLine">  Console.ReadKey();</strong>
+}
+</code></pre></li>
+<li><p>If you have not done so before, update the value of the member variables located immediately above method <strong>Main</strong> by replacing the placeholders with the connection information for your SQL Database. </p></li>
+<li><p>Run the application by pressing <strong>F5</strong>. You should see the following output in a console window.</p>
+
+<p><img src="Images/expectedoutputodbcconnectiondemo.png?raw=true" alt="ExpectedOutputODBCConnectionDemo" />
+</p>
+
+<p><em>Expected output from the ODBC connection demo</em></p></li>
+</ol>
+
+<p><a name="Ex4Task4"></a></p>
+
+<h4 id="Task_4_-_Connecting_to_SQL_Database_Using_OLEDB">Task 4 - Connecting to SQL Database Using OLEDB</h4>
+
+<p>In this task, you will create a class that inherits from the <strong>SQLDatabaseConnectionDemo</strong> class and implements the methods for connecting to SQL Database using OLEDB.</p>
+
+<ol>
+<li><p>Add a new class to the project named <strong>OleDbConnectionDemo</strong>. To do this, right-click the <strong>ConnectDemoApp</strong> project in <strong>Solution</strong> <strong>Explorer</strong> and select <strong>Add</strong> | <strong>Class</strong>. In the <strong>Add</strong> <strong>New</strong> <strong>Item</strong> dialog, make sure to select the <strong>Class</strong> template and set the name to <strong>OleDbConnectionDemo.cs</strong>.</p></li>
+<li><p>Make sure that you have the following namespace directives at the top of the file:</p>
+
+<!-- mark: 1-2    -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">using</span> System.Data.Common;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> System.Data.OleDb;</strong>
+</code></pre></li>
+<li><p>Update the class definition to inherit from <strong>SQLDatabaseConnectionDemo</strong>. It should look like the following:</p>
+
+<!-- mark: 1    -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">public</span> <span style="color:#0000FF">class</span> OleDbConnectionDemo : SQLDatabaseConnectionDemo</strong>
+{
+}
+</code></pre></li>
+<li><p>Override the <strong>CreateConnection</strong> method to create an <strong>OleDbConnection</strong> in your <strong>OleDbConnectionDemo</strong> class:</p>
+
+<p>(Code Snippet - <em>WindowsAzureSQLDatabase - Ex4 OLEDB CreateConnection - C#</em>)</p>
+
+<!-- mark: 1-4    -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">protected</span> <span style="color:#0000FF">override</span> DbConnection CreateConnection(<span style="color:#0000FF">string</span> userName, <span style="color:#0000FF">string</span> password, <span style="color:#0000FF">string</span> dataSource, <span style="color:#0000FF">string</span> databaseName)</strong>
+<strong class="markLine">{</strong>
+<strong class="markLine">  <span style="color:#0000FF">return</span> <span style="color:#0000FF">new</span> OleDbConnection(<span style="color:#0000FF">this</span>.CreateOleDBConnectionString(userName, password, dataSource, databaseName));</strong>
+<strong class="markLine">}</strong>
+</code></pre></li>
+<li><p>Implement the <strong>CreateOleDbConnectionString</strong> method used by the <strong>CreateConnection</strong> method. This method is responsible for building up the connection string used to create the connection to SQL Database using OLEDB. </p>
+
+<p>(Code Snippet - <em>WindowsAzureSQLDatabase - Ex4 OLEDB CreateOleDbConnectionString method - C#</em>)</p>
+
+<!-- mark: 1-15    -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">private</span> <span style="color:#0000FF">string</span> CreateOleDBConnectionString(<span style="color:#0000FF">string</span> userName, <span style="color:#0000FF">string</span> password, <span style="color:#0000FF">string</span> dataSource, <span style="color:#0000FF">string</span> databaseName)</strong>
+<strong class="markLine">{</strong>
+<strong class="markLine">  <span style="color:#0000FF">string</span> serverName = GetServerName(dataSource);</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">  OleDbConnectionStringBuilder connectionStringBuilder = <span style="color:#0000FF">new</span> OleDbConnectionStringBuilder</strong>
+<strong class="markLine">  {</strong>
+<strong class="markLine">    Provider = <span style="color:#8B0000">&quot;SQLOLEDB&quot;</span>,</strong>
+<strong class="markLine">    DataSource = dataSource,</strong>
+<strong class="markLine">  };</strong>
+<strong class="markLine">  connectionStringBuilder[<span style="color:#8B0000">&quot;Initial Catalog&quot;</span>] = databaseName;</strong>
+<strong class="markLine">  connectionStringBuilder[<span style="color:#8B0000">&quot;UId&quot;</span>] = userName + <span style="color:#8B0000">&quot;@&quot;</span> + serverName;</strong>
+<strong class="markLine">  connectionStringBuilder[<span style="color:#8B0000">&quot;Pwd&quot;</span>] = password;</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">  <span style="color:#0000FF">return</span> connectionStringBuilder.ConnectionString;</strong>
+<strong class="markLine">}</strong>
+</code></pre></li>
+<li><p>Override the <strong>CreateCommand</strong> method to create an <strong>OleDbCommand</strong>. Remember that this abstract method is called in the parent class to get the connection and execute the different SQL statement samples.</p>
+
+<p>(Code Snippet - <em>WindowsAzureSQLDatabase - Ex4 OLEDB CreateCommand method - C#</em>)</p>
+
+<!-- mark: 1-4    -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">protected</span> <span style="color:#0000FF">override</span> DbCommand CreateCommand(DbConnection connection)</strong>
+<strong class="markLine">{</strong>
+<strong class="markLine">  <span style="color:#0000FF">return</span> <span style="color:#0000FF">new</span> OleDbCommand() { Connection = connection <span style="color:#0000FF">as</span> OleDbConnection };</strong>
+<strong class="markLine">}</strong>
+</code></pre>
+
+<p>That is the specific code required to use an OLEDB connection. Now you will include some code in the <strong>Program.cs</strong> file to test the connection and see how the different operations work.</p></li>
+<li><p>Open the <strong>Program.cs</strong> file double-clicking it in the <strong>Solution</strong> <strong>Explorer</strong> inside the <strong>ConnectDemoApp</strong> project.</p></li>
+<li><p>In method <strong>Main</strong>, implement the logic to create an instance of the <strong>OleDbConnectionDemo</strong> class and execute the demo against SQL Database. You can add or replace the code from the previous tasks based on whether you want to test all the technologies at once or only this one.</p>
+
+<p>(Code Snippet - <em>WindowsAzureSQLDatabase - Ex4 OLEDB demo implementation - C#</em>)</p>
+
+<!-- mark: 5-10    -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">static</span> <span style="color:#0000FF">void</span> Main(<span style="color:#0000FF">string</span>[] args)
+{
+  <span style="color:#008000">//...</span>
+
+<strong class="markLine">  <span style="color:#008000">// Invoke the OleDB connection demo</span></strong>
+<strong class="markLine">  Console.WriteLine(<span style="color:#8B0000">&quot;Starting the OLEDB Connection Demo.&quot;</span>);</strong>
+<strong class="markLine">  OleDbConnectionDemo demo3 = <span style="color:#0000FF">new</span> OleDbConnectionDemo();</strong>
+<strong class="markLine">  demo3.ConnectToSQLDatabase(userName, password, datasource, databaseName);</strong>
+<strong class="markLine">  Console.WriteLine(<span style="color:#8B0000">&quot;Demo Complete... Press any key&quot;</span>);</strong>
+<strong class="markLine">  Console.ReadKey();</strong>
+}
+</code></pre></li>
+<li><p>If you have not done so before, update the value of the member variables located immediately above method <strong>Main</strong> by replacing the placeholders with the connection information for your SQL Database.</p></li>
+<li><p>Run the application by pressing <strong>F5</strong>. You should see the following output in a console window.</p>
+
+<p><img src="Images/expectedoutputoledbconnectiondemo.png?raw=true" alt="ExpectedOutputOLEDBConnectionDemo" />
+</p>
+
+<p><em>Expected output from the OLEDB connection demo</em></p></li>
+</ol>
+
+<p><a name="Ex4Task5"></a></p>
+
+<h4 id="Task_5_-_Connecting_to_SQL_Database_Using_Entity_Framework">Task 5 - Connecting to SQL Database Using Entity Framework</h4>
+
+<p>You have connected in three different ways to the database on SQL Database. The last technology that you are going to try will be <strong>Entity Framework</strong>. You will notice that the class implementation for this demo will not inherit from the <strong>SQLDatabaseConnectionDemo</strong> class because when using <strong>Entity Framework</strong>, you do not have to manage Connections and Commands; those are administered by the underlying technology and you do not have to worry about them.</p>
+
+<ol>
+<li><p>Open the <strong>App.config</strong> file and change the connection string to point to your SQL Database, and enter the password to connect using the test user created earlier in this lab.</p>
+<blockquote>
+<p><strong>Note:</strong> This step is required because <strong>Entity Framework</strong> gets the connection settings from the configuration file.</p>
+</blockquote></li>
+<li><p>Add a new ADO.NET Entity Data Model to the project named <strong>HoLModel</strong>. To do this, right-click on the <strong>ConnectDemoApp</strong> project in the <strong>Solution Explorer</strong>. Select <strong>Add | New Item</strong>. In the <strong>Add New Item</strong> dialog, make sure you select <strong>ADO.NET Entity Data Model</strong> template and then set the name to <strong>HoLModel.edmx</strong>.</p>
+
+<p><img src="Images/addingefmodel.png?raw=true" alt="AddingEFModel" />
+</p>
+
+<p><em>Adding EF model</em></p></li>
+<li><p>In the <strong>Entity Data Model Wizard</strong> select <strong>Generate from database</strong> and click <strong>Next</strong>.</p>
+
+<p><img src="Images/choosingmodelcontents.png?raw=true" alt="ChoosingModelContents" />
+</p>
+
+<p><em>Choosing model contents</em> </p></li>
+<li><p>In the <strong>Choose Your Data Connection</strong> step, select <strong>Yes, include sensitive data in the connection string</strong> and leave <strong>AdventureWorksLTConnectionString</strong> as data connection and <strong>HolTestDBEntities</strong> as entity connection settings name. Click <strong>Next</strong>.</p>
+
+<p><img src="Images/choosingmodelcontents2.png?raw=true" alt="ChoosingModelContents2" />
+</p>
+
+<p><em>Choosing model contents</em> </p></li>
+<li><p>In the <strong>Connect to SQL Server</strong> step, provide the SQL Credentials for the HolUser created earlier and click <strong>OK</strong>.</p>
+
+<p><img src="Images/connect-sql-server.png?raw=true" alt="Connecting to SQL Server" />
+</p>
+
+<p><em>Connecting to SQL Server</em></p></li>
+<li><p>In the <strong>Choose Your Database Objects</strong> step, select all database objects, select <strong>Pluralize or singularize generated object names</strong>, and click <strong>Finish</strong>.</p>
+
+<p><img src="Images/choosingdatabaseobjects.png?raw=true" alt="ChoosingDatabaseObjects" />
+</p>
+
+<p><em>Choosing database objects</em></p></li>
+<li><p>Once created the Model is shown.</p>
+
+<p><img src="Images/efmodelcreated.png?raw=true" alt="EFModelCreated" />
+</p>
+
+<p><em>EF model created</em></p></li>
+<li><p>Add a new class to the project named <strong>EFConnectionDemo</strong>. To do this, right-click the <strong>ConnectDemoApp</strong> project in <strong>Solution</strong> <strong>Explorer</strong> and select <strong>Add</strong> | <strong>Class</strong>. In the <strong>Add</strong> <strong>New</strong> <strong>Item</strong> dialog, make sure you select the <strong>Class</strong> template and then set the name to <strong>EFConnectionDemo.cs</strong>.</p></li>
+<li><p>Add the following method to the <strong>EFConnectionDemo</strong> class. This retrieves from the database all the company names and prints them to the console. To do that, it takes advantage of the EF <strong>HolTestDBEntities</strong> class.</p>
+
+<p>(Code Snippet - <em>WindowsAzureSQLDatabase - Ex4 EF ConnectToSQLDatabase method - C#</em>)</p>
+
+<!-- mark: 1-18   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#808080">/// &lt;summary&gt;</span></strong>
+<strong class="markLine"><span style="color:#808080">/// HolTestDbEntities takes care of handling your transactions for you</span></strong>
+<strong class="markLine"><span style="color:#808080">/// leaving you free use Linq to extract information stores up in the cloud</span></strong>
+<strong class="markLine"><span style="color:#808080">/// &lt;/summary&gt;</span></strong>
+<strong class="markLine"><span style="color:#0000FF">public</span> <span style="color:#0000FF">void</span> ConnectToSQLDatabase()</strong>
+<strong class="markLine">{</strong>
+<strong class="markLine">  <span style="color:#0000FF">using</span> (HolTestDBEntities context = <span style="color:#0000FF">new</span> HolTestDBEntities())</strong>
+<strong class="markLine">  { </strong>
+<strong class="markLine">      IQueryable&lt;<span style="color:#0000FF">string</span>&gt; companyNames = from customer <span style="color:#0000FF">in</span> context.Customers</strong>
+<strong class="markLine">        where customer.CustomerID &lt; 20</strong>
+<strong class="markLine">        select customer.CompanyName;</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">      <span style="color:#0000FF">foreach</span> (<span style="color:#0000FF">var</span> company <span style="color:#0000FF">in</span> companyNames)</strong>
+<strong class="markLine">      {</strong>
+<strong class="markLine">        Console.WriteLine(company);</strong>
+<strong class="markLine">      }</strong>
+<strong class="markLine">   }</strong>
+<strong class="markLine">}</strong>
+</code></pre></li>
+<li><p>Add the following code to invoke the LINQ to SQL demo in method <strong>Main</strong> of the <strong>Program.cs</strong> file. You can add or replace the code from the previous tasks depending on whether you want to test all the technologies at once or only this one.</p>
+
+<p>(Code Snippet - <em>WindowsAzureSQLDatabase - Ex4 EF demo implementation - C#</em>)</p>
+
+<!-- mark: 5-10    -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">static</span> <span style="color:#0000FF">void</span> Main(<span style="color:#0000FF">string</span>[] args)
+{
+  <span style="color:#008000">//...</span>
+
+<strong class="markLine">  <span style="color:#008000">// Invoke the Entity Framework connection demo</span></strong>
+<strong class="markLine">  Console.WriteLine(<span style="color:#8B0000">&quot;Starting the Entity Framework Connection Demo...&quot;</span>);</strong>
+<strong class="markLine">  EFConnectionDemo demo4 = <span style="color:#0000FF">new</span> EFConnectionDemo();</strong>
+<strong class="markLine">  demo4.ConnectToSQLDatabase();</strong>
+<strong class="markLine">  Console.WriteLine(<span style="color:#8B0000">&quot;Demo Complete... Press any key&quot;</span>);</strong>
+<strong class="markLine">  Console.ReadKey();</strong>
+}
+</code></pre></li>
+<li><p>Press <strong>F5</strong> to run your application. You should see a long list of company names. These are retrieved from your database on the SQL Database server using LINQ to SQL. </p>
+
+<p><img src="Images/expectedoutputefconnectiondemo.png?raw=true" alt="ExpectedOutputEFConnectionDemo" />
+</p>
+
+<p><em>Expected output from the EF connection demo</em></p></li>
+</ol>
+
+<p><a name="Ex4Task6"></a></p>
+
+<h4 id="Task_6_-_Connecting_to_SQL_Database_via_Non-Microsoft_Technologies">Task 6 - Connecting to SQL Database via Non-Microsoft Technologies</h4>
+
+<p>It is trivial to connect to SQL Database using non-Windows technologies.</p>
+
+<p>The following PHP version takes on a pattern that you should be familiar with from the previous task. It uses the SQL Server Native Client ODBC driver to establish a connection.</p>
+
+<!-- mark: 1-18    -->
+
+<span class="codelanguage">PHP</span><pre><code class="PHP"><strong class="markLine"><span style="color:#0000FF">&lt;?</span>php</strong>
+<strong class="markLine">  $host = <span style="color:#8B0000">&quot;server.database.windows.net&quot;</span>;</strong>
+<strong class="markLine">  $dbname = <span style="color:#8B0000">&quot;database&quot;</span>;</strong>
+<strong class="markLine">  $dbuser = <span style="color:#8B0000">&quot;user@server&quot;</span>;</strong>
+<strong class="markLine">  $dbpwd = <span style="color:#8B0000">&quot;password&quot;</span>;</strong>
+<strong class="markLine">  $driver = <span style="color:#8B0000">&quot;{SQL Server Native Client 11.0}&quot;</span>;</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">  <span style="color:#008000">// Build connection string</span></strong>
+<strong class="markLine">  $dsn = <span style="color:#8B0000">&quot;Driver=$driver;Server=$host;Database=$dbname;Encrypt=true;TrustServerCertificate=true&quot;</span>;</strong>
+<strong class="markLine">  <a href="http://www.php.net/if" style="color:#0000FF">if</a> (!($conn = @<a href="http://www.php.net/odbc_connect" style="color:#FFA500">odbc_connect</a>($dsn, $dbuser, $dbpwd))) {</strong>
+<strong class="markLine">      <a href="http://www.php.net/die" style="color:#0000FF">die</a>(<span style="color:#8B0000">&quot;Connection error: &quot;</span> . odbc_errormsg());</strong>
+<strong class="markLine">  }</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">  <span style="color:#008000">// Got a connection, do what you will</span></strong>
+<strong class="markLine"></strong>
+<strong class="markLine">  <span style="color:#008000">// Free the connection</span></strong>
+<strong class="markLine">      @<a href="http://www.php.net/odbc_close" style="color:#FFA500">odbc_close</a>($conn);</strong>
+<strong class="markLine"><span style="color:#0000FF">?&gt;</span></strong>
+</code></pre>
+
+<p>Connecting to SQL Database using JDBC is also trivial. Refer to the following code.</p>
+
+<!-- mark: 1-20    -->
+
+<span class="codelanguage">JAVA</span><pre><code class="JAVA"><strong class="markLine"><span style="color:#008000">// Build a connection string</span></strong>
+<strong class="markLine">String connectionUrl= <span style="color:#8B0000">&quot;jdbc:sqlserver://server.database.windows.net;&quot;</span> +</strong>
+<strong class="markLine">           <span style="color:#8B0000">&quot;database=mydatabase;encrypt=true;user=user@server;password=*****&quot;</span>;</strong>
+<strong class="markLine"></strong>
+<strong class="markLine"><span style="color:#008000">// Next, make sure the SQL Server Driver is loaded.</span></strong>
+<strong class="markLine">Class.forName(<span style="color:#8B0000">&quot;com.microsoft.sqlserver.jdbc.SQLServerDriver&quot;</span>);</strong>
+<strong class="markLine"></strong>
+<strong class="markLine"><span style="color:#008000">// Then try to get a connection. This will null or it will throw an exception if connection cannot be established.</span></strong>
+<strong class="markLine"></strong>
+<strong class="markLine">Connection sqlConn = DriverManager.getConnection(connectionUrl);</strong>
+<strong class="markLine"><span style="color:#0000FF">if</span> (sqlConn == <span style="color:#0000FF">null</span>)</strong>
+<strong class="markLine">{</strong>
+<strong class="markLine">    System.out.println(<span style="color:#8B0000">&quot;Unable to obtain connection. Exiting...&quot;</span>);</strong>
+<strong class="markLine">    System.exit(1);</strong>
+<strong class="markLine">}</strong>
+<strong class="markLine"></strong>
+<strong class="markLine"><span style="color:#008000">// Got a connection, do what you will</span></strong>
+<strong class="markLine"></strong>
+<strong class="markLine"><span style="color:#008000">// Free the connection </span></strong>
+<strong class="markLine">sqlConn.close();</strong>
+</code></pre>
+
+<hr />
+
+<p><a name="Summary"></a></p>
+
+<h2 id="Summary">Summary</h2>
+
+<p>In this lab, you have looked at the basics of working with Windows Azure SQL Database. If you have any SQL Server experience, you may have found the lab familiar and that is, indeed, the point. Working with SQL Database should be very familiar to anyone who has worked with SQL Server.</p>
+
+<p>You learned to create new databases, logins and users for those databases. You saw that for the most part, you could simply create objects in SQL Database as you would with an on-premise SQL Server. </p>
+
+<p>In addition, you created a simple Windows Azure application that is able to consume a SQL Database. </p>
+
+<p>Finally, you saw that creating connections to SQL Database using Microsoft technologies is the same as creating connections to any normal on-premises database.</p>
+
+</span>
+		</div>
+	<br />
+	<p><a href="#top">top of page</a></p>
+
+
+				</div>
+			</section>
+			<footer>
+				<div class="footer-sitemap" style="border-top:0"></div>
+				<div class="footer-bottom">
+					<ul>
+						<li class="footer-copyright"><a href="http://www.microsoft.com"><img alt="microsoft" src="images/microsoft.png" /></a></li>					
+												<li><a href="https://github.com/WindowsAzure-TrainingKit/HOL-IntroSQLDatabase-VS2012/issues" target="_new">File an Issue</a></li>
+												<li><a href="mailto:azcfeed@microsoft.com?subject=Windows Azure Training Kit">Contact Us</a></li>
+						<li><a href="EULA.htm">Terms of Use</a></li>
+						<li><a href=".\">Browse Content</a></li>
+						<li>&copy; 2012 Microsoft</li>
+					</ul>
+				</div>
+			</footer>
+			</div>
+        </div>
+    </div>
+</body>
+</html>
+

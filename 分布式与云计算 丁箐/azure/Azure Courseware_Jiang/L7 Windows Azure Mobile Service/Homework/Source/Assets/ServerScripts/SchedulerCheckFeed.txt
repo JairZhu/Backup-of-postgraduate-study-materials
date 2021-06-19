@@ -1,0 +1,34 @@
+function CheckFeed() {
+     getUpdatesAndNotify();
+}
+
+var request = require('request');
+function getUpdatesAndNotify() {  
+     request('http://search.twitter.com/search.json?q=@cloudnick&rpp=2', 
+          function tweetsLoaded (error, response, body) {
+              var results = JSON.parse(body).results;
+              if(results){
+                    results.forEach(function visitResult(tweet){
+                     sendNotifications(tweet);
+                    });
+              }            
+          });
+}
+
+function sendNotifications(tweet){    
+
+     var channelTable = tables.getTable('Channel');
+      channelTable.read({
+            success: function(channels) {
+                 channels.forEach(function(channel) {   
+
+                      push.wns.sendTileWideSmallImageAndText04(channel.uri, {
+                            image1src: tweet.profile_image_url,                            
+                            text1: '@' + tweet.from_user,
+                            text2: tweet.text
+                      });                  
+
+                 });
+            }
+         });
+}

@@ -1,0 +1,1 @@
+Please do from exercise 2 for blob services hands-on

@@ -1,0 +1,1 @@
+Before deploying to Windows Azure, ensure you have updated "DiagnosticsConnectionString" and "DataConnectionString" values from the "ServiceConfiguration.Cloud.cscfg" file with valid Storage Account values.

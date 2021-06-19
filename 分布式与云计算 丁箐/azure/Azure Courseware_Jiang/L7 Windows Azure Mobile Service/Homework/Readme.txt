@@ -1,0 +1,1 @@
+This is from Windows Azure Training Kit. We suggest the teacher can take exercise 4 as homework assignment.

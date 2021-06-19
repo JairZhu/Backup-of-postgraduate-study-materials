@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AzureTalk.Client", "..\..\..\Assets\VB\AzureTalk.Client.WPF\AzureTalk.Client.vbproj", "{EBEA892D-7AE9-405D-BC9F-00C866647238}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AzureTalk.Contract", "..\..\..\Assets\VB\AzureTalk.Contract\AzureTalk.Contract.vbproj", "{B77DA726-E7B4-469B-B2CF-E62CF46B5963}"
+EndProject
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "AzureTalk", "AzureTalk\AzureTalk.ccproj", "{255E7A93-6E6F-4491-9C11-EA48E56CD530}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AzureTalk.Service", "AzureTalk.Service\AzureTalk.Service.vbproj", "{54F83B20-5AB7-4584-86D6-6B238231E49C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBEA892D-7AE9-405D-BC9F-00C866647238}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBEA892D-7AE9-405D-BC9F-00C866647238}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBEA892D-7AE9-405D-BC9F-00C866647238}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBEA892D-7AE9-405D-BC9F-00C866647238}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B77DA726-E7B4-469B-B2CF-E62CF46B5963}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B77DA726-E7B4-469B-B2CF-E62CF46B5963}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B77DA726-E7B4-469B-B2CF-E62CF46B5963}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B77DA726-E7B4-469B-B2CF-E62CF46B5963}.Release|Any CPU.Build.0 = Release|Any CPU
+		{255E7A93-6E6F-4491-9C11-EA48E56CD530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{255E7A93-6E6F-4491-9C11-EA48E56CD530}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{255E7A93-6E6F-4491-9C11-EA48E56CD530}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{255E7A93-6E6F-4491-9C11-EA48E56CD530}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54F83B20-5AB7-4584-86D6-6B238231E49C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54F83B20-5AB7-4584-86D6-6B238231E49C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54F83B20-5AB7-4584-86D6-6B238231E49C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54F83B20-5AB7-4584-86D6-6B238231E49C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

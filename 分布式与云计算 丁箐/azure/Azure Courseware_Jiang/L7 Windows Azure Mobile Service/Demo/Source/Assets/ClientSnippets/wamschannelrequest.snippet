@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>wamschannelrequest</Title>
+      <Author>Nick Harris http://twitter.com/cloudnick</Author>
+      <Description>
+      </Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>wamschannelrequest</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp"><![CDATA[            var ch = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
+            var channelDTO = new Channel()
+                                {
+                                    Id = ApplicationData.Current.LocalSettings.Values["ChannelId"] as int?,
+                                    Uri = ch.Uri,
+                                    Expiry = new DateTime(ch.ExpirationTime.ToUniversalTime().Ticks)
+                                };
+
+            if (ApplicationData.Current.LocalSettings.Values["ChannelId"] == null)
+            {
+                await MobileService.GetTable<Channel>().InsertAsync(channelDTO);
+                ApplicationData.Current.LocalSettings.Values["ChannelId"] = channelDTO.Id;
+            }
+            else
+            {
+                await MobileService.GetTable<Channel>().UpdateAsync(channelDTO);
+            }
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

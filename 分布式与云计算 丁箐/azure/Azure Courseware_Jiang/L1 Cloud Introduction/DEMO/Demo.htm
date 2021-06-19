@@ -1,0 +1,316 @@
+﻿
+<!DOCTYPE html>
+<html class="no-js" lang="en" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
+<head id="ContentPlaceHolderDefault_Head1">
+    <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1" />
+    <meta charset="utf-8" />
+    <title>Windows Azure Training Kit - Hello ASP in Windows Azure Web Sites</title>
+    <link rel="Stylesheet" type="text/css" media="all" href="styles/master.css" />
+</head>
+<body id="top" class="page-">
+    <div id="page">
+        <div id="wrapper" class="landingPage getStartedPage">            
+            <div class="header">								
+				<img alt="Windows Azure" src="images/azure-logo.png" />
+				<span class="mainHomepageSubTitle">Training Kit - December 2012 Update</span>								
+			</div>			
+			<div class="nav-menu-header">
+				<nav>
+					<ul>
+						<li class="MenuLink-Selected">
+							<a href="#">Content</a>
+						</li>
+												<li class="MenuLink">
+							<a href="Source">Setup</a>
+						</li>
+											</ul>
+				
+										
+						<span id="github-btn" class="github-btn">
+						  <a id="gh-btn" title="Fork this repo in GitHub" href="https://github.com/WindowsAzure-TrainingKit/Demo-HelloASP" target="_blank" class="gh-btn">
+							<span class="gh-ico"></span>
+							<span id="gh-text" class="gh-text">Fork</span>
+						  </a>								  
+						</span>								
+						<span id="github-btn" class="github-btn github-watchers">
+						  <a id="gh-btn" title="Watch this repo in GitHub" href="https://github.com/WindowsAzure-TrainingKit/Demo-HelloASP" target="_blank" class="gh-btn">
+							<span class="gh-ico"></span>
+							<span id="gh-text" class="gh-text">Watch</span>
+						  </a>								  
+						</span>
+						
+									
+				</nav>
+			</div>	        
+		</span>
+			<div id="content" class="textpage">
+            <section id="content-container">
+				<div id="content" class="textpage">
+			    <a name="top"></a>
+				
+				
+
+		<div class="content">
+			<?xml version="1.0" encoding="iso-8859-1"?><span><p><a name="HelloASP"></a></p>
+
+<h1 id="Classic_ASP_and_FTP_-_Hello_ASP_Web_Site">Classic ASP and FTP - Hello ASP Web Site</h1>
+
+<hr />
+
+<p><a name="Overview"></a></p>
+
+<h2 id="Overview">Overview</h2>
+
+<p>In this demo, you will create a Windows Azure Web Site, and get an ASP Legacy page running in the cloud using an FTP client.</p>
+
+<p><a id="goals"></a></p>
+
+<h3 id="Goals">Goals</h3>
+
+<p>In this demo, you will see:</p>
+
+<ol>
+<li><p>How easy it is to create a new Web Site in Windows Azure.</p></li>
+<li><p>How to get an existing ASP Web Site working in just a few minutes by uploading it with an FTP client.</p></li>
+</ol>
+
+<p><a name="technologies"></a></p>
+
+<h3 id="Key_Technologies">Key Technologies</h3>
+
+<ul>
+<li><a href="https://www.windowsazure.com/en-us/home/scenarios/web-sites/">Windows Azure Web Sites</a></li>
+</ul>
+
+<hr />
+
+<p><a name="Demo"></a></p>
+
+<h2 id="Demo">Demo</h2>
+
+<p>This demo is composed of the following segments:</p>
+
+<ol>
+<li><a href="#segment1">Create a New Web Site Hosted in Windows Azure</a>.</li>
+<li><a href="#segment2">Upload an ASP page to the Windows Azure Web Site using an FTP</a>.</li>
+<li><a href="#segment3">Set the ASP page as the Web Site Default Document</a>.</li>
+</ol>
+
+<p><a name="segment1"></a></p>
+
+<h3 id="Create_a_New_Web_site_Hosted_in_Windows_Azure">Create a New Web site Hosted in Windows Azure</h3>
+<blockquote>
+<p><strong>Speaking Point</strong></p>
+
+<p>During this demo we are going to create a Windows Azure Web Site.</p>
+
+<p>Lets start by opening Internet Explorer and accessing the Windows Azure Management Portal.</p>
+</blockquote>
+<ol>
+<li><p>Open <strong>Internet Explorer</strong>, go to the <a href="https://manage.windowsazure.com">Windows Azure Management portal</a> and sign in using your <strong>Microsoft Account</strong> credentials associated with your subscription.</p>
+<blockquote>
+<p><strong>Speaking Point</strong></p>
+
+<p>Thanks to the Quick Create option from the Windows Azure Management Portal, we can now get a Web Site working in the cloud in just seconds.</p>
+</blockquote></li>
+<li><p>Click <strong>Compute</strong>, <strong>Web Site</strong> and then <strong>Quick Create</strong> on the command bar. Provide an available URL (e.g. <em>hello-world-asp</em>) for the new web site and click <strong>Create Web Site</strong>.</p>
+
+<p><img src="Images/creating-a-new-web-site-using-quick-create-op.png?raw=true" alt="Creating a new Web Site using Quick Create " title="Creating a new Web Site using Quick Create" />
+</p>
+
+<p><em>Creating a new Web Site using Quick Create</em></p></li>
+<li><p>Once the Web Site is created, click the link under the <strong>URL</strong> column to make sure it is working.</p>
+
+<p><img src="Images/browsing-to-new-site.png?raw=true" alt="Going to the new Web Site" title="Going to the new web site" />
+</p>
+
+<p><em>Going to the new Web Site</em></p>
+
+<p><img src="Images/web-site-running.png?raw=true" alt="Web site running" title="Web site running" />
+</p>
+
+<p><em>Web site running</em></p></li>
+</ol>
+
+<p><a name="segment2"></a></p>
+
+<h3 id="Upload_an_ASP_page_to_the_Windows_Azure_Web_Site_using_an_FTP">Upload an ASP page to the Windows Azure Web Site using an FTP</h3>
+<blockquote>
+<p><strong>Speaking Point</strong></p>
+
+<p>Next, we are going to get a basic ASP page working in the cloud, uploading it with an FTP.</p>
+
+<p>Lets go to the dashboard panel of the Web Site we have just created.</p>
+</blockquote>
+<ol>
+<li><p>Back in the Windows Azure Management Portal, click your Web Site name, under the <strong>Name</strong> column to access the Dashboard.</p>
+
+<p><img src="Images/accessing-the-web-site-dashboard.png?raw=true" alt="Accessing the Web Site Dashboard" title="Accessing the Web Site Dashboard" />
+</p>
+
+<p><em>Accessing the Web Site Dashboard</em></p>
+<blockquote>
+<p><strong>Speaking Point</strong></p>
+
+<p>On the Dashboard we can see useful information about the Web Site such as access reports, hardware usage and database access.</p>
+
+<p>We also can find multiple options for uploading content to the Web Sites, including GIT, TFS and FTP.</p>
+</blockquote></li>
+<li><p>Show the information displayed on the Web Site Dashboard.</p>
+
+<p><img src="Images/web-site-dashboard.png?raw=true" alt="Web Site Dashboard" title="Web Site Dashboard" />
+</p>
+
+<p><em>Accessing the Web Site Dashboard</em></p>
+<blockquote>
+<p><strong>Speaking Point</strong></p>
+
+<p>To access the Web Site with an FTP, we need to specify the deployment credentials we will be using.</p>
+</blockquote></li>
+<li><p>Click <strong>Reset deployment credentials</strong> in the <strong>Quick Glance</strong> section.</p>
+
+<p><img src="Images/reset-deployment-credentials.png?raw=true" alt="Resetting Deployment Credentials" title="Resetting Deployment Credentials" />
+</p>
+
+<p><em>Resetting Deployment Credentials</em></p></li>
+<li><p>Enter a <strong>User Name</strong> and <strong>Password</strong> for the FTP.</p>
+
+<p><img src="Images/setting-ftp-credentials.png?raw=true" alt="Setting up FTP Credentials" title="Setting up FTP Credentials" />
+</p>
+
+<p><em>Setting up FTP Credentials</em></p>
+<blockquote>
+<p><strong>Speaking Point</strong></p>
+
+<p>For this demo we are going to access the host with the File Explorer FTP connection, however you may use the FTP client of your preference.</p>
+</blockquote></li>
+<li><p>Click the URL under <strong>FTP Hostname</strong> </p>
+
+<p><img src="Images/open-ftp-url.png?raw=true" alt="Opening Web Site FTP" title="Opening Web Site FTP" />
+</p>
+
+<p><em>Opening Web Site FTP</em></p></li>
+<li><p>Insert the FTP credentials previously specified.</p>
+
+<p><img src="Images/ftp-credentials-prompt.png?raw=true" alt="Inserting FTP Credentials" title="Inserting FTP Credentials" />
+</p>
+
+<p><em>Inserting FTP Credentials</em></p></li>
+<li><p>Once in the FTP browser, click <strong>Alt</strong> and click <strong>View | Open FTP Site in File Explorer</strong>.</p>
+
+<p><img src="Images/open-ftp-in-explorer.png?raw=true" alt="Opening FTP in File Explorer" title="Opening FTP in File Explorer" />
+</p>
+
+<p><em>Opening FTP in File Explorer</em></p></li>
+<li><p>If prompted for credentials, insert them again to access using File Explorer.</p>
+
+<p><img src="Images/windows-explorer-ftp-credentials.png?raw=true" alt="File Explorer FTP Credentials" title="File Explorer FTP Credentials" />
+</p>
+
+<p><em>File Explorer FTP Credentials</em></p></li>
+<li><p>Open <strong>/site/wwwroot/</strong> folder.</p>
+<blockquote>
+<p><strong>Speaking Point</strong></p>
+
+<p>Here we can see the Web Site content.</p>
+
+<p>Lets create a new basic ASP page.</p>
+</blockquote></li>
+<li><p>Open <strong>notepad</strong> and write the following code:</p>
+
+<span class="codelanguage">HTML</span><pre><code class="HTML"><span style="background-color:#FFFF00; color:Black">&lt;%</span>
+Response.Write &quot;<span style="color:#0000FF">&lt;</span><span style="color:#800000">html</span><span style="color:#0000FF">&gt;</span><span style="color:#0000FF">&lt;</span><span style="color:#800000">body</span><span style="color:#0000FF">&gt;</span>&quot;
+Response.Write &quot;Hello world!&quot;
+Response.Write &quot;<span style="color:#0000FF">&lt;/</span><span style="color:#800000">body</span><span style="color:#0000FF">&gt;</span><span style="color:#0000FF">&lt;/</span><span style="color:#800000">html</span><span style="color:#0000FF">&gt;</span>&quot;
+<span style="background-color:#FFFF00; color:Black">%&gt;</span>
+</code></pre></li>
+<li><p>Name the file <em>Hello.asp</em>, save it to Desktop, and move it inside the FTP folder.</p>
+
+<p><img src="Images/helloasp-inside-ftp.png?raw=true" alt="Hello.asp file inside the FTP" title="Hello.asp file inside the FTP" />
+</p>
+
+<p><em>Hello.asp file inside the FTP</em></p></li>
+<li><p>Switch to Internet Explorer and go to your Web Site URL. Then add <em>/hello.asp</em> at the end of the root URL.</p>
+
+<p><img src="Images/helloasp-on-the-cloud.png?raw=true" alt="Hello.asp on the Cloud" title="Hello.asp on the Cloud" />
+</p>
+
+<p><em>Hello.asp on the Cloud</em></p></li>
+</ol>
+
+<p><a name="segment3"></a></p>
+
+<h3 id="Set_the_ASP_page_as_the_Web_Site_Default_Document">Set the ASP page as the Web Site Default Document</h3>
+<blockquote>
+<p><strong>Speaking Point</strong></p>
+
+<p>We are now going to set up the hello.asp page as the Default Web Site page, so that when we go to the root URL our page is displayed.</p>
+</blockquote>
+<ol>
+<li><p>Switch to the Windows Azure Management Portal and click <strong>Configure</strong> from the Web Site top menu.</p>
+
+<p><img src="Images/website-configure.png?raw=true" alt="Web Site Configure Options" title="Web Site Configure Options" />
+</p>
+
+<p><em>Web Site Configure Options</em></p></li>
+<li><p>Scroll down to the <strong>Default Documents</strong> section and add <strong>hello.asp</strong> as a new default document.</p>
+
+<p><img src="Images/helloasp-as-default-document.png?raw=true" alt="Hello.asp as the Default Document" title="Hello.asp as the Default Document" />
+</p>
+
+<p><em>Hello.asp as the Primary Default Document</em></p></li>
+<li><p>Click <strong>Up Arrow</strong> to make <em>hello.asp</em> page the default document before <em>hostingstart.html</em>.</p>
+
+<p><img src="Images/helloasp-as-primary-default-document.png?raw=true" alt="Hello.asp as the Primary Default Document" title="Hello.asp as the Primary Default Document" />
+</p>
+
+<p><em>Hello.asp as the Primary Default Document.png</em></p></li>
+<li><p>Click <strong>Save</strong> in the bottom menu to save the changes made.</p>
+
+<p><img src="Images/save-default-documents.png?raw=true" alt="Save Default Documents List" title="Save Default Documents List" />
+</p>
+
+<p><em>Save Default Documents List</em></p></li>
+<li><p>Go to the Web Site root URL and confirm that <em>Hello.asp</em> is the page displayed.</p>
+
+<p><img src="Images/helloasp-default-page.png?raw=true" alt="Hello.asp as the Default Page" title="Hello.asp as the Default Page" />
+</p>
+
+<p><em>Hello.asp as the Default Page</em></p></li>
+</ol>
+
+<hr />
+
+<p><a name="summary"></a></p>
+
+<h2 id="Summary">Summary</h2>
+
+<p>In this demo, you saw how to deploy your Web Site to the cloud with Windows Azure, and how easy it is to upload your own Web Site using an FTP client.</p>
+
+</span>
+		</div>
+	<br />
+	<p><a href="#top">top of page</a></p>
+
+
+				</div>
+			</section>
+			<footer>
+				<div class="footer-sitemap" style="border-top:0"></div>
+				<div class="footer-bottom">
+					<ul>
+						<li class="footer-copyright"><a href="http://www.microsoft.com"><img alt="microsoft" src="images/microsoft.png" /></a></li>					
+												<li><a href="https://github.com/WindowsAzure-TrainingKit/Demo-HelloASP/issues" target="_new">File an Issue</a></li>
+												<li><a href="mailto:azcfeed@microsoft.com?subject=Windows Azure Training Kit">Contact Us</a></li>
+						<li><a href="EULA.htm">Terms of Use</a></li>
+						<li><a href=".\">Browse Content</a></li>
+						<li>&copy; 2012 Microsoft</li>
+					</ul>
+				</div>
+			</footer>
+			</div>
+        </div>
+    </div>
+</body>
+</html>
+

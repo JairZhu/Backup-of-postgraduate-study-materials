@@ -1,0 +1,42 @@
+﻿@model MyTodo.WebUx.Models.TaskList
+@{ 
+    ViewBag.Title = "myTODO - Lists"; 
+}
+@section MainContent {
+    <div class="listHeader">
+        <h2>
+            <span class="sep">(</span>
+            @(Html.ActionLink("RSS", "Rss", "Todo"))
+            <span class="sep">)</span> My Lists
+        </h2>
+    </div>
+    <div id="loading">
+        Loading Lists...
+    </div>
+    <div id="listsWrapper" style="display: none; clear: both;">
+        <ul class="listTasks" id="lists">
+            <li class="empty">No lists are available.</li>
+        </ul>
+        @if ((bool)ViewData["AuthenticatedUser"])
+        {
+            <div id="newList">
+                <p>
+                    <input type="text" class="title" id="newListField" />
+                    <a id="newListBtn" class="btn add"><span>Add</span></a>
+                </p>
+            </div>
+        }
+    </div>
+    <div class="break">
+    </div>
+}
+@section ScriptsContent {
+    <script type="text/javascript" src="@(Url.Content("~/Content/scripts/jquery-1.3.2.js"))"></script>
+    <script type="text/javascript" src="@(Url.Content("~/Content/scripts/plugin.listitem.js"))"></script>
+    <script type="text/javascript" src="@(Url.Content("~/Content/scripts/page.lists.js"))"></script>
+    <script type="text/javascript" src="@(Url.Content("~/Content/scripts/services.lists.js"))"></script>
+    <script type="text/javascript">
+        authenticatedUser = @(Request.IsAuthenticated.ToString().ToLower());
+        listsService = new ListServiceProxy("@(Url.Content("~/ToDo"))");
+    </script>
+}

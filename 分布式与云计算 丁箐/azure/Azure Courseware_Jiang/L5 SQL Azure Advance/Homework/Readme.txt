@@ -1,0 +1,1 @@
+This lad resource is from Windows Aazure Training Kit. We suggest you do exercise 4 as homework assignment.

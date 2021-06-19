@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Web
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "MyTodo", "MyTodo\MyTodo.ccproj", "{F3E257D0-82C7-48B2-BA7C-837BB6516670}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTodo.WebUx", "MyTodo.WebUx\MyTodo.WebUx.csproj", "{B644D384-3BD1-46E8-B9C2-F484D538B63D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTodo.Data.WindowsAzure", "MyTodo.Data.WindowsAzure\MyTodo.Data.WindowsAzure.csproj", "{5C2615F5-3DE2-4A1A-824B-52E10E517D61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspProviders", "..\..\Assets\AspProviders\AspProviders.csproj", "{011811B0-351B-4B66-BC52-D808A8BDDCFA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5297FEB2-8784-4345-9D81-FFC16492B935}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3E257D0-82C7-48B2-BA7C-837BB6516670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3E257D0-82C7-48B2-BA7C-837BB6516670}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3E257D0-82C7-48B2-BA7C-837BB6516670}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3E257D0-82C7-48B2-BA7C-837BB6516670}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B644D384-3BD1-46E8-B9C2-F484D538B63D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B644D384-3BD1-46E8-B9C2-F484D538B63D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B644D384-3BD1-46E8-B9C2-F484D538B63D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B644D384-3BD1-46E8-B9C2-F484D538B63D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C2615F5-3DE2-4A1A-824B-52E10E517D61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C2615F5-3DE2-4A1A-824B-52E10E517D61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C2615F5-3DE2-4A1A-824B-52E10E517D61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C2615F5-3DE2-4A1A-824B-52E10E517D61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{011811B0-351B-4B66-BC52-D808A8BDDCFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{011811B0-351B-4B66-BC52-D808A8BDDCFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{011811B0-351B-4B66-BC52-D808A8BDDCFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{011811B0-351B-4B66-BC52-D808A8BDDCFA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,2030 @@
+﻿
+<!DOCTYPE html>
+<html class="no-js" lang="en" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
+<head id="ContentPlaceHolderDefault_Head1">
+    <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1" />
+    <meta charset="utf-8" />
+    <title>Windows Azure Training Kit - Exploring Windows Azure Storage - for Visual Studio 2012</title>
+    <link rel="Stylesheet" type="text/css" media="all" href="styles/master.css" />
+</head>
+<body id="top" class="page-">
+    <div id="page">
+        <div id="wrapper" class="landingPage getStartedPage">            
+            <div class="header">								
+				<img alt="Windows Azure" src="images/azure-logo.png" />
+				<span class="mainHomepageSubTitle">Training Kit - December 2012 Update</span>								
+			</div>			
+			<div class="nav-menu-header">
+				<nav>
+					<ul>
+						<li class="MenuLink-Selected">
+							<a href="#">Content</a>
+						</li>
+												<li class="MenuLink">
+							<a href="Source">Setup</a>
+						</li>
+											</ul>
+				
+										
+						<span id="github-btn" class="github-btn">
+						  <a id="gh-btn" title="Fork this repo in GitHub" href="https://github.com/WindowsAzure-TrainingKit/HOL-ExploringStorage-VS2012" target="_blank" class="gh-btn">
+							<span class="gh-ico"></span>
+							<span id="gh-text" class="gh-text">Fork</span>
+						  </a>								  
+						</span>								
+						<span id="github-btn" class="github-btn github-watchers">
+						  <a id="gh-btn" title="Watch this repo in GitHub" href="https://github.com/WindowsAzure-TrainingKit/HOL-ExploringStorage-VS2012" target="_blank" class="gh-btn">
+							<span class="gh-ico"></span>
+							<span id="gh-text" class="gh-text">Watch</span>
+						  </a>								  
+						</span>
+						
+									
+				</nav>
+			</div>	        
+		</span>
+			<div id="content" class="textpage">
+            <section id="content-container">
+				<div id="content" class="textpage">
+			    <a name="top"></a>
+				
+				
+
+		<div class="content">
+			<?xml version="1.0" encoding="iso-8859-1"?><span><p><a name="handsonlab"></a></p>
+
+<h1 id="Exploring_Windows_Azure_Storage_-_for_Visual_Studio_2012">Exploring Windows Azure Storage - for Visual Studio 2012</h1>
+
+<hr />
+
+<p><a name="Overview"></a></p>
+
+<h2 id="Overview">Overview</h2>
+
+<p>Storage services provide persistent, durable storage in the Windows Azure compute emulator, and include blob and table service and the queue service. In addition, using Windows Azure Drives, your Windows Azure applications running in the cloud can use existing NTFS APIs to access a durable drive backed by blob storage.
+In this lab, you will examine the basic process of working with Windows Azure storage on the local compute emulator, and explore some of the features that are available to developers.</p>
+
+<p><a name="Objectives"></a></p>
+
+<h3 id="Objectives">Objectives</h3>
+
+<p>In this hands-on lab, you will learn how to:</p>
+
+<ul>
+<li>  Use the Table Service</li>
+<li>  Use the Blob service</li>
+<li>  Use the Queue service</li>
+<li>  Create and read metadata</li>
+<li>  Use Windows Azure Drives</li>
+</ul>
+
+<p><a name="Prerequisites"></a></p>
+
+<h3 id="Prerequisites">Prerequisites</h3>
+
+<ul>
+<li><a href="http://www.microsoft.com/visualstudio/">Microsoft Visual Studio 2012 Express for Web</a> or higher</li>
+<li><a href="http://www.microsoft.com/windowsazure/sdk/">Windows Azure Tools for Microsoft Visual Studio 1.8</a></li>
+<li>A Windows Azure subscription - <a href="http://aka.ms/WATK-FreeTrial">sign up for a free trial</a></li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> This lab was designed for Windows 8.</p>
+</blockquote>
+<p><a name="Setup"></a></p>
+
+<h3 id="Setup">Setup</h3>
+
+<p>In order to execute the exercises in this hands-on lab you need to set up your environment.</p>
+
+<ol>
+<li><p>Open a Windows Explorer window and browse to the lab's <strong>Source</strong> folder.</p></li>
+<li><p>Execute the <strong>Setup.cmd</strong> file with Administrator privileges to launch the setup process. This process will configure your environment and install the Visual Studio code snippets for this lab.</p></li>
+<li><p>If the User Account Control dialog is shown, confirm the action to proceed.</p></li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> Make sure you have checked all the dependencies for this lab before running the setup.</p>
+</blockquote>
+<p><a name="CodeSnippets"></a></p>
+
+<h3 id="Using_the_Code_Snippets">Using the Code Snippets</h3>
+
+<p>Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of that code is provided as Visual Studio Code Snippets, which you can use from within Visual Studio 2012 to avoid having to add it manually.</p>
+
+<hr />
+
+<p><a name="Exercises"></a></p>
+
+<h2 id="Exercises">Exercises</h2>
+
+<p>This hands-on lab includes the following exercises:</p>
+
+<ol>
+<li><a href="#Exercise1">Working with Tables</a></li>
+<li><a href="#Exercise2">Working with Blobs</a></li>
+<li><a href="#Exercise3">Working with Queues</a></li>
+<li><a href="#Exercise4">Working with Drives</a></li>
+</ol>
+
+<p>Estimated time to complete this lab: <strong>90 minutes</strong>.</p>
+<blockquote>
+<p><strong>Note:</strong> Each exercise is accompanied by a starting solution located in the Begin folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and that they will not necessarily work until you complete the exercise. Inside the source code for an exercise, you will also find an End folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.</p>
+
+<p>When you first start Visual Studio, you must select one of the predefined settings collections. Every predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the <strong>General Development Settings</strong> collection. If you choose a different settings collection for your development environment, there may be differences in these procedures that you need to take into account.</p>
+</blockquote>
+<p><a name="Exercise1"></a></p>
+
+<h3 id="Exercise_1_Working_with_Tables">Exercise 1: Working with Tables</h3>
+
+<p>In this exercise, you use the Windows Azure Table Service API to create a simple application that stores and retrieves data in structured storage. It consists of a simple chat Web application that can save, retrieve and display messages stored in a Windows Azure table.</p>
+
+<p>Windows Azure tables store data as collections of entities, which are similar to rows in a database. An entity has a primary key and a set of properties composed by a name/value pair, similar to a column.</p>
+
+<p>To access Windows Azure Table Service, you use a REST API that is compatible with <a href="http://msdn.microsoft.com/en-us/library/cc668792.aspx">WCF Data Services</a> (formerly ADO.NET Data Services Framework). This exercise uses the <a href="http://msdn.microsoft.com/en-us/library/cc668772.aspx">WCF Data Services Client Library</a> (formerly .NET Client Library) to read and write data to table service.</p>
+<blockquote>
+<p><strong>Note:</strong> To reduce typing, you can right-click where you want to insert source code, select Insert Snippet, select My Code Snippets and then select the entry matching the current exercise step.</p>
+</blockquote>
+<p><a name="Ex1Task1"></a></p>
+
+<h4 id="Task_1_-_Configuring_Storage_Account_Settings">Task 1 - Configuring Storage Account Settings</h4>
+
+<p>In this task, you configure the settings required to make a connection to the Table Service.</p>
+
+<ol>
+<li><p>Open Visual Studio 2012 Express for Web, or higher, elevated <strong>as Administrator</strong>.</p></li>
+<li><p>In the <strong>File</strong> menu, choose <strong>Open Project</strong>. In the <strong>Open Project</strong> dialog, browse to <strong>\Source\Ex1-WorkingWithTables\Begin</strong> and open the <strong>Begin.sln</strong> file.</p>
+
+<p><img src="Images/solutionexplorer.png?raw=true" alt="Solution Explorer showing the Windows Azure Chat application" />
+</p>
+
+<p><em>Solution Explorer showing the Windows Azure Chat application</em></p>
+<blockquote>
+<p><strong>Note:</strong>  The solution contains a Windows Azure WebRole project.</p>
+</blockquote></li>
+<li><p>Make sure <strong>RdChat</strong> is the startup project by right-clicking it in <strong>Solution Explorer</strong> and selecting <strong>Set as StartUp Project</strong>.</p>
+
+<p><img src="Images/startupproject.png?raw=true" alt="Setting the startup project" />
+</p>
+
+<p><em>Setting the startup project</em></p></li>
+<li><p>Update the service definition to define the configuration settings required to access Windows Azure Table service.  To do this, expand the <strong>Roles</strong> folder of the <strong>RdChat</strong> project in <strong>Solution Explorer</strong>, right-click <strong>RdChat_WebRole</strong>, and then select <strong>Properties</strong>.</p>
+
+<p><img src="Images/configurationeditor.png?raw=true" alt="Launching the service configuration editor" />
+</p>
+
+<p><em>Launching the service configuration editor</em></p></li>
+<li><p>Select the <strong>Settings</strong> tab, click <strong>Add Setting</strong> and create a new configuration setting named <em>DataConnectionString</em>. Set its type to <strong>Connection String</strong>, then click the button labeled with an ellipsis and configure the storage connection string to <em>Windows Azure storage emulator</em>.</p>
+
+<p><img src="Images/webroleconfiguration.png?raw=true" alt="Creating a storage connection string" />
+</p>
+
+<p><em>Creating a storage connection string</em></p>
+
+<p><img src="Images/storageaccountconnectionstring.png?raw=true" alt="Configuring a connection string to use Storage emulator" />
+</p>
+
+<p><em>Configuring a connection string to use Storage emulator</em></p></li>
+<li><p>Press <strong>CTRL + S</strong> to save your configuration changes.</p></li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> The StorageClient library uses these settings to access Windows Azure Storage. 
+<strong>DataConnectionString</strong>: This is the connection string to the Window Azure account, through which we can programmatically access data storage and other functionalities in Windows Azure. This connection string can point to a Windows Azure Account in the cloud as well as the local compute emulator.
+<strong>Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString</strong>: This is the connection string to Windows Azure server, same as <em>DataConnectionString</em>, however this one is dedicated for logging diagnostics.</p>
+</blockquote>
+<p><a name="Ex1Task2"></a></p>
+
+<h4 id="Task_2_-_Creating_Classes_to_Model_the_Table_Schema">Task 2 - Creating Classes to Model the Table Schema</h4>
+
+<p>When working locally against the Storage Emulator service for Table Service, you use WCF Data Services client library.</p>
+
+<p>To use Windows Azure table service in .NET, you construct a class that models the desired schema. In addition to the properties required by your model, the class must include a <strong>Timestamp</strong>, a <strong>PartitionKey</strong> and a <strong>RowKey</strong> property and it must be decorated with a <strong>DataServiceKey</strong> <em>(&quot;PartitionKey&quot;, &quot;RowKey&quot;)</em> custom attribute. To simplify this, the <strong>Microsoft.WindowsAzure.StorageClient</strong> namespace includes a <strong>TableServiceEntity</strong> class that already defines the mandatory properties and attributes and can easily be derived from in your class.</p>
+
+<p>In this task, you create the model where the data is stored for the Chat application.</p>
+
+<ol>
+<li><p>Add a class to the Web role project to model the message table. To do this, in <strong>Solution Explorer</strong>, right-click the <strong>RdChat_WebRole</strong> project node, point to <strong>Add</strong> and select <strong>Class</strong>. In the <strong>Add New Item</strong> dialog, set the <strong>Name</strong> to <strong>Message.cs</strong> and then click <strong>Add</strong>.</p></li>
+<li><p>Update the declaration of the Message class to derive from the <strong>Microsoft.WindowsAzure.StorageClient.TableServiceEntity</strong> class. </p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex1-01-MessageClass-CS</em>)</p>
+
+<!--mark: 2   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">public</span> <span style="color:#0000FF">class</span> Message 
+<strong class="markLine">    : Microsoft.WindowsAzure.StorageClient.TableServiceEntity</strong>
+{
+}   
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> The <strong>TableServiceEntity</strong> class is included as part of the <strong>Microsoft.WindowsAzure.StorageClient</strong> library. It defines the <strong>PartititionKey, RowKey</strong> and <strong>TimeStamp</strong> system properties required by every entity stored in a Windows Azure table.
+Together, the <strong>PartitionKey</strong> and <strong>RowKey</strong> define the <strong>DataServiceKey</strong> that uniquely identifies every entity within a table.</p>
+</blockquote></li>
+<li><p>Add a default constructor to the <strong>Message</strong> class that initializes its <strong>PartitionKey</strong> and <strong>RowKey</strong> properties.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex1-02-MessageConstructor-CS</em>)</p>
+
+<!--mark: 1-5   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">public</span> Message()</strong>
+<strong class="markLine">{</strong>
+<strong class="markLine">  PartitionKey = <span style="color:#8B0000">&quot;a&quot;</span>;</strong>
+<strong class="markLine">  RowKey = <span style="color:#0000FF">string</span>.Format(<span style="color:#8B0000">&quot;{0:10}_{1}&quot;</span>, DateTime.MaxValue.Ticks - DateTime.Now.Ticks, Guid.NewGuid());</strong>
+<strong class="markLine">}</strong>
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> For the purposes of this exercise, you assign a fixed value to the <strong>PartitionKey</strong> property. In a more realistic scenario, you would choose a value that ensures load balancing across storage nodes.</p>
+</blockquote></li>
+<li><p>Add two string properties to the <strong>Message</strong> class, <strong>Name</strong> and <strong>Body</strong>, to hold information about the chat message.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex1-03-TableSchemaProperties-CS</em>)</p>
+
+<!--mark: 1,3   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">public</span> <span style="color:#0000FF">string</span> Name { <span style="color:#0000FF">get</span>; <span style="color:#0000FF">set</span>; }</strong>
+
+<strong class="markLine"><span style="color:#0000FF">public</span> <span style="color:#0000FF">string</span> Body { <span style="color:#0000FF">get</span>; <span style="color:#0000FF">set</span>; }</strong>
+</code></pre></li>
+<li><p>Save the <strong>Message.cs</strong> file.</p></li>
+<li><p>Next, add a class to the Web role project to define the WCF Data Services <strong>DataServiceContext</strong> required to access the Messages table. To do this, in <strong>Solution Explorer</strong>, right-click the <strong>RdChat_WebRole</strong> project node, point to <strong>Add</strong> and select <strong>Class</strong>. In the <strong>Add New Item</strong> dialog, set the <strong>Name</strong> to <strong>MessageDataServiceContext.cs</strong> and then click <strong>Add</strong>.</p></li>
+<li><p>In the new class file, add the following using namespace directives.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex1-04-Namespace-CS</em>)</p>
+
+<!--mark: 1,2   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure.StorageClient;</strong>
+</code></pre></li>
+<li><p>Replace the declaration of the new class to derive from the <strong>TableServiceContext</strong> class and include a default constructor to initialize the base class with the storage account information.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex1-05-MessageDataServiceContextClass-CS</em>)</p>
+
+<!--mark: 3-10   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">namespace</span> RdChat_WebRole
+{
+<strong class="markLine">  <span style="color:#0000FF">public</span> <span style="color:#0000FF">class</span> MessageDataServiceContext</strong>
+<strong class="markLine">      : TableServiceContext</strong>
+<strong class="markLine">  {</strong>
+<strong class="markLine">    <span style="color:#0000FF">public</span> MessageDataServiceContext(<span style="color:#0000FF">string</span> baseAddress, StorageCredentials credentials)</strong>
+<strong class="markLine">        : <span style="color:#0000FF">base</span>(baseAddress, credentials)</strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">    }</strong>
+<strong class="markLine">  }</strong>
+}
+</code></pre></li>
+<li><p>Now, add a property to the <strong>MessageDataServiceContext</strong> class to return a data service query for the Messages table. </p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex1-06-MessagesProperty-CS</em>)</p>
+
+<!--mark: 5-11   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">public</span> <span style="color:#0000FF">class</span> MessageDataServiceContext
+    : TableServiceContext
+{
+  ...
+<strong class="markLine">  <span style="color:#0000FF">public</span> IQueryable&lt;Message&gt; Messages</strong>
+<strong class="markLine">  {</strong>
+<strong class="markLine">    <span style="color:#0000FF">get</span></strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">      <span style="color:#0000FF">return</span> <span style="color:#0000FF">this</span>.CreateQuery&lt;Message&gt;(<span style="color:#8B0000">&quot;Messages&quot;</span>);</strong>
+<strong class="markLine">    }</strong>
+<strong class="markLine">  }</strong>
+}
+</code></pre></li>
+<li><p>Finally, add a method to the <strong>MessageDataServiceContext</strong> class to insert new messages into the table. You will use this method later when implementing the chat functionality.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex1-07-AddMessageMethod-CS</em>)</p>
+
+<!--mark: 5-9   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">public</span> <span style="color:#0000FF">class</span> MessageDataServiceContext
+    : TableServiceContext
+{
+  ...
+<strong class="markLine">  <span style="color:#0000FF">public</span> <span style="color:#0000FF">void</span> AddMessage(<span style="color:#0000FF">string</span> name, <span style="color:#0000FF">string</span> body)</strong>
+<strong class="markLine">  {</strong>
+<strong class="markLine">    <span style="color:#0000FF">this</span>.AddObject(<span style="color:#8B0000">&quot;Messages&quot;</span>, <span style="color:#0000FF">new</span> Message { Name = name, Body = body });</strong>
+<strong class="markLine">    <span style="color:#0000FF">this</span>.SaveChanges();</strong>
+<strong class="markLine">  }</strong>
+}
+</code></pre></li>
+<li><p>In the Build menu, select Build Solution.</p></li>
+</ol>
+
+<p><a name="Ex1Task3"></a></p>
+
+<h4 id="Task_3_-_Creating_the_Chat_User_Interface">Task 3 - Creating the Chat User Interface</h4>
+
+<p>In this task, you add the code necessary to store messages in a Windows Azure table and display them on the Web page.</p>
+
+<ol>
+<li><p>Locate the <strong>Application_Start</strong> method in <strong>Global.asax.cs</strong> file and insert the following code (shown in <strong>bold</strong>) into it. This creates storage tables from <strong>MessageDataServiceContext</strong> that we created earlier.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex1-08-ApplicationStartMethod-CS</em>)</p>
+
+<!--mark: 4-13   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">protected</span> <span style="color:#0000FF">void</span> Application_Start()
+{
+  ...
+<strong class="markLine">  <span style="color:#808080">/// Create data table from MessageDataServiceContext</span></strong>
+<strong class="markLine">  <span style="color:#808080">/// It is recommended the data tables should be only created once. It is typically done as a </span></strong>
+<strong class="markLine">  <span style="color:#808080">/// provisioning step and rarely in application code.</span></strong>
+<strong class="markLine">  <span style="color:#0000FF">var</span> account = CloudStorageAccount.FromConfigurationSetting(<span style="color:#8B0000">&quot;DataConnectionString&quot;</span>);</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">  <span style="color:#008000">// dynamically create the tables</span></strong>
+<strong class="markLine">  CloudTableClient.CreateTablesFromModel(</strong>
+<strong class="markLine">      <span style="color:#0000FF">typeof</span>(MessageDataServiceContext),</strong>
+<strong class="markLine">      account.TableEndpoint.AbsoluteUri,</strong>
+<strong class="markLine">      account.Credentials);</strong>
+}
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> The code shown above creates the required tables from the model defined by the <strong>MessageDataServiceContext</strong> class created earlier. 
+Note that the recommendation is that data tables should only be created once. Typically, you would do this during a provisioning step and rarely in application code. The <strong>Application_Start</strong> method in the <strong>Global</strong> class is a recommended place for this initialization logic.
+To retrieve and display messages, the method creates an instance of the <strong>MessageDataServiceContext</strong> class and initializes it from account information available in the service configuration file <strong>(ServiceConfiguration.cscfg)</strong>. It binds the <strong>Messages</strong> property, which returns a data service query for the <em>Messages</em> table, to a <strong>ListView</strong> control on the page for display. 
+Objects of type <strong>CloudStorageAccount</strong> represent a storage account, which contains the settings required to make a connection to the Storage Service.  Associated with a storage account are the account name, the URI of the account and a shared key, which the <strong>CloudTableClient</strong> helper class uses for its initialization. These settings are obtained from <strong>ServiceConfiguration.cscfg</strong>.</p>
+</blockquote></li>
+<li><p>Make sure the following namespace directives exist at the top of the <strong>Global.asax.cs</strong> code file. They are for the utility storage classes and for the <strong>ServiceRuntime</strong> classes.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex1-09-GlobalNamespace-CS</em>)</p>
+
+<!--mark: 1-3   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure.ServiceRuntime;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure.StorageClient;</strong>
+</code></pre></li>
+<li><p>Expand the <strong>RDChat_WebRole</strong> node in <strong>Solution Explorer</strong>, then right-click <strong>Default.aspx</strong> and select <strong>View Code</strong> to open the code-behind file for the Web page that contains the UI for the chat application.</p>
+
+<p>Make sure the following namespace directives are included in the <strong>Default.aspx.cs</strong> code-behind file.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex1-10-Namespace-CS</em>)</p>
+
+<!--mark: 1,2   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">using</span> System.Data.Services.Client;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure;</strong>
+</code></pre></li>
+<li><p>Locate the <strong>SubmitButton_Click</strong> event handler in <strong>Default.aspx.cs</strong> and insert the following code (shown in <strong>bold</strong>) into the method body to save messages entered by the user to the Table Service, then data bind messages from Table Service to the page. The method uses the <strong>AddMessage</strong> method, which you created earlier in the lab, to insert a new <strong>Message</strong> entity into the table. </p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex1-11-SubmitButtonClick-CS</em>)</p>
+
+<!--mark: 3-21   -->   
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">protected</span> <span style="color:#0000FF">void</span> SubmitButton_Click(<span style="color:#0000FF">object</span> sender, EventArgs e)
+    {
+<strong class="markLine">      <span style="color:#0000FF">var</span> statusMessage = <span style="color:#0000FF">string</span>.Empty;</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">      <span style="color:#0000FF">try</span></strong>
+<strong class="markLine">      {</strong>
+<strong class="markLine">        <span style="color:#0000FF">var</span> account = CloudStorageAccount.FromConfigurationSetting(<span style="color:#8B0000">&quot;DataConnectionString&quot;</span>);</strong>
+<strong class="markLine">        <span style="color:#0000FF">var</span> context = <span style="color:#0000FF">new</span> MessageDataServiceContext(account.TableEndpoint.ToString(), account.Credentials);</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">        context.AddMessage(HttpUtility.HtmlEncode(<span style="color:#0000FF">this</span>.nameBox.Text), HttpUtility.HtmlEncode(<span style="color:#0000FF">this</span>.messageBox.Text));</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">        <span style="color:#0000FF">this</span>.messageList.DataSource = context.Messages;</strong>
+<strong class="markLine">        <span style="color:#0000FF">this</span>.messageList.DataBind();</strong>
+<strong class="markLine">      }</strong>
+<strong class="markLine">      <span style="color:#0000FF">catch</span> (DataServiceRequestException ex)</strong>
+<strong class="markLine">      {</strong>
+<strong class="markLine">       statusMessage = <span style="color:#8B0000">&quot;Unable to connect to the table storage server. Please check that the service is running.&lt;br&gt;&quot;</span></strong>
+<strong class="markLine">                        + ex.Message;</strong>
+<strong class="markLine">       }</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">       <span style="color:#0000FF">this</span>.status.Text = statusMessage;</strong>
+    }
+</code></pre></li>
+<li><p>Save the all files and select <strong>Build Solution</strong> from the <strong>Build</strong> menu.</p></li>
+</ol>
+
+<p><a name="Ex1Verification"></a></p>
+
+<h4 id="Verification">Verification</h4>
+
+<p>To test your service running in the Compute Emulator:</p>
+
+<ol>
+<li><p>In Visual Studio, press <strong>F5</strong> to build and run the application. The compute emulator starts and a new deployment containing the <strong>RdChat</strong> Web Role initializes. A browser window opens to display the Windows Azure Chat Web page. </p>
+
+<p><img src="Images/application-after-connecting-successfully.png?raw=true" alt="Application after connecting successfully to the storage emulator table server" />
+</p>
+
+<p><em>Application after connecting successfully to the storage emulator table server</em></p>
+
+<p>When you start the program in the debugger, Visual Studio automatically starts Storage Emulator. If the Chat application is unable to access the table service server, you will see an error as shown on the page. To examine the status of the service, right-click the icon in the system tray (it looks like a server) and select <strong>Show Storage Emulator UI</strong>.</p>
+
+<p><img src="Images/viewing-the-status-of-storage-emulator.png?raw=true" alt="Viewing the status of storage emulator" />
+</p>
+
+<p><em>Viewing the status of storage emulator</em></p></li>
+<li><p>Now, test the Chat application by entering a few messages. Type your name and the text of your message and click <strong>Submit</strong>.</p></li>
+<li><p>In Internet Explorer, press <strong>Ctrl + N</strong> to open a second browser window. Enter a different name and type a few more messages. Notice how the chat box updates the conversation after sending a new message.</p>
+
+<p><img src="Images/using-the-windows-azure-chat-application.png?raw=true" alt="Using the Windows Azure chat application" />
+</p>
+
+<p><em>Using the Windows Azure chat application</em></p></li>
+</ol>
+
+<p><a name="Exercise2"></a></p>
+
+<h3 id="Exercise_2_Working_with_Blobs">Exercise 2: Working with Blobs</h3>
+
+<p>In this exercise, you will use the Windows Azure Blob Service API to create an application that saves and retrieves image data stored as blobs in Windows Azure storage. It consists of a simple image gallery Web site that can display, upload and remove images in Windows Azure storage, and allows you to enter and display related metadata. The application uses a single container to store its image content as blobs.</p>
+
+<p>When you create a blob in Windows Azure, you associate a content type that specifies the format in which the API returns it and allows you to retrieve an image directly from the URL of the corresponding blob.</p>
+
+<p><a name="Ex2Task1"></a></p>
+
+<h4 id="Task_1_-_Retrieving_Blob_Data_from_Storage">Task 1 - Retrieving Blob Data from Storage</h4>
+
+<p>In this task, you will create an image gallery web page to display images retrieved from Windows Azure storage. The provided solution consists of a web site project with a single page that contains the elements required to display images and enter metadata.  You will add the necessary functionality by editing the code-behind file.</p>
+
+<ol>
+<li><p>Open Microsoft Visual Studio 2012 Express for Web elevated as <strong>Administrator</strong>.</p></li>
+<li><p>In the <strong>File</strong> menu, choose <strong>Open Project</strong>. In the <strong>Open Project</strong> dialog, browse to <strong>\Source\Ex2-WorkingWithBlobs\Begin</strong> and open the <strong>Begin.sln</strong> file.</p></li>
+<li><p>Update the service definition to define the configuration settings required to access Windows Azure Table service.  To do this, expand the Roles folder of the <strong>RDImageGallery</strong> project in <strong>Solution Explorer</strong>, right-click <strong>RDImageGallery_WebRole</strong>, and then select <strong>Properties</strong>.</p>
+
+<p><img src="Images/setting-role-configuration-settings.png?raw=true" alt="Setting role configuration settings" />
+</p>
+
+<p><em>Setting role configuration settings</em></p></li>
+<li><p>In the <strong>Settings</strong> tab, click <strong>Add Setting</strong> and create a <strong>ConnectionString</strong> type named <em>DataConnectionString</em>. Click the button labeled with an ellipsis and set the connection string to <strong>Windows Azure storage emulator</strong>.</p>
+
+<p><img src="Images/configuring-a-storage-connection-string.png?raw=true" alt="Configuring a storage connection string" />
+</p>
+
+<p><em>Configuring a storage connection string</em></p>
+
+<p><img src="Images/storage-connection-string-dialog.png?raw=true" alt="Storage connection string dialog" />
+</p>
+
+<p><em>Storage connection string dialog</em></p></li>
+<li><p>Add another setting named <em>ContainerName</em> and set its value to <em>gallery</em>.</p>
+
+<p><img src="Images/creating-a-setting-for-the-container-name.png?raw=true" alt="Creating a setting for the container name" />
+</p>
+
+<p><em>Creating a setting for the container name</em></p>
+<blockquote>
+<p><strong>Note:</strong> The container name must be a valid Domain Name System (DNS) name, conforming to the following naming rules:</p>
+
+<ul>
+<li>Must start with a letter or number, and can contain only letters, numbers, and dash (-) characters.</li>
+<li>All letters must be lowercase.</li>
+<li>Must be from 3 to 63 characters long.</li>
+<li>A name cannot contain a dash next to a period.</li>
+</ul>
+</blockquote></li>
+<li><p>Expand the <strong>RDImageGallery_WebRole</strong> node in <strong>Solution Explorer</strong>, then right-click <strong>Default.aspx</strong> and select <strong>View Code</strong> to open the code-behind file for the user interface of the image gallery. In the next steps, you will modify this file to add some of the required functionality.</p></li>
+<li><p>Make sure the following namespace directives exist at the top of the code file. They are for the utility storage classes and for the <strong>ServiceRuntime</strong> classes.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex2-01-Namespace-CS</em>)</p>
+
+<!--mark: 1-4   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure.ServiceRuntime;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure.StorageClient;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure.StorageClient.Protocol;</strong>
+</code></pre></li>
+<li><p>For this lab, you need to store the blobs in a public container, so they are visible on the web to normal, anonymous users.  In this step, you will ensure that the container specified in <strong>ServiceConfiguration.cscfg</strong> exists. To do this, add the following method at the bottom of the <strong>_Default</strong> class.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex2-02-EnsureContainerExistsMethod-CS</em>)</p>
+
+<!--mark: 4-12   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">public</span> <span style="color:#0000FF">partial</span> <span style="color:#0000FF">class</span> _Default : System.Web.UI.Page
+{
+  ...
+<strong class="markLine">  <span style="color:#0000FF">private</span> <span style="color:#0000FF">void</span> EnsureContainerExists()</strong>
+<strong class="markLine">  {</strong>
+<strong class="markLine">    <span style="color:#0000FF">var</span> container = <span style="color:#0000FF">this</span>.GetContainer();</strong>
+<strong class="markLine">    container.CreateIfNotExist();</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">    <span style="color:#0000FF">var</span> permissions = container.GetPermissions();</strong>
+<strong class="markLine">    permissions.PublicAccess = BlobContainerPublicAccessType.Container;</strong>
+<strong class="markLine">    container.SetPermissions(permissions);</strong>
+<strong class="markLine">  }</strong>
+}
+</code></pre></li>
+<li><p>Next, you will create a utility method to retrieve a reference to the container created by the code in the previous step.  This method will be called in almost all operations since the container is involved with all blob operations. Add a method to create the container at the bottom of the <strong>_Default</strong> class. This method uses the configuration settings you entered in earlier steps.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex2-03-GetContainerMethod-CS</em>)</p>
+
+<!--mark: 4-11   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">public</span> <span style="color:#0000FF">partial</span> <span style="color:#0000FF">class</span> _Default : System.Web.UI.Page
+{
+  ...
+<strong class="markLine">  <span style="color:#0000FF">private</span> CloudBlobContainer GetContainer()</strong>
+<strong class="markLine">  {</strong>
+<strong class="markLine">    <span style="color:#008000">// Get a handle on account, create a blob service client and get container proxy</span></strong>
+<strong class="markLine">    <span style="color:#0000FF">var</span> account = CloudStorageAccount.FromConfigurationSetting(<span style="color:#8B0000">&quot;DataConnectionString&quot;</span>);</strong>
+<strong class="markLine">    <span style="color:#0000FF">var</span> client = account.CreateCloudBlobClient();</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">    <span style="color:#0000FF">return</span> client.GetContainerReference(RoleEnvironment.GetConfigurationSettingValue(<span style="color:#8B0000">&quot;ContainerName&quot;</span>));</strong>
+<strong class="markLine">  }</strong>
+}
+</code></pre></li>
+<li><p>Insert the following code (shown in <strong>bold</strong>) in the <strong>Page_Load</strong> method to initialize the container and refresh the <strong>asp:ListView</strong> control on the page that displays the images retrieved from storage.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex2-04-PageLoadMethod-CS</em>)</p>
+
+<!--mark: 6-27   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">public</span> <span style="color:#0000FF">partial</span> <span style="color:#0000FF">class</span> _Default : System.Web.UI.Page
+{
+  ...
+  <span style="color:#0000FF">protected</span> <span style="color:#0000FF">void</span> Page_Load(<span style="color:#0000FF">object</span> sender, EventArgs e)
+  {
+<strong class="markLine">    <span style="color:#0000FF">try</span></strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">      <span style="color:#0000FF">if</span> (!IsPostBack)</strong>
+<strong class="markLine">      {</strong>
+<strong class="markLine">        <span style="color:#0000FF">this</span>.EnsureContainerExists();</strong>
+<strong class="markLine">      }</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">      <span style="color:#0000FF">this</span>.RefreshGallery();</strong>
+<strong class="markLine">    }</strong>
+<strong class="markLine">    <span style="color:#0000FF">catch</span> (System.Net.WebException we)</strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">      <span style="color:#0000FF">this</span>.status.Text = <span style="color:#8B0000">&quot;Network error: &quot;</span> + we.Message;</strong>
+<strong class="markLine">      <span style="color:#0000FF">if</span> (we.Status == System.Net.WebExceptionStatus.ConnectFailure)</strong>
+<strong class="markLine">      {</strong>
+<strong class="markLine">        <span style="color:#0000FF">this</span>.status.Text += <span style="color:#8B0000">&quot;&lt;br /&gt;Please check if the blob service is running at &quot;</span> +</strong>
+<strong class="markLine">        ConfigurationManager.AppSettings[<span style="color:#8B0000">&quot;storageEndpoint&quot;</span>];</strong>
+<strong class="markLine">      }</strong>
+<strong class="markLine">    }</strong>
+<strong class="markLine">    <span style="color:#0000FF">catch</span> (StorageException se)</strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">      Console.WriteLine(<span style="color:#8B0000">&quot;Storage service error: &quot;</span> + se.Message);</strong>
+<strong class="markLine">    }</strong>
+  }
+  ...
+}
+</code></pre></li>
+<li><p>Add the following method at the bottom of the <strong>_Default</strong> class to bind the images control to the list of blobs available in the image gallery container. The code uses the <strong>ListBlobs</strong> method in the <strong>CloudBlobContainer</strong> object to retrieve a collection of <strong>IListBlobItem</strong> objects that contain information about each of the blobs. The images <strong>asp:ListView</strong> control in the page binds to these objects to display their value.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex2-05-RefreshGalleryMethod-CS</em>)</p>
+
+<!--mark: 4-13   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">public</span> <span style="color:#0000FF">partial</span> <span style="color:#0000FF">class</span> _Default : System.Web.UI.Page
+{
+  ...
+<strong class="markLine">  <span style="color:#0000FF">private</span> <span style="color:#0000FF">void</span> RefreshGallery()</strong>
+<strong class="markLine">  {</strong>
+<strong class="markLine">    <span style="color:#0000FF">this</span>.images.DataSource =</strong>
+<strong class="markLine">      <span style="color:#0000FF">this</span>.GetContainer().ListBlobs(<span style="color:#0000FF">new</span> BlobRequestOptions()</strong>
+<strong class="markLine">      {</strong>
+<strong class="markLine">        UseFlatBlobListing = <span style="color:#0000FF">true</span>,</strong>
+<strong class="markLine">        BlobListingDetails = BlobListingDetails.All</strong>
+<strong class="markLine">      });</strong>
+<strong class="markLine">    <span style="color:#0000FF">this</span>.images.DataBind();</strong>
+<strong class="markLine">  }</strong>
+}
+</code></pre></li>
+<li><p>Press <strong>F5</strong> to build and run the application. A browser window launches and displays the contents of the image gallery. Note that at this point, the container is empty and the list view displays a &quot;No Data Available&quot; message. In the next task, you will implement the functionality required to store images as blobs in Windows Azure storage.</p>
+<blockquote>
+<p><strong>Note:</strong> Make sure the cloud project is set as the startup project by right-clicking it in <strong>Solution Explorer</strong> and selecting <strong>Set as StartUp Project</strong>.</p>
+</blockquote>
+<p><img src="Images/the-image-gallery-application.png?raw=true" alt="The image gallery application displaying an empty container" />
+</p>
+
+<p><em>The image gallery application displaying an empty container</em></p>
+<blockquote>
+<p><strong>Note:</strong> If you have not configured the storage settings correctly or if the storage service is not running, an error similar to the one shown below is displayed.</p>
+</blockquote>
+<p><img src="Images/error--invalid-azure-storage.png?raw=true" alt="An error caused by an invalid Windows Azure storage configuration or a service problem" />
+</p>
+
+<p><em>An error caused by an invalid Windows Azure storage configuration or a service problem</em></p></li>
+<li><p>Press <strong>SHIFT+F5</strong> in Visual Studio to stop debugging and delete the deployment from the compute emulator.</p></li>
+</ol>
+
+<p><a name="Ex2Task2"></a></p>
+
+<h4 id="Task_2_-_Uploading_Blob_Data_to_Storage">Task 2 - Uploading Blob Data to Storage</h4>
+
+<p>In this task, you add functionality to the image gallery Web page to enter metadata and upload image files to Windows Azure storage. The page contains text controls that you can use to enter descriptive metadata for the selected image. An <strong>asp:FileUpload</strong> control on the page retrieves images from disk and posts them to the page, where they are stored in blob storage.</p>
+
+<ol>
+<li><p>Open the <strong>Default.aspx.cs</strong> file in the Visual Studio text editor. To do this, right-click the <strong>Default.aspx</strong> file in Solution Explorer and select <strong>View Code</strong>.</p></li>
+<li><p>Add a method at the bottom of the page to save images and their metadata as blobs in Windows Azure storage. The method uses the <strong>GetBlobReference</strong> method in the <strong>CloudBlobContainer</strong> object to create a blob from the image data array and the metadata properties.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex2-06-SaveImageMethod-CS</em>)</p>
+
+<!--mark: 4-22   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">public</span> <span style="color:#0000FF">partial</span> <span style="color:#0000FF">class</span> _Default : System.Web.UI.Page
+{
+  ...
+<strong class="markLine">  <span style="color:#0000FF">private</span> <span style="color:#0000FF">void</span> SaveImage(<span style="color:#0000FF">string</span> id, <span style="color:#0000FF">string</span> name, <span style="color:#0000FF">string</span> description, <span style="color:#0000FF">string</span> tags, <span style="color:#0000FF">string</span> fileName, <span style="color:#0000FF">string</span> contentType, <span style="color:#0000FF">byte</span>[] data)</strong>
+<strong class="markLine">  {</strong>
+<strong class="markLine">    <span style="color:#008000">// Create a blob in container and upload image bytes to it</span></strong>
+<strong class="markLine">    <span style="color:#0000FF">var</span> blob = <span style="color:#0000FF">this</span>.GetContainer().GetBlobReference(name);</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">    blob.Properties.ContentType = contentType;</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">    <span style="color:#008000">// Create some metadata for this image</span></strong>
+<strong class="markLine">    <span style="color:#0000FF">var</span> metadata = <span style="color:#0000FF">new</span> NameValueCollection();</strong>
+<strong class="markLine">    metadata[<span style="color:#8B0000">&quot;Id&quot;</span>] = id;</strong>
+<strong class="markLine">    metadata[<span style="color:#8B0000">&quot;Filename&quot;</span>] = fileName;</strong>
+<strong class="markLine">    metadata[<span style="color:#8B0000">&quot;ImageName&quot;</span>] = <span style="color:#0000FF">string</span>.IsNullOrEmpty(name) ? <span style="color:#8B0000">&quot;unknown&quot;</span> : name;</strong>
+<strong class="markLine">    metadata[<span style="color:#8B0000">&quot;Description&quot;</span>] = <span style="color:#0000FF">string</span>.IsNullOrEmpty(description) ? <span style="color:#8B0000">&quot;unknown&quot;</span> : description;</strong>
+<strong class="markLine">    metadata[<span style="color:#8B0000">&quot;Tags&quot;</span>] = <span style="color:#0000FF">string</span>.IsNullOrEmpty(tags) ? <span style="color:#8B0000">&quot;unknown&quot;</span> : tags;</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">    <span style="color:#008000">// Add and commit metadata to blob</span></strong>
+<strong class="markLine">    blob.Metadata.Add(metadata);</strong>
+<strong class="markLine">    blob.UploadByteArray(data);            </strong>
+<strong class="markLine">  }</strong>
+}
+</code></pre></li>
+<li><p>Complete the code in the event handler for the <strong>Upload Image</strong> button by inserting the code (shown in <strong>bold</strong> below) to <strong>upload_Click</strong> method.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex2-07-UploadClickMethod-CS</em>)</p>
+
+<!--mark: 6-24   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">public</span> <span style="color:#0000FF">partial</span> <span style="color:#0000FF">class</span> _Default : System.Web.UI.Page
+{
+  ...
+  <span style="color:#0000FF">protected</span> <span style="color:#0000FF">void</span> upload_Click(<span style="color:#0000FF">object</span> sender, EventArgs e)
+  {
+<strong class="markLine">    <span style="color:#0000FF">if</span> (<span style="color:#0000FF">this</span>.imageFile.HasFile)</strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">      <span style="color:#0000FF">this</span>.status.Text = <span style="color:#8B0000">&quot;Inserted [&quot;</span> + <span style="color:#0000FF">this</span>.imageFile.FileName + <span style="color:#8B0000">&quot;] - Content Type [&quot;</span> + <span style="color:#0000FF">this</span>.imageFile.PostedFile.ContentType + <span style="color:#8B0000">&quot;] - Length [&quot;</span> + <span style="color:#0000FF">this</span>.imageFile.PostedFile.ContentLength + <span style="color:#8B0000">&quot;]&quot;</span>;</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">      <span style="color:#0000FF">this</span>.SaveImage(</strong>
+<strong class="markLine">        Guid.NewGuid().ToString(),</strong>
+<strong class="markLine">        <span style="color:#0000FF">this</span>.imageName.Text,</strong>
+<strong class="markLine">        <span style="color:#0000FF">this</span>.imageDescription.Text,</strong>
+<strong class="markLine">        <span style="color:#0000FF">this</span>.imageTags.Text,</strong>
+<strong class="markLine">        <span style="color:#0000FF">this</span>.imageFile.FileName,</strong>
+<strong class="markLine">        <span style="color:#0000FF">this</span>.imageFile.PostedFile.ContentType,</strong>
+<strong class="markLine">        <span style="color:#0000FF">this</span>.imageFile.FileBytes);</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">      <span style="color:#0000FF">this</span>.RefreshGallery();</strong>
+<strong class="markLine">    }</strong>
+<strong class="markLine">    <span style="color:#0000FF">else</span></strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">      <span style="color:#0000FF">this</span>.status.Text = <span style="color:#8B0000">&quot;No image file&quot;</span>;</strong>
+<strong class="markLine">    }</strong>
+  }
+  ...
+}
+</code></pre>
+
+<p>The code retrieves metadata from the text controls and from properties in the <strong>asp:FileUpload</strong> control on the page, which include the content type of the posted file, its file name, and the array of bytes containing the image data. It then calls the <strong>SaveImage</strong> method to store the image and its metadata to Windows Azure storage. </p></li>
+<li><p>Press <strong>F5</strong> to build and run the application and open the image gallery page in a browser window.</p></li>
+<li><p>Enter metadata in the <strong>Name</strong>, <strong>Description</strong> and <strong>Tags</strong> text boxes. To select the image file, click <strong>Browse</strong>, navigate to <strong>\Source\Assets\Images</strong>, and select one of the available images. </p>
+
+<p><img src="Images/entering-metadata-to-store.png?raw=true" alt="Entering metadata to store with the image in blob storage" />
+</p>
+
+<p><em>Entering metadata to store with the image in blob storage</em></p></li>
+<li><p>Click <strong>Upload Image</strong> to post the image to the Web application. The page refreshes and the newly added image displays in the list view. A status message shows the file name, content type and size of the uploaded file. Note that at this point, no metadata is displayed for the image. In the next task, you will implement the functionality required to retrieve and display metadata for blobs stored in Windows Azure.</p>
+
+<p><img src="Images/the-image-gallery-showing-the-uploaded-image.png?raw=true" alt="The image gallery showing the uploaded image" />
+</p>
+
+<p><em>The image gallery showing the uploaded image</em></p></li>
+<li><p>In Visual Studio, press <strong>SHIFT+F5</strong> to stop debugging and delete the deployment from the Compute Emulator.</p></li>
+</ol>
+
+<p><a name="Ex2Task3"></a></p>
+
+<h4 id="Task_3_-_Retrieving_Metadata_for_Blobs_in_Storage">Task 3 - Retrieving Metadata for Blobs in Storage</h4>
+
+<p>Blobs can have metadata attached to them. Metadata headers can be set on a request that creates a new container or blob resource, or on a request that explicitly creates a property on an existing resource. In this task, you will add functionality to the image gallery page to retrieve and display metadata associated with images stored in a Windows Azure container.</p>
+
+<ol>
+<li><p>Add an event handler to retrieve metadata for each blob displayed in the list view control that displays images. To do this, go to <strong>Default.aspx</strong>, right-click <strong>View Designer</strong>, select the <strong>images ListView</strong> control, and in the <strong>Properties</strong> Window (you may need to make it visible by right-clicking the control and choosing Properties) click the <strong>Events</strong> button. Locate the <strong>ItemDataBound</strong> event in the Data category, type <strong>OnBlobDataBound</strong> and press <strong>ENTER</strong>. Alternatively, you may edit the ASP.NET markup directly to insert the required event handler.</p>
+
+<p><img src="Images/configuring-the-event-handler-to-display-meta.png?raw=true" alt="Configuring the event handler to display metadata" />
+</p>
+
+<p><em>Configuring the event handler to display metadata</em></p></li>
+<li><p>In the code-behind file, locate the <strong>OnBlobDataBound</strong> method and insert the following code (shown in <strong>bold</strong>) that retrieves the properties for each blob bound to the list view and creates a collection that contains name / value pairs for each metadata item found. The collection is then used as a data source for an <strong>asp:Repeater</strong> control that displays metadata for each image.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex2-08-OnBlobDataBoundMethod-CS</em>)</p>
+
+<!--mark: 3-41   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">protected</span> <span style="color:#0000FF">void</span> OnBlobDataBound(<span style="color:#0000FF">object</span> sender, ListViewItemEventArgs e)
+{
+<strong class="markLine">  <span style="color:#0000FF">if</span> (e.Item.ItemType == ListViewItemType.DataItem)</strong>
+<strong class="markLine">  {</strong>
+<strong class="markLine">    <span style="color:#0000FF">var</span> metadataRepeater = e.Item.FindControl(<span style="color:#8B0000">&quot;blobMetadata&quot;</span>) <span style="color:#0000FF">as</span> Repeater;</strong>
+<strong class="markLine">    <span style="color:#0000FF">var</span> blob = ((ListViewDataItem)e.Item).DataItem <span style="color:#0000FF">as</span> CloudBlob;</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">    <span style="color:#008000">// If this blob is a snapshot, rename button to &quot;Delete Snapshot&quot;</span></strong>
+<strong class="markLine">    <span style="color:#0000FF">if</span> (blob != <span style="color:#0000FF">null</span>)</strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">      <span style="color:#0000FF">if</span> (blob.SnapshotTime.HasValue)</strong>
+<strong class="markLine">      {</strong>
+<strong class="markLine">        <span style="color:#0000FF">var</span> delBtn = e.Item.FindControl(<span style="color:#8B0000">&quot;deleteBlob&quot;</span>) <span style="color:#0000FF">as</span> LinkButton;</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">        <span style="color:#0000FF">if</span> (delBtn != <span style="color:#0000FF">null</span>)</strong>
+<strong class="markLine">        {</strong>
+<strong class="markLine">          delBtn.Text = <span style="color:#8B0000">&quot;Delete Snapshot&quot;</span>;</strong>
+<strong class="markLine">          <span style="color:#0000FF">var</span> snapshotRequest = BlobRequest.Get(<span style="color:#0000FF">new</span> Uri(delBtn.CommandArgument), 0, blob.SnapshotTime.Value, <span style="color:#0000FF">null</span>);</strong>
+<strong class="markLine">          delBtn.CommandArgument = snapshotRequest.RequestUri.AbsoluteUri;</strong>
+<strong class="markLine">        }</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">        <span style="color:#0000FF">var</span> snapshotBtn = e.Item.FindControl(<span style="color:#8B0000">&quot;SnapshotBlob&quot;</span>) <span style="color:#0000FF">as</span> LinkButton;</strong>
+<strong class="markLine">        <span style="color:#0000FF">if</span> (snapshotBtn != <span style="color:#0000FF">null</span>)</strong>
+<strong class="markLine">        {</strong>
+<strong class="markLine">          snapshotBtn.Visible = <span style="color:#0000FF">false</span>;</strong>
+<strong class="markLine">        }</strong>
+<strong class="markLine">      }</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">      <span style="color:#0000FF">if</span> (metadataRepeater != <span style="color:#0000FF">null</span>)</strong>
+<strong class="markLine">      {</strong>
+<strong class="markLine">        <span style="color:#008000">// bind to metadata</span></strong>
+<strong class="markLine">        metadataRepeater.DataSource = from key <span style="color:#0000FF">in</span> blob.Metadata.AllKeys</strong>
+<strong class="markLine">                                      select <span style="color:#0000FF">new</span></strong>
+<strong class="markLine">                                      {</strong>
+<strong class="markLine">                                        Name = key,</strong>
+<strong class="markLine">                                        Value = blob.Metadata[key]</strong>
+<strong class="markLine">                                      };</strong>
+<strong class="markLine">        metadataRepeater.DataBind();</strong>
+<strong class="markLine">      }</strong>
+<strong class="markLine">    }</strong>
+<strong class="markLine">  }</strong>
+}
+</code></pre></li>
+<li><p>Press <strong>F5</strong> to build and run the application. Note that the list view now displays the metadata for the image that was uploaded in the previous exercise.</p>
+
+<p><img src="Images/the-image-gallery-showing-metadata-retrieved.png?raw=true" alt="The image gallery showing metadata retrieved from blob storage" />
+</p>
+
+<p><em>The image gallery showing metadata retrieved from blob storage</em></p></li>
+<li><p>Press <strong>SHIFT+F5</strong> to stop debugging and delete the deployment from the compute emulator.</p></li>
+</ol>
+
+<p><a name="Ex2Task4"></a></p>
+
+<h4 id="Task_4_-_Deleting_Blobs_from_Storage">Task 4 - Deleting Blobs from Storage</h4>
+
+<p>In this task, you will add functionality to the image gallery Web page to delete blobs containing image data from Windows Azure storage.</p>
+
+<ol>
+<li><p>Update the image list view to add an <strong>asp:LinkButton</strong> control that is used to delete images from the gallery container. To do this, right-click <strong>Default.aspx</strong>, and select <strong>View Markup</strong> and locate the <strong>ItemTemplate</strong> for the images <strong>asp:ListView</strong> control. Uncomment the ASP.NET markup located immediately following the <strong>blobMetadata</strong> repeater control (shown <strong>bolded</strong> below).</p>
+
+<!--mark: 10-14   -->
+
+<span class="codelanguage">HTML</span><pre><code class="HTML">...
+<span style="color:#0000FF">&lt;</span><span style="color:#800000">div</span> <span style="color:#FF0000">class</span>=<span style="color:#0000FF">&quot;item&quot;</span><span style="color:#0000FF">&gt;</span>
+  <span style="color:#0000FF">&lt;</span><span style="color:#800000">ul</span> <span style="color:#FF0000">style</span>=<span style="color:#0000FF">&quot;width:40em;float:left;clear:left&quot;</span> <span style="color:#0000FF">&gt;</span>
+    <span style="color:#0000FF">&lt;</span><span style="color:#C71585">asp</span>:<span style="color:#800000">Repeater</span> <span style="color:#FF0000">ID</span>=<span style="color:#0000FF">&quot;blobMetadata&quot;</span> <span style="color:#FF0000">runat</span>=<span style="color:#0000FF">&quot;server&quot;</span><span style="color:#0000FF">&gt;</span>
+      <span style="color:#0000FF">&lt;</span><span style="color:#800000">ItemTemplate</span><span style="color:#0000FF">&gt;</span>
+        <span style="color:#0000FF">&lt;</span><span style="color:#800000">li</span><span style="color:#0000FF">&gt;</span><span style="background-color:#FFFF00; color:Black">&lt;%</span># Eval(&quot;Name&quot;) <span style="background-color:#FFFF00; color:Black">%&gt;</span><span style="color:#0000FF">&lt;</span><span style="color:#800000">span</span><span style="color:#0000FF">&gt;</span><span style="background-color:#FFFF00; color:Black">&lt;%</span># Eval(&quot;Value&quot;) <span style="background-color:#FFFF00; color:Black">%&gt;</span><span style="color:#0000FF">&lt;/</span><span style="color:#800000">span</span><span style="color:#0000FF">&gt;</span><span style="color:#0000FF">&lt;/</span><span style="color:#800000">li</span><span style="color:#0000FF">&gt;</span>
+      <span style="color:#0000FF">&lt;/</span><span style="color:#800000">ItemTemplate</span><span style="color:#0000FF">&gt;</span>
+    <span style="color:#0000FF">&lt;/</span><span style="color:#C71585">asp</span>:<span style="color:#800000">Repeater</span><span style="color:#0000FF">&gt;</span>
+    <span style="color:#0000FF">&lt;</span><span style="color:#800000">li</span><span style="color:#0000FF">&gt;</span>
+<strong class="markLine">      <span style="color:#0000FF">&lt;</span><span style="color:#C71585">asp</span>:<span style="color:#800000">LinkButton</span> <span style="color:#FF0000">ID</span>=<span style="color:#0000FF">&quot;deleteBlob&quot;</span> </strong>
+<strong class="markLine">                      <span style="color:#FF0000">OnClientClick</span>=<span style="color:#0000FF">&quot;return confirm(&#39;Delete image?&#39;);&quot;</span></strong>
+<strong class="markLine">                      <span style="color:#FF0000">CommandName</span>=<span style="color:#0000FF">&quot;Delete&quot;</span> </strong>
+<strong class="markLine">                      <span style="color:#FF0000">CommandArgument</span>=<span style="color:#0000FF">&#39;&lt;%# Eval(&quot;Uri&quot;)%&gt;&#39;</span></strong>
+<strong class="markLine">                      <span style="color:#FF0000">runat</span>=<span style="color:#0000FF">&quot;server&quot;</span> <span style="color:#FF0000">Text</span>=<span style="color:#0000FF">&quot;Delete&quot;</span> <span style="color:#FF0000">oncommand</span>=<span style="color:#0000FF">&quot;OnDeleteImage&quot;</span> <span style="color:#0000FF">/&gt;</span></strong>
+      ...
+    <span style="color:#0000FF">&lt;/</span><span style="color:#800000">li</span><span style="color:#0000FF">&gt;</span>
+  <span style="color:#0000FF">&lt;/</span><span style="color:#800000">ul</span><span style="color:#0000FF">&gt;</span>
+  <span style="color:#0000FF">&lt;</span><span style="color:#800000">img</span> <span style="color:#FF0000">src</span>=<span style="color:#0000FF">&quot;&lt;%# Eval(&quot;</span><span style="color:#FF0000">Uri</span>&quot;) %&gt;&quot; <span style="color:#FF0000">alt</span>=<span style="color:#0000FF">&quot;&lt;%# Eval(&quot;</span><span style="color:#FF0000">Uri</span>&quot;) %&gt;&quot; <span style="color:#FF0000">style</span>=<span style="color:#0000FF">&quot;float:left&quot;</span><span style="color:#0000FF">/&gt;</span>
+<span style="color:#0000FF">&lt;/</span><span style="color:#800000">div</span><span style="color:#0000FF">&gt;</span>
+...
+</code></pre></li>
+<li><p>Add code (shown in <strong>bold</strong>) to <strong>Default.aspx.cs</strong> to implement the command handler for the <em>deleteBlob</em> <strong>asp:LinkButton</strong> control. The code verifies if a blob exists in storage and deletes it.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex2-09-OnDeleteImageMethod-CS</em>)</p>
+
+<!--mark: 6-23   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">public</span> <span style="color:#0000FF">partial</span> <span style="color:#0000FF">class</span> _Default : System.Web.UI.Page
+{
+  ...
+  <span style="color:#0000FF">protected</span> <span style="color:#0000FF">void</span> OnDeleteImage(<span style="color:#0000FF">object</span> sender, CommandEventArgs e)
+  {
+<strong class="markLine">    <span style="color:#0000FF">try</span></strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">      <span style="color:#0000FF">if</span> (e.CommandName == <span style="color:#8B0000">&quot;Delete&quot;</span>)</strong>
+<strong class="markLine">      {</strong>
+<strong class="markLine">        <span style="color:#0000FF">var</span> blobUri = (<span style="color:#0000FF">string</span>)e.CommandArgument;</strong>
+<strong class="markLine">        <span style="color:#0000FF">var</span> blob = <span style="color:#0000FF">this</span>.GetContainer().GetBlobReference(blobUri);</strong>
+<strong class="markLine">        blob.DeleteIfExists();</strong>
+<strong class="markLine">      }</strong>
+<strong class="markLine">    }</strong>
+<strong class="markLine">    <span style="color:#0000FF">catch</span> (StorageClientException se)</strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">      <span style="color:#0000FF">this</span>.status.Text = <span style="color:#8B0000">&quot;Storage client error: &quot;</span> + se.Message;</strong>
+<strong class="markLine">    }</strong>
+<strong class="markLine">    <span style="color:#0000FF">catch</span> (Exception)</strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">    }</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">    <span style="color:#0000FF">this</span>.RefreshGallery();</strong>
+  }
+  ...
+}
+</code></pre></li>
+<li><p>Press <strong>F5</strong> to build and run the application. </p></li>
+<li><p>Upload a few more images from <strong>Assets\Images</strong> in the <strong>Source</strong> folder of the Lab and click <strong>Delete</strong> on any of the images displayed to remove the corresponding blob from storage.</p>
+
+<p><img src="Images/adding-and-deleting-image.png?raw=true" alt="Adding and deleting image blobs from storage" />
+</p>
+
+<p><em>Adding and deleting image blobs from storage</em></p></li>
+<li><p>Press <strong>SHIFT+F5</strong> to stop debugging and delete the deployment from the Compute Emulator.</p></li>
+</ol>
+
+<p><a name="Ex2Task5"></a></p>
+
+<h4 id="Task_5_-_Copying_Blobs">Task 5 - Copying Blobs</h4>
+
+<p>Windows Azure Blob service has support for making copies of existing blobs. In this task, you will add functionality to the image gallery Web page to copy blobs containing image data from Windows Azure storage that you added earlier.</p>
+
+<ol>
+<li><p>Update the image list view to add an <strong>asp:LinkButton</strong> control that is used to copy images from the gallery container. Open the <strong>Default.aspx</strong> page in Markup mode and locate the <strong>ItemTemplate</strong> for the images <strong>asp:ListView</strong> control. Uncomment the ASP.NET markup located immediately following the delete blob link button control (shown in <strong>bold</strong> text below.)</p>
+
+<!--mark: 16-20   -->
+
+<span class="codelanguage">HTML</span><pre><code class="HTML">...
+<span style="color:#0000FF">&lt;</span><span style="color:#800000">div</span> <span style="color:#FF0000">class</span>=<span style="color:#0000FF">&quot;item&quot;</span><span style="color:#0000FF">&gt;</span>
+  <span style="color:#0000FF">&lt;</span><span style="color:#800000">ul</span> <span style="color:#FF0000">style</span>=<span style="color:#0000FF">&quot;width:40em;float:left;clear:left&quot;</span> <span style="color:#0000FF">&gt;</span>
+    <span style="color:#0000FF">&lt;</span><span style="color:#C71585">asp</span>:<span style="color:#800000">Repeater</span> <span style="color:#FF0000">ID</span>=<span style="color:#0000FF">&quot;blobMetadata&quot;</span> <span style="color:#FF0000">runat</span>=<span style="color:#0000FF">&quot;server&quot;</span><span style="color:#0000FF">&gt;</span>
+      <span style="color:#0000FF">&lt;</span><span style="color:#800000">ItemTemplate</span><span style="color:#0000FF">&gt;</span>
+        <span style="color:#0000FF">&lt;</span><span style="color:#800000">li</span><span style="color:#0000FF">&gt;</span><span style="background-color:#FFFF00; color:Black">&lt;%</span># Eval(&quot;Name&quot;) <span style="background-color:#FFFF00; color:Black">%&gt;</span><span style="color:#0000FF">&lt;</span><span style="color:#800000">span</span><span style="color:#0000FF">&gt;</span><span style="background-color:#FFFF00; color:Black">&lt;%</span># Eval(&quot;Value&quot;) <span style="background-color:#FFFF00; color:Black">%&gt;</span><span style="color:#0000FF">&lt;/</span><span style="color:#800000">span</span><span style="color:#0000FF">&gt;</span><span style="color:#0000FF">&lt;/</span><span style="color:#800000">li</span><span style="color:#0000FF">&gt;</span>
+      <span style="color:#0000FF">&lt;/</span><span style="color:#800000">ItemTemplate</span><span style="color:#0000FF">&gt;</span>
+    <span style="color:#0000FF">&lt;/</span><span style="color:#C71585">asp</span>:<span style="color:#800000">Repeater</span><span style="color:#0000FF">&gt;</span>
+    <span style="color:#0000FF">&lt;</span><span style="color:#800000">li</span><span style="color:#0000FF">&gt;</span>
+      <span style="color:#0000FF">&lt;</span><span style="color:#C71585">asp</span>:<span style="color:#800000">LinkButton</span> <span style="color:#FF0000">ID</span>=<span style="color:#0000FF">&quot;deleteBlob&quot;</span> 
+                      <span style="color:#FF0000">OnClientClick</span>=<span style="color:#0000FF">&quot;return confirm(&#39;Delete image?&#39;);&quot;</span>
+                      <span style="color:#FF0000">CommandName</span>=<span style="color:#0000FF">&quot;Delete&quot;</span> 
+                      <span style="color:#FF0000">CommandArgument</span>=<span style="color:#0000FF">&#39;&lt;%# Eval(&quot;Uri&quot;)%&gt;&#39;</span>
+                      <span style="color:#FF0000">runat</span>=<span style="color:#0000FF">&quot;server&quot;</span> <span style="color:#FF0000">Text</span>=<span style="color:#0000FF">&quot;Delete&quot;</span> <span style="color:#FF0000">oncommand</span>=<span style="color:#0000FF">&quot;OnDeleteImage&quot;</span> <span style="color:#0000FF">/&gt;</span>
+
+<strong class="markLine">      <span style="color:#0000FF">&lt;</span><span style="color:#C71585">asp</span>:<span style="color:#800000">LinkButton</span> <span style="color:#FF0000">ID</span>=<span style="color:#0000FF">&quot;CopyBlob&quot;</span> </strong>
+<strong class="markLine">                      <span style="color:#FF0000">OnClientClick</span>=<span style="color:#0000FF">&quot;return confirm(&#39;Copy image?&#39;);&quot;</span></strong>
+<strong class="markLine">                      <span style="color:#FF0000">CommandName</span>=<span style="color:#0000FF">&quot;Copy&quot;</span> </strong>
+<strong class="markLine">                      <span style="color:#FF0000">CommandArgument</span>=<span style="color:#0000FF">&#39;&lt;%# Eval(&quot;Uri&quot;)%&gt;&#39;</span></strong>
+<strong class="markLine">                      <span style="color:#FF0000">runat</span>=<span style="color:#0000FF">&quot;server&quot;</span> <span style="color:#FF0000">Text</span>=<span style="color:#0000FF">&quot;Copy&quot;</span> <span style="color:#FF0000">oncommand</span>=<span style="color:#0000FF">&quot;OnCopyImage&quot;</span> <span style="color:#0000FF">/&gt;</span></strong>
+      ...
+    <span style="color:#0000FF">&lt;/</span><span style="color:#800000">li</span><span style="color:#0000FF">&gt;</span>
+  <span style="color:#0000FF">&lt;/</span><span style="color:#800000">ul</span><span style="color:#0000FF">&gt;</span>
+  <span style="color:#0000FF">&lt;</span><span style="color:#800000">img</span> <span style="color:#FF0000">src</span>=<span style="color:#0000FF">&quot;&lt;%# Eval(&quot;</span><span style="color:#FF0000">Uri</span>&quot;) %&gt;&quot; <span style="color:#FF0000">alt</span>=<span style="color:#0000FF">&quot;&lt;%# Eval(&quot;</span><span style="color:#FF0000">Uri</span>&quot;) %&gt;&quot; <span style="color:#FF0000">style</span>=<span style="color:#0000FF">&quot;float:left&quot;</span><span style="color:#0000FF">/&gt;</span>
+<span style="color:#0000FF">&lt;/</span><span style="color:#800000">div</span><span style="color:#0000FF">&gt;</span>
+...
+</code></pre></li>
+<li><p>Add code (shown in <strong>bold</strong>) to <strong>Default.aspx.cs</strong> to implement the command handler for the <em>copyBlob</em> <strong>asp:LinkButton</strong> control. The code creates a copy of a blob based on an existing blob. It also updates the <em>&quot;ImageName&quot;</em> attribute in its metadata to reflect that it is a copy.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex2-10-OnCopyImageMethod-CS</em>)</p>
+
+<!--mark: 6-31   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">public</span> <span style="color:#0000FF">partial</span> <span style="color:#0000FF">class</span> _Default : System.Web.UI.Page
+{
+  ...
+  <span style="color:#0000FF">protected</span> <span style="color:#0000FF">void</span> OnCopyImage(<span style="color:#0000FF">object</span> sender, CommandEventArgs e)
+  {
+<strong class="markLine">    <span style="color:#0000FF">if</span> (e.CommandName == <span style="color:#8B0000">&quot;Copy&quot;</span>)</strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">      <span style="color:#008000">// Prepare an Id for the copied blob</span></strong>
+<strong class="markLine">      <span style="color:#0000FF">var</span> newId = Guid.NewGuid();</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">      <span style="color:#008000">// Get source blob</span></strong>
+<strong class="markLine">      <span style="color:#0000FF">var</span> blobUri = (<span style="color:#0000FF">string</span>)e.CommandArgument;</strong>
+<strong class="markLine">      <span style="color:#0000FF">var</span> srcBlob = <span style="color:#0000FF">this</span>.GetContainer().GetBlobReference(blobUri);</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">      <span style="color:#008000">// Create new blob</span></strong>
+<strong class="markLine">      <span style="color:#0000FF">var</span> newBlob = <span style="color:#0000FF">this</span>.GetContainer().GetBlobReference(newId.ToString());</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">      <span style="color:#008000">// Copy content from source blob</span></strong>
+<strong class="markLine">      newBlob.CopyFromBlob(srcBlob);</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">      <span style="color:#008000">// Explicitly get metadata for new blob</span></strong>
+<strong class="markLine">      newBlob.FetchAttributes(<span style="color:#0000FF">new</span> BlobRequestOptions { BlobListingDetails = BlobListingDetails.Metadata });</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">      <span style="color:#008000">// Change metadata on the new blob to reflect this is a copy via UI</span></strong>
+<strong class="markLine">      newBlob.Metadata[<span style="color:#8B0000">&quot;ImageName&quot;</span>] = <span style="color:#8B0000">&quot;Copy of \&quot;&quot;</span> + newBlob.Metadata[<span style="color:#8B0000">&quot;ImageName&quot;</span>] + <span style="color:#8B0000">&quot;\&quot;&quot;</span>;</strong>
+<strong class="markLine">      newBlob.Metadata[<span style="color:#8B0000">&quot;Id&quot;</span>] = newId.ToString();</strong>
+<strong class="markLine">      newBlob.SetMetadata();</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">      <span style="color:#008000">// Render all blobs</span></strong>
+<strong class="markLine">      <span style="color:#0000FF">this</span>.RefreshGallery();</strong>
+<strong class="markLine">    }</strong>
+  }
+  ...
+}
+</code></pre></li>
+<li><p>Press <strong>F5</strong> to build and run the application.</p>
+
+<p><img src="Images/copying-image-blobs-from-storage.png?raw=true" alt="Copying image blobs from storage" />
+</p>
+
+<p><em>Copying image blobs from storage</em></p></li>
+<li><p>Upload a few more images from <strong>Source\Assets\Images</strong> and click <strong>Copy</strong> on any of the images displayed to make a copy of the corresponding blob from storage.</p></li>
+<li><p>Click <strong>OK</strong> to confirm the copy operation. You should see a copy of the image has been created with <strong>ImageName</strong> metadata stating it is a copy.</p>
+
+<p><img src="Images/verification.png?raw=true" alt="Verification" />
+</p>
+
+<p><em>Verification</em></p></li>
+<li><p>Press <strong>SHIFT+F5</strong> to stop debugging and delete the deployment from the Compute Emulator.</p></li>
+</ol>
+
+<p><a name="Ex2Task6"></a></p>
+
+<h4 id="Task_6_-_Taking_Blob_Snapshots">Task 6 - Taking Blob Snapshots</h4>
+
+<p>Windows Azure Blob service has support for taking snapshots of blobs. The different between a snapshot and a copy is that snapshots are read-only and the original blob maintains a relationship to its snapshots; blob copies on the other hand are editable. Once a snapshot has been taken for a blob, this source blob can no longer be deleted. Before a source blob can be deleted, all of its snapshots must be deleted first.</p>
+
+<p>In this task, you add functionality to take a snapshot of a blob that contains image data from Windows Azure storage.</p>
+
+<ol>
+<li><p>Update the image list view to add an <strong>asp:LinkButton</strong> control that is used to snapshot images from the gallery container. Open the <strong>Default.aspx</strong> page in Markup mode and locate the <strong>ItemTemplate</strong> for the images <strong>asp:ListView</strong> control. Uncomment the ASP.NET markup located immediately following the copy blob link button control (shown in <strong>bold</strong>).</p>
+
+<!--mark: 21-25   -->
+
+<span class="codelanguage">HTML</span><pre><code class="HTML"><span style="color:#0000FF">&lt;</span><span style="color:#800000">div</span> <span style="color:#FF0000">class</span>=<span style="color:#0000FF">&quot;item&quot;</span><span style="color:#0000FF">&gt;</span>
+  <span style="color:#0000FF">&lt;</span><span style="color:#800000">ul</span> <span style="color:#FF0000">style</span>=<span style="color:#0000FF">&quot;width:40em;float:left;clear:left&quot;</span> <span style="color:#0000FF">&gt;</span>
+    <span style="color:#0000FF">&lt;</span><span style="color:#C71585">asp</span>:<span style="color:#800000">Repeater</span> <span style="color:#FF0000">ID</span>=<span style="color:#0000FF">&quot;blobMetadata&quot;</span> <span style="color:#FF0000">runat</span>=<span style="color:#0000FF">&quot;server&quot;</span><span style="color:#0000FF">&gt;</span>
+      <span style="color:#0000FF">&lt;</span><span style="color:#800000">ItemTemplate</span><span style="color:#0000FF">&gt;</span>
+        <span style="color:#0000FF">&lt;</span><span style="color:#800000">li</span><span style="color:#0000FF">&gt;</span><span style="background-color:#FFFF00; color:Black">&lt;%</span># Eval(&quot;Name&quot;) <span style="background-color:#FFFF00; color:Black">%&gt;</span><span style="color:#0000FF">&lt;</span><span style="color:#800000">span</span><span style="color:#0000FF">&gt;</span><span style="background-color:#FFFF00; color:Black">&lt;%</span># Eval(&quot;Value&quot;) <span style="background-color:#FFFF00; color:Black">%&gt;</span><span style="color:#0000FF">&lt;/</span><span style="color:#800000">span</span><span style="color:#0000FF">&gt;</span><span style="color:#0000FF">&lt;/</span><span style="color:#800000">li</span><span style="color:#0000FF">&gt;</span>
+      <span style="color:#0000FF">&lt;/</span><span style="color:#800000">ItemTemplate</span><span style="color:#0000FF">&gt;</span>
+    <span style="color:#0000FF">&lt;/</span><span style="color:#C71585">asp</span>:<span style="color:#800000">Repeater</span><span style="color:#0000FF">&gt;</span>
+    <span style="color:#0000FF">&lt;</span><span style="color:#800000">li</span><span style="color:#0000FF">&gt;</span>
+      <span style="color:#0000FF">&lt;</span><span style="color:#C71585">asp</span>:<span style="color:#800000">LinkButton</span> <span style="color:#FF0000">ID</span>=<span style="color:#0000FF">&quot;deleteBlob&quot;</span> 
+                      <span style="color:#FF0000">OnClientClick</span>=<span style="color:#0000FF">&quot;return confirm(&#39;Delete image?&#39;);&quot;</span>
+                      <span style="color:#FF0000">CommandName</span>=<span style="color:#0000FF">&quot;Delete&quot;</span> 
+                      <span style="color:#FF0000">CommandArgument</span>=<span style="color:#0000FF">&#39;&lt;%# Eval(&quot;Uri&quot;)%&gt;&#39;</span>
+                      <span style="color:#FF0000">runat</span>=<span style="color:#0000FF">&quot;server&quot;</span> <span style="color:#FF0000">Text</span>=<span style="color:#0000FF">&quot;Delete&quot;</span> <span style="color:#FF0000">oncommand</span>=<span style="color:#0000FF">&quot;OnDeleteImage&quot;</span> <span style="color:#0000FF">/&gt;</span>
+
+      <span style="color:#0000FF">&lt;</span><span style="color:#C71585">asp</span>:<span style="color:#800000">LinkButton</span> <span style="color:#FF0000">ID</span>=<span style="color:#0000FF">&quot;CopyBlob&quot;</span> 
+                      <span style="color:#FF0000">OnClientClick</span>=<span style="color:#0000FF">&quot;return confirm(&#39;Copy image?&#39;);&quot;</span>
+                      <span style="color:#FF0000">CommandName</span>=<span style="color:#0000FF">&quot;Copy&quot;</span> 
+                      <span style="color:#FF0000">CommandArgument</span>=<span style="color:#0000FF">&#39;&lt;%# Eval(&quot;Uri&quot;)%&gt;&#39;</span>
+                      <span style="color:#FF0000">runat</span>=<span style="color:#0000FF">&quot;server&quot;</span> <span style="color:#FF0000">Text</span>=<span style="color:#0000FF">&quot;Copy&quot;</span> <span style="color:#FF0000">oncommand</span>=<span style="color:#0000FF">&quot;OnCopyImage&quot;</span> <span style="color:#0000FF">/&gt;</span>
+
+<strong class="markLine">      <span style="color:#0000FF">&lt;</span><span style="color:#C71585">asp</span>:<span style="color:#800000">LinkButton</span> <span style="color:#FF0000">ID</span>=<span style="color:#0000FF">&quot;SnapshotBlob&quot;</span> </strong>
+<strong class="markLine">                      <span style="color:#FF0000">OnClientClick</span>=<span style="color:#0000FF">&quot;return confirm(&#39;Snapshot image?&#39;);&quot;</span></strong>
+<strong class="markLine">                      <span style="color:#FF0000">CommandName</span>=<span style="color:#0000FF">&quot;Snapshot&quot;</span> </strong>
+<strong class="markLine">                      <span style="color:#FF0000">CommandArgument</span>=<span style="color:#0000FF">&#39;&lt;%# Eval(&quot;Uri&quot;)%&gt;&#39;</span></strong>
+<strong class="markLine">                      <span style="color:#FF0000">runat</span>=<span style="color:#0000FF">&quot;server&quot;</span> <span style="color:#FF0000">Text</span>=<span style="color:#0000FF">&quot;Snapshot&quot;</span> <span style="color:#FF0000">oncommand</span>=<span style="color:#0000FF">&quot;OnSnapshotImage&quot;</span> <span style="color:#0000FF">/&gt;</span></strong>
+    <span style="color:#0000FF">&lt;/</span><span style="color:#800000">li</span><span style="color:#0000FF">&gt;</span>
+  <span style="color:#0000FF">&lt;/</span><span style="color:#800000">ul</span><span style="color:#0000FF">&gt;</span>
+  <span style="color:#0000FF">&lt;</span><span style="color:#800000">img</span> <span style="color:#FF0000">src</span>=<span style="color:#0000FF">&quot;&lt;%# Eval(&quot;</span><span style="color:#FF0000">Uri</span>&quot;) %&gt;&quot; <span style="color:#FF0000">alt</span>=<span style="color:#0000FF">&quot;&lt;%# Eval(&quot;</span><span style="color:#FF0000">Uri</span>&quot;) %&gt;&quot; <span style="color:#FF0000">style</span>=<span style="color:#0000FF">&quot;float:left&quot;</span><span style="color:#0000FF">/&gt;</span>
+<span style="color:#0000FF">&lt;/</span><span style="color:#800000">div</span><span style="color:#0000FF">&gt;</span>
+</code></pre></li>
+<li><p>Add code (shown in <strong>bold</strong>) to <strong>Default.aspx.cs</strong> to implement the command handler for the <em>snapshotBlob</em> <strong>asp:LinkButton control</strong>. The code gets the source blob and takes a snapshot of it.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex2-11-OnSnapshotImageMethod-CS</em>)</p>
+
+<!--mark: 6-18   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">public</span> <span style="color:#0000FF">partial</span> <span style="color:#0000FF">class</span> _Default : System.Web.UI.Page
+{
+  ...
+  <span style="color:#0000FF">protected</span> <span style="color:#0000FF">void</span> OnSnapshotImage(<span style="color:#0000FF">object</span> sender, CommandEventArgs e)
+  {
+<strong class="markLine">    <span style="color:#0000FF">if</span> (e.CommandName == <span style="color:#8B0000">&quot;Snapshot&quot;</span>)</strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">      <span style="color:#008000">// Get source blob</span></strong>
+<strong class="markLine">      <span style="color:#0000FF">var</span> blobUri = (<span style="color:#0000FF">string</span>)e.CommandArgument;</strong>
+<strong class="markLine">      <span style="color:#0000FF">var</span> srcBlob = <span style="color:#0000FF">this</span>.GetContainer().GetBlobReference(blobUri);</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">      <span style="color:#008000">// Create a snapshot</span></strong>
+<strong class="markLine">      <span style="color:#0000FF">var</span> snapshot = srcBlob.CreateSnapshot();</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">      <span style="color:#0000FF">this</span>.status.Text = <span style="color:#8B0000">&quot;A snapshot has been taken for image blob:&quot;</span> + srcBlob.Uri + <span style="color:#8B0000">&quot; at &quot;</span> + snapshot.SnapshotTime;</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">      <span style="color:#0000FF">this</span>.RefreshGallery();</strong>
+<strong class="markLine">    }</strong>
+  }
+  ...
+}
+</code></pre></li>
+<li><p>Press <strong>F5</strong> to build and run the application.</p></li>
+<li><p>Click <strong>Snapshot</strong> on any of the images displayed to take a snapshot the corresponding blob from storage.</p>
+
+<p><img src="Images/taking-a-snapshot-of-image-blobs-from-storage.png?raw=true" alt="Taking a snapshot of image blobs from storage" />
+</p>
+
+<p><em>Taking a snapshot of image blobs from storage</em></p></li>
+<li><p>Click <strong>OK</strong> to confirm the snapshot operation. You will see a status update confirming that a snapshot has been taken.</p></li>
+<li><p>Attempt to delete the <strong>original</strong> blob from which the snapshot was taken.</p>
+
+<p><img src="Images/cannot-delete-snapshot-error.png?raw=true" alt="Attempting to delete the original blob" />
+</p>
+
+<p><em>Attempting to delete the original blob</em></p></li>
+<li><p>You will see a status update confirms that the blob cannot be deleted.</p>
+
+<p><img src="Images/cannot-delete-snapshot-error2.png?raw=true" alt="Cannot Delete Snapshot error2" />
+</p>
+
+<p><em>Cannot Delete Snapshot error</em></p>
+<blockquote>
+<p><strong>Note:</strong> To delete a blob that contains snapshots, all of its snapshots must be deleted first (that functionality is not provided in this solution).</p>
+</blockquote></li>
+</ol>
+
+<p><a name="Exercise3"></a></p>
+
+<h3 id="Exercise_3_Working_with_Queues">Exercise 3: Working with Queues</h3>
+
+<p>In this exercise, you create a simple Web application to send messages to a Windows Azure queue. A Worker role in the solution retrieves the messages and writes them to the compute emulator log.</p>
+
+<p>Queue service is a great way to send messages between front-end roles and worker roles. A queue can contain an unlimited number of messages, each of which can be up to 64 KB in size. Messages are pushed to the end of the queue and popped from the front of the queue.</p>
+
+<p><a name="Ex3Task1"></a></p>
+
+<h4 id="Task_1_-_Creating_the_Initial_Solution">Task 1 - Creating the Initial Solution</h4>
+
+<p>In this task, you create and configure the initial solution to work with queues in Windows Azure.</p>
+
+<ol>
+<li><p>Open Visual Studio 2012 Express for Web elevated as <strong>Administrator</strong>.</p></li>
+<li><p>From the <strong>File</strong> menu, choose <strong>New Project</strong>. </p></li>
+<li><p>In the <strong>New Project</strong> dialog, expand the <strong>Visual C#</strong> language in the Installed Templates list and select <strong>Cloud</strong>. Choose the <strong>Windows Azure Cloud Service</strong> project template, set the <strong>Name</strong> of the project to <strong>RdStorage</strong>, set the location to <strong>Ex3-WorkingWithQueues\Begin</strong> in the <strong>Source</strong> folder of the lab, change the solution name to <strong>Begin</strong>, and ensure that <strong>Create directory for solution</strong> is checked. Click <strong>OK</strong> to create the project.</p>
+
+<p><img src="Images/creating-a-windowsazure-project.png?raw=true" alt="Creating a WindowsAzure Project" />
+</p>
+
+<p><em>Creating a WindowsAzure Project</em></p></li>
+<li><p>In the <strong>New Windows Azure Project</strong> dialog, select <strong>ASP.NET Web Role</strong> from the list of available roles and click the arrow <strong>(&gt;)</strong> to add an instance of this role to the solution. Change the name of the role to <strong>RdStorage_WebRole</strong>.  To do this, select the role in the right panel, click the pencil icon and enter the new name.  Do not close the dialog. You will add a second role in the next step.</p>
+
+<p><img src="Images/adding-a-web-role-to-the-windows-azure-projec.png?raw=true" alt="Adding a Web Role to the windows azure project" />
+</p>
+
+<p><em>Adding a Web Role to the windows azure project</em></p></li>
+<li><p>Next, add a second role to the solution. Choose a <strong>Worker Role</strong> and change its name to <strong>RdStorage_WorkerRole</strong>.   </p>
+
+<p><img src="Images/adding-a-new-worker-role-to-the-cloud-service.png?raw=true" alt="Adding a new Worker Role to the cloud service project " />
+</p>
+
+<p><em>Adding a new Worker Role to the cloud service project</em></p></li>
+<li><p>Click <strong>OK</strong> to close the <strong>New Windows Azure Project</strong> dialog and create the solution.</p></li>
+<li><p>Right-click each role under the <strong>Roles</strong> folder from the <strong>RdStorage</strong> cloud project.  Choose <strong>Properties</strong>.</p></li>
+<li><p>In the <strong>Settings</strong> tab, click <strong>Add Setting</strong> and create a <strong>ConnectionString</strong> type called <em>DataConnectionString</em>. Click the button labeled  with an ellipsis and set the connection string to <strong>Use storage emulator</strong>. Repeat for each role in your project.</p>
+
+<p><img src="Images/creating-a-storage-connection-string.png?raw=true" alt="Creating a storage connection string" />
+</p>
+
+<p><em>Creating a storage connection string</em></p>
+
+<p><img src="Images/configuring-a-connection-string-to-use-comput.png?raw=true" alt="Configuring a connection string to use Compute Emulator" />
+</p>
+
+<p><em>Configuring a connection string to use Compute Emulator</em></p></li>
+</ol>
+
+<p><a name="Ex3Task2"></a></p>
+
+<h4 id="Task_2_-_Sending_Messages_to_the_Queue">Task 2 - Sending Messages to the Queue</h4>
+
+<p>In this task, you implement the <strong>RdStorage_WebRole</strong> web application to send messages to the queue.</p>
+
+<ol>
+<li><p>Open the <strong>Default.aspx</strong> page of the <strong>RdStorage_WebRole</strong> web site. Delete the existing content inside the <em>BodyContent</em> <strong>Content</strong> control.</p></li>
+<li><p>Add an <strong>asp:TextBox</strong> control to the page. Change the <strong>ID</strong> for the <strong>TextBox</strong> to <strong>txtMessage</strong>. You may wish to format the page to look good, but this is not required. Also, add an <strong>asp:Button</strong> control just after the <strong>TextBox</strong> inserted previously. Change the <strong>ID</strong> of the button to <strong>btnSend</strong> and set the <strong>Text</strong> to <strong>Send message</strong>. Your code should look similar to the following:</p>
+
+<!--mark: 20,21   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#">&lt;%@ Page Title=<span style="color:#8B0000">&quot;Home Page&quot;</span> Language=<span style="color:#8B0000">&quot;C#&quot;</span> MasterPageFile=<span style="color:#8B0000">&quot;~/Site.Master&quot;</span> AutoEventWireup=<span style="color:#8B0000">&quot;true&quot;</span> CodeBehind=<span style="color:#8B0000">&quot;Default.aspx.cs&quot;</span> Inherits=<span style="color:#8B0000">&quot;RdStorage_WebRole._Default&quot;</span> %&gt;
+
+&lt;asp:Content runat=<span style="color:#8B0000">&quot;server&quot;</span> ID=<span style="color:#8B0000">&quot;FeaturedContent&quot;</span> ContentPlaceHolderID=<span style="color:#8B0000">&quot;FeaturedContent&quot;</span>&gt;
+&lt;section <span style="color:#0000FF">class</span>=<span style="color:#8B0000">&quot;featured&quot;</span>&gt;
+    &lt;div <span style="color:#0000FF">class</span>=<span style="color:#8B0000">&quot;content-wrapper&quot;</span>&gt;
+        &lt;hgroup <span style="color:#0000FF">class</span>=<span style="color:#8B0000">&quot;title&quot;</span>&gt;
+            &lt;h1&gt;&lt;%: Title %&gt;.&lt;/h1&gt;
+            &lt;h2&gt;Modify <span style="color:#0000FF">this</span> template to jump-start your ASP.NET application.&lt;/h2&gt;
+        &lt;/hgroup&gt;
+        &lt;p&gt;
+            To learn more about ASP.NET, visit &lt;a href=<span style="color:#8B0000">&quot;http://asp.net&quot;</span> title=<span style="color:#8B0000">&quot;ASP.NET Website&quot;</span>&gt;http:<span style="color:#008000">//asp.net&lt;/a&gt;.</span>
+            The page features &lt;mark&gt;videos, tutorials, and samples&lt;/mark&gt; to help you <span style="color:#0000FF">get</span> the most from ASP.NET.
+            If you have any questions about ASP.NET visit
+            &lt;a href=<span style="color:#8B0000">&quot;http://forums.asp.net/18.aspx&quot;</span> title=<span style="color:#8B0000">&quot;ASP.NET Forum&quot;</span>&gt;our forums&lt;/a&gt;.
+        &lt;/p&gt;
+    &lt;/div&gt;
+&lt;/section&gt;
+&lt;/asp:Content&gt;
+&lt;asp:Content runat=<span style="color:#8B0000">&quot;server&quot;</span> ID=<span style="color:#8B0000">&quot;BodyContent&quot;</span> ContentPlaceHolderID=<span style="color:#8B0000">&quot;MainContent&quot;</span>&gt;
+<strong class="markLine">    &lt;asp:TextBox ID=<span style="color:#8B0000">&quot;txtMessage&quot;</span> runat=<span style="color:#8B0000">&quot;server&quot;</span>&gt;&lt;/asp:TextBox&gt;</strong>
+<strong class="markLine">    &lt;asp:Button ID=<span style="color:#8B0000">&quot;btnSend&quot;</span> runat=<span style="color:#8B0000">&quot;server&quot;</span> Text=<span style="color:#8B0000">&quot;Send message&quot;</span> /&gt;</strong>
+&lt;/asp:Content&gt;
+</code></pre></li>
+<li><p>Open the code-behind file for the <strong>Default.aspx</strong> page. To do this, right-click <strong>Default.aspx</strong>, and select View Code.</p></li>
+<li><p>Add the following namespace directives at the top of the file.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex3-01-Namespace-CS</em>)</p>
+
+<!--mark: 1-3   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure.StorageClient;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure.ServiceRuntime;</strong>
+</code></pre></li>
+<li><p>Right-click <strong>Default.aspx</strong>, select <strong>View Designer</strong> and double-click the <strong>Send message</strong> button. Alternatively, you may edit the ASP.NET markup directly to insert the required event handler. Add the following code (shown in <strong>bold</strong>) to the btnSend_Click event to initialize the account information:</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex3-02-WebRoleCreateAccount-CS</em>)</p>
+
+<!--mark: 6,7   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">public</span> <span style="color:#0000FF">partial</span> <span style="color:#0000FF">class</span> _Default : System.Web.UI.Page
+{
+  ...
+  <span style="color:#0000FF">protected</span> <span style="color:#0000FF">void</span> btnSend_Click(<span style="color:#0000FF">object</span> sender, EventArgs e)
+  {
+<strong class="markLine">    <span style="color:#008000">// initialize the account information</span></strong>
+<strong class="markLine">    <span style="color:#0000FF">var</span> storageAccount = CloudStorageAccount.FromConfigurationSetting(<span style="color:#8B0000">&quot;DataConnectionString&quot;</span>);</strong>
+  }
+}
+</code></pre></li>
+<li><p>Next, add the following code (shown in <strong>bold</strong>) immediately after the code inserted in the previous step to obtain an instance of the <strong>QueueStorage</strong> helper object and create the message queue if it does not exist.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex3-03-WebRoleCreateQueue-CS</em>)</p>
+
+<!--mark: 5-8   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">protected</span> <span style="color:#0000FF">void</span> btnSend_Click(<span style="color:#0000FF">object</span> sender, EventArgs e)
+{
+  ...
+
+<strong class="markLine">  <span style="color:#008000">// retrieve a reference to the messages queue</span></strong>
+<strong class="markLine">  <span style="color:#0000FF">var</span> queueClient = storageAccount.CreateCloudQueueClient();</strong>
+<strong class="markLine">  <span style="color:#0000FF">var</span> queue = queueClient.GetQueueReference(<span style="color:#8B0000">&quot;messagequeue&quot;</span>);</strong>
+<strong class="markLine">  queue.CreateIfNotExist();</strong>
+}
+</code></pre></li>
+<li><p>Add the following code (shown in <strong>bold</strong>) immediately after the code inserted in the previous step to put the message entered by the user into the queue.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex3-04-WebRoleAddMessage-CS</em>)</p>
+
+<!--mark: 5-8   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">protected</span> <span style="color:#0000FF">void</span> btnSend_Click(<span style="color:#0000FF">object</span> sender, EventArgs e)
+{
+  ...
+
+<strong class="markLine">  <span style="color:#008000">// add the message to the queue</span></strong>
+<strong class="markLine">  <span style="color:#0000FF">var</span> msg = <span style="color:#0000FF">new</span> CloudQueueMessage(<span style="color:#0000FF">this</span>.txtMessage.Text);</strong>
+<strong class="markLine">  queue.AddMessage(msg);</strong>
+<strong class="markLine">  <span style="color:#0000FF">this</span>.txtMessage.Text = <span style="color:#0000FF">string</span>.Empty;</strong>
+}
+</code></pre></li>
+<li><p>Open the <strong>WebRole.cs</strong> file from the <strong>RDStorage_WebRole</strong> project.</p></li>
+<li><p>Append the following namespace to the existing directives at the top of the code file.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex3-05-Namespace-CS</em>)</p>
+
+<!--mark: 1   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure.StorageClient;</strong>
+</code></pre></li>
+</ol>
+
+<p><a name="Ex3Task3"></a></p>
+
+<h4 id="Task_3_-_Retrieving_Messages_from_the_Queue">Task 3 - Retrieving Messages from the Queue</h4>
+
+<p>In this task, you update the worker role to retrieve messages from the queue and show them in the compute emulator log.</p>
+
+<ol>
+<li><p>Open the <strong>Global.asax.cs</strong> file from the <strong>RdStorage_WebRole</strong> project.</p></li>
+<li><p>Add the following code (shown in <strong>bold</strong>) to the <strong>Application_Start</strong> method to initialize the account information.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex3-06-InitializeAccount-CS</em>)</p>
+
+<!--mark: 6-9   -->    
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">void</span> Application_Start(<span style="color:#0000FF">object</span> sender, EventArgs e)
+{
+    <span style="color:#008000">// Code that runs on application startup</span>
+    BundleConfig.RegisterBundles(BundleTable.Bundles);
+    AuthConfig.RegisterOpenAuth();    
+<strong class="markLine">    CloudStorageAccount.SetConfigurationSettingPublisher((configName, configSetter) =&gt;</strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">        configSetter(RoleEnvironment.GetConfigurationSettingValue(configName));</strong>
+<strong class="markLine">    });</strong>
+}
+</code></pre></li>
+<li><p>Make sure the following namespace directives exist on the top of the code files.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex3-07-Namespace-CS</em>)</p>
+
+<!--mark: 1,2   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure.ServiceRuntime;</strong>
+</code></pre></li>
+<li><p>Open the <strong>WorkerRole.cs</strong> file from the <strong>RdStorage_WorkerRole</strong> project.</p></li>
+<li><p>Add the following highlighted code to the <strong>OnStart</strong> method directly above <strong>return base.OnStart()</strong> in WorkerRole.cs to initialize the account information.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex3-08-InitializeAccount-CS</em>)</p>
+
+<!--mark: 9-12   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">public</span> <span style="color:#0000FF">override</span> <span style="color:#0000FF">bool</span> OnStart()
+{
+  <span style="color:#008000">// Set the maximum number of concurrent connections </span>
+  ServicePointManager.DefaultConnectionLimit = 12;
+
+  <span style="color:#008000">// For information on handling configuration changes</span>
+  <span style="color:#008000">// see the MSDN topic at http://go.microsoft.com/fwlink/?LinkId=166357.</span>
+
+<strong class="markLine">  CloudStorageAccount.SetConfigurationSettingPublisher((configName, configSetter) =&gt;</strong>
+<strong class="markLine">  {</strong>
+<strong class="markLine">    configSetter(RoleEnvironment.GetConfigurationSettingValue(configName));</strong>
+<strong class="markLine">  });</strong>
+
+  <span style="color:#0000FF">return</span> <span style="color:#0000FF">base</span>.OnStart();
+}
+</code></pre></li>
+<li><p>Make sure the following namespace directives exist on the top of the code files.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex3-09-Namespace-CS</em>)</p>
+
+<!--mark: 1-6   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">using</span> System.Diagnostics;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> System.Threading;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure.Diagnostics;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure.ServiceRuntime;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure.StorageClient;</strong>
+</code></pre></li>
+<li><p>In the <strong>Run</strong> method, obtain an instance of the <strong>QueueStorage</strong> helper object and retrieve a reference to the <em>messages</em> queue. To do this, add the following code (shown in <strong>bold</strong>) and remove the following lines of code (shown in <del>strikethrough</del>) that simulate the worker role latency..</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex3-10-WorkerGetQueue-CS</em>)</p>
+
+<!--mark: 12-17; strike: 6-10   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">public</span> <span style="color:#0000FF">override</span> <span style="color:#0000FF">void</span> Run()
+{
+  <span style="color:#008000">// This is a sample worker implementation. Replace with your logic.</span>
+  Trace.WriteLine(<span style="color:#8B0000">&quot;RdStorage_WorkerRole entry point called&quot;</span>, <span style="color:#8B0000">&quot;Information&quot;</span>);
+
+<span class="strikeLine" style="text-decoration:line-through;">  <span style="color:#0000FF">while</span> (<span style="color:#0000FF">true</span>)</span>
+<span class="strikeLine" style="text-decoration:line-through;">  {</span>
+<span class="strikeLine" style="text-decoration:line-through;">    Thread.Sleep(10000);</span>
+<span class="strikeLine" style="text-decoration:line-through;">    Trace.WriteLine(<span style="color:#8B0000">&quot;Working&quot;</span>, <span style="color:#8B0000">&quot;Information&quot;</span>);</span>
+<span class="strikeLine" style="text-decoration:line-through;">  }</span>
+
+<strong class="markLine">  <span style="color:#008000">// initialize the account information</span></strong>
+<strong class="markLine">  <span style="color:#0000FF">var</span> storageAccount = CloudStorageAccount.FromConfigurationSetting(<span style="color:#8B0000">&quot;DataConnectionString&quot;</span>);</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">  <span style="color:#008000">// retrieve a reference to the messages queue</span></strong>
+<strong class="markLine">  <span style="color:#0000FF">var</span> queueClient = storageAccount.CreateCloudQueueClient();</strong>
+<strong class="markLine">  <span style="color:#0000FF">var</span> queue = queueClient.GetQueueReference(<span style="color:#8B0000">&quot;messagequeue&quot;</span>);</strong>
+}
+</code></pre></li>
+<li><p>Next, add the following highlighted code to retrieve messages and write them to the compute emulator log. The message is then removed from the queue.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex3-11-WorkerGetMessages-CS</em>)</p>
+
+<!--mark: 5-20   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">public</span> <span style="color:#0000FF">override</span> <span style="color:#0000FF">void</span> Run()
+{
+  ...
+
+<strong class="markLine">  <span style="color:#008000">// retrieve messages and write them to the compute emulator log</span></strong>
+<strong class="markLine">  <span style="color:#0000FF">while</span> (<span style="color:#0000FF">true</span>)</strong>
+<strong class="markLine">  {</strong>
+<strong class="markLine">    Thread.Sleep(10000);</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">    <span style="color:#0000FF">if</span> (queue.Exists())</strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">      <span style="color:#0000FF">var</span> msg = queue.GetMessage();</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">      <span style="color:#0000FF">if</span> (msg != <span style="color:#0000FF">null</span>)</strong>
+<strong class="markLine">      {</strong>
+<strong class="markLine">        Trace.TraceInformation(<span style="color:#0000FF">string</span>.Format(<span style="color:#8B0000">&quot;Message &#39;{0}&#39; processed.&quot;</span>, msg.AsString));</strong>
+<strong class="markLine">        queue.DeleteMessage(msg);</strong>
+<strong class="markLine">      }</strong>
+<strong class="markLine">    }</strong>
+<strong class="markLine">  }</strong>
+}
+</code></pre></li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> The worker process will try to get a message from the queue every 10 seconds using the GetMessage method. If there are messages in the queue, it will show them in the Compute Emulator log.</p>
+</blockquote>
+<p><a name="Ex3Verification"></a></p>
+
+<h4 id="Verification">Verification</h4>
+
+<p>To test your service running in the compute emulator:</p>
+
+<ol>
+<li><p>In Visual Studio, press <strong>F5</strong> to build and run the application.</p>
+<blockquote>
+<p><strong>Note:</strong> Make sure the cloud project is set as the startup project by right-clicking it in <strong>Solution Explorer</strong> and selecting <strong>Set as StartUp Project</strong>.</p>
+</blockquote></li>
+<li><p>Open the compute emulator UI. To do this, right-click its icon located in the system tray and select <strong>Show Compute Emulator UI</strong>. (The icon is an azure colored Window.)</p>
+
+<p><img src="Images/showing-the-compute-emulator-ui.png?raw=true" alt="Showing the compute emulator UI" />
+</p>
+
+<p><em>Showing the compute emulator UI</em></p></li>
+<li><p>Expand the tree to show the <strong>Worker</strong> instance log. </p></li>
+<li><p>Switch back to Windows Internet Explorer.  Ensure that the default page is shown, enter a message, and click <strong>Send message</strong>.</p>
+
+<p><img src="Images/default-web-page.png?raw=true" alt="Default Web page" />
+</p>
+
+<p><em>Default Web page</em></p></li>
+<li><p>Change back to the Compute Emulator UI.  You should see the message logged in the worker role log.</p>
+
+<p><img src="Images/worker-log-showing-the-message.png?raw=true" alt="Worker log showing the message" />
+</p>
+
+<p><em>Worker log showing the message</em></p>
+<blockquote>
+<p><strong>Note:</strong> Because of the worker sleep time, it may take several seconds to show the message. </p>
+</blockquote></li>
+</ol>
+
+<p><a name="Exercise4"></a></p>
+
+<h3 id="Exercise_4_Working_with_Drives">Exercise 4: Working with Drives</h3>
+
+<p>A Windows Azure Drive is an NTFS formatted virtual hard disk (VHD) file that is stored in a page blob. You can mount this VHD into a Windows Azure Compute instance to provide persistent storage exposed to applications via the Windows file system. The content of an Azure Drive will persist even if the compute role to which it is mounted is recycled.</p>
+
+<p>In this exercise, you take an existing application that makes use of regular Windows file system APIs to access information in local disk storage and run it as a Windows Azure service.  You will see that by using a Windows Azure Drive, no changes to the code are necessary to run the same application in the Azure cloud and have it access information stored in Azure storage.</p>
+
+<p>In the first part of the exercise, you execute the original application in the ASP.NET development server to familiarize yourself with its operation. Next, you create a cloud service project, associate the application as a Web role, and run it in the compute emulator using simulated Azure Drives. Finally, you create a VHD on your local machine, upload it to blob storage, deploy the application to Windows Azure and mount the drive in a Windows Azure instance.</p>
+
+<p><a name="Ex4Task1"></a></p>
+
+<h4 id="Task_1_-_Exploring_the_PhotoAlbum_Application">Task 1 - Exploring the PhotoAlbum Application</h4>
+
+<p>PhotoAlbum is a sample application that uses standard file system APIs to obtain a directory listing of the contents of its image store. In this task, you briefly examine the application and then configure the location of the image store to a folder in your machine to run the application locally.</p>
+
+<ol>
+<li><p>Open Visual Studio 2012 Express for Web or higher in elevated administrator mode. </p>
+<blockquote>
+<p><strong>Note:</strong> You are not required to use elevated administrator mode to run the application using the ASP.NET Web development server. However, you will need to do this later, when you launch the application in the compute emulator.</p>
+</blockquote></li>
+<li><p>If the <strong>User Account Control</strong> dialog appears, click <strong>Continue</strong>.</p></li>
+<li><p>Open the begin solution provided for this exercise. In the <strong>File</strong> menu, choose <strong>Open Project</strong>. Then, in the <strong>Open Project</strong> dialog, navigate to <strong>\Source\Ex4-WorkingWithDrives\Begin</strong> and open the <strong>Begin.sln</strong> solution.</p></li>
+<li><p>Take a minute to browse the files in the application. First, double-click <strong>Default.aspx</strong> in <strong>Solution Explorer</strong> to open this file. Notice that the page uses a <strong>GridView</strong> control to display a directory listing of the image store and that its data source is a <strong>LinqDataSource</strong> control bound to a <strong>PhotoAlbumDataSource</strong> context object.</p></li>
+<li><p>Next, open the <strong>PhotoAlbumDataSource.cs</strong> file to examine the context object class used by the <strong>LinqDataSource</strong>.  Notice that the <strong>Files</strong> property used by the data source control returns a collection of <a href="http://msdn.microsoft.com/en-us/library/system.io.fileinfo.aspx">FileInfo</a> objects and that it uses standard file system APIs to enumerate PNG and JPEG files in the image store directory. </p></li>
+<li><p>Now, open the <strong>Global.asax</strong> file and see that it contains an <strong>ImageStorePath</strong> property that returns the location of the image store folder and that the <strong>Application_Start</strong> event handler initializes this property with a path that it retrieves from the application settings.</p></li>
+<li><p>Before you run the application, you need to configure the location of the image store. In <strong>Solution Explorer</strong>, double-click <strong>Web.config</strong> to open this file in the text editor. In the <strong>appSettings</strong> section, locate the <em>ImageStorePath</em> setting and update its value to the path of the <strong>Sample Pictures</strong> folder in your machine.</p>
+
+<p><img src="Images/configuring-the-location-of-the-image-store.png?raw=true" alt="Configuring the location of the image store" />
+</p>
+
+<p><em>Configuring the location of the image store</em></p>
+<blockquote>
+<p><strong>Note:</strong> The sample pictures library is typically available in most Windows installations and is located at <em>&quot;%PUBLIC%\Pictures\Sample Pictures&quot;</em>. It contains a small set of image files. If this folder is not available in your environment, you may substitute it with any folder that contains a suitable collection of JPEG or PNG image files, for example, those found in <em>Assets\Images</em> in the <em>Source</em> folder of this lab.</p>
+
+<p>Note that <em>%PUBLIC%</em> is an environment variable that points to the location of <em>Public</em> in the User profiles folder. You must expand the variable to the proper value when you configure the <em>ImageStorePath</em> setting (e.g. <em>C:\Users\Public\Pictures\Sample Pictures</em>).</p>
+</blockquote></li>
+<li><p>Press <strong>F5</strong> to build and run the PhotoAlbum application. Notice that the default page shows a listing of the files contained in the image store. Also, notice that the path to the image store is the folder on your machine that you set up in the application configuration file.</p>
+<blockquote>
+<p><strong>Note:</strong> Make sure the cloud project is set as the startup project by right-clicking it in <strong>Solution Explorer</strong> and selecting <strong>Set as StartUp Project</strong>.</p>
+</blockquote>
+<p><img src="Images/running-the-photoalbum-application-locally.png?raw=true" alt="Running the PhotoAlbum application locally " />
+</p>
+
+<p><em>Running the PhotoAlbum application locally</em></p></li>
+<li><p>Close the browser window. You have now seen that the application uses standard file system APIs to access the files in its store. In the next task, you will update the application to run as a cloud service.</p></li>
+</ol>
+
+<p><a name="Ex4Task2"></a></p>
+
+<h4 id="Task_2_-_Using_a_Windows_Azure_Drive_to_Move_the_Application_to_the_Cloud">Task 2 - Using a Windows Azure Drive to Move the Application to the Cloud</h4>
+
+<p>When moving the application to Windows Azure, the natural choice is to relocate the image store to blob storage. Regardless, the application expects its images to be stored in the file system. You can always update the code that accesses the images in the store and change it to use the Blob service APIs instead. For a simple application such as this one, this would not be too challenging, but it can represent a barrier for a more complex application. Using Windows Azure Drives enables you to move the application to the cloud without any changes to its code, other than mounting the drive on a page blob.</p>
+
+<p>In this task, you update the application to run as a Windows Azure cloud service and to use a Windows Azure Drive for its image store.</p>
+
+<ol>
+<li><p>Add a cloud service project to the solution. In <strong>Solution Explorer</strong>, right-click the root solution node, point to <strong>Add</strong> and then select <strong>New Project</strong>. </p></li>
+<li><p>In the <strong>Add</strong> <strong>New Project</strong> dialog, expand <strong>Visual C#</strong> in the <strong>Installed Templates</strong> list and select <strong>Cloud</strong>. Choose the <strong>Windows Azure Cloud Service</strong> template, set the <strong>Name</strong> of the project to <strong>PhotoAlbumService</strong>, leave the proposed location unchanged and then click <strong>OK</strong>.</p>
+
+<p><img src="Images/creating-a-windows-azure-project.png?raw=true" alt="Creating a Windows Azure Project " />
+</p>
+
+<p><em>Creating a Windows Azure Project</em></p></li>
+<li><p>In the <strong>New Windows Azure Project</strong> dialog, click <strong>OK</strong> without adding any new roles. You will use the existing application as a web role.</p></li>
+<li><p>Add a reference to the Windows Azure support assemblies. In <strong>Solution Explorer</strong>, right-click the <strong>PhotoAlbum</strong> project and select <strong>Add Reference</strong>. In the <strong>Reference Manager</strong> dialog, search for <strong>Microsoft.WindowsAzure.CloudDrive</strong>, <strong>Microsoft.WindowsAzure.Diagnostics</strong>, <strong>Microsoft.WindowsAzure.ServiceRuntime</strong>, and <strong>Microsoft.WindowsAzure.StorageClient</strong> assemblies, select them and then click <strong>OK</strong>.</p>
+
+<p><img src="Images/adding-a-reference-to-the-windows-azure-suppo.png?raw=true" alt="Adding a reference to the Windows Azure support assemblies" />
+</p>
+
+<p><em>Adding a reference to the Windows Azure support assemblies</em></p></li>
+<li><p>Now, in <strong>Solution Explorer</strong>, right-click the <strong>Roles</strong> node in the <strong>PhotoAlbumService</strong> project, point to <strong>Add</strong> and then select <strong>Web Role Project in solution</strong>.</p></li>
+<li><p>In the <strong>Associate with Role Project</strong> dialog, select the <strong>PhotoAlbum</strong> project and click <strong>OK</strong>.</p></li>
+<li><p>You will now configure the web role. To do this, double-click the <strong>PhotoAlbum</strong> role under the <strong>Roles</strong> node in the <strong>PhotoAlbumService</strong> project.</p></li>
+<li><p>In the <strong>PhotoAlbum [Role]</strong> properties window, switch to the <strong>Settings</strong> tab and then click <strong>Add Setting</strong>. Set the <strong>Name</strong> of the new setting to <em>DataConnectionString</em>, set the <strong>Type</strong> as <em>Connection String</em>, and then click the button labeled with an ellipsis located on the right side of the <strong>Value</strong> column. In the <strong>Storage Connection String</strong> dialog, choose the option labeled <strong>Windows Azure storage emulator</strong> and click <strong>OK</strong>.</p></li>
+<li><p>Add a second setting to configure the URL of the cloud drive in blob storage. For this setting, set the <strong>Name</strong> to <em>ImageStoreBlobUri</em>, the <strong>Type</strong> as <em>String</em>, and the <strong>Value</strong> as <em>mydrives/SamplePictures.vhd</em>. </p>
+<blockquote>
+<p><strong>Note:</strong> The <em>ImageStoreBlobUri</em> setting identifies a Blob service URI and is case sensitive. Make sure that you enter the value exactly as shown.</p>
+</blockquote>
+<p><img src="Images/configuring-the-web-role-settings.png?raw=true" alt="Configuring the Web role settings" />
+</p>
+
+<p><em>Configuring the Web role settings</em></p></li>
+<li><p>Switch to the <strong>Local Storage</strong> tab and then click <strong>Add Local Storage</strong>. Set the <strong>Name</strong> of the new storage setting to <em>LocalDriveCache</em>, set the <strong>Size</strong> to <em>120</em> and leave <strong>Clean on Role Recycle</strong> unselected.</p>
+
+<p><img src="Images/configuring-local-storage-for-the-web-role-to.png?raw=true" alt="Configuring local storage for the Web role to cache Azure drive contents" />
+</p>
+
+<p><em>Configuring local storage for the Web role to cache Azure drive contents</em></p>
+<blockquote>
+<p><strong>Note:</strong> When <strong>Clean on Role Recycled</strong> is disabled, the contents of the cache will persist even if the role instance is recycled.</p>
+
+<p>Due to the way that the system allocates local storage resources, part of the requested space is unavailable for cache usage. Beginning with Windows Azure Guest OS 1.8, the entire Windows Azure Drive cache is allocated up-front and if there is not enough space in the local resource for the cache, the call to Mount will fail. To avoid this issue when configuring the size of the local resource destined for the drive cache, specify an additional 20MB to the required size. For example, to use a 1000MB cache size, set the size of the local resource to 1020MB.</p>
+</blockquote></li>
+<li><p>Press <strong>CTRL+S</strong> to save the changes to the role configuration.</p></li>
+<li><p>Configure a trace listener to output diagnostics information to the Windows Azure log. To do this, double-click <strong>Web.config</strong> in <strong>Solution Explorer</strong> to open this file and insert the following <strong>system.diagnostics</strong> section into the configuration after configSections, as shown below.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex4-01-DiagnosticMonitorTraceListener</em>)</p>
+
+<!--mark: 5-14   -->
+
+<span class="codelanguage">XML</span><pre><code class="XML"><span style="color:#0000FF">&lt;</span><span style="color:#800000">configuration</span><span style="color:#0000FF">&gt;</span>
+  <span style="color:#0000FF">&lt;</span><span style="color:#800000">configSections</span><span style="color:#0000FF">&gt;</span>
+    ...
+  <span style="color:#0000FF">&lt;/</span><span style="color:#800000">configSections</span><span style="color:#0000FF">&gt;</span>
+<strong class="markLine">  <span style="color:#0000FF">&lt;</span><span style="color:#800000">system.diagnostics</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">    <span style="color:#0000FF">&lt;</span><span style="color:#800000">trace</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">        <span style="color:#0000FF">&lt;</span><span style="color:#800000">listeners</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">        <span style="color:#0000FF">&lt;</span><span style="color:#800000">add</span> <span style="color:#FF0000">type</span>=<span style="color:#0000FF">&quot;Microsoft.WindowsAzure.Diagnostics.DiagnosticMonitorTraceListener, Microsoft.WindowsAzure.Diagnostics, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35&quot;</span></strong>
+<strong class="markLine">      <span style="color:#FF0000">name</span>=<span style="color:#0000FF">&quot;AzureDiagnostics&quot;</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">            <span style="color:#0000FF">&lt;</span><span style="color:#800000">filter</span> <span style="color:#FF0000">type</span>=<span style="color:#0000FF">&quot;&quot;</span> <span style="color:#0000FF">/&gt;</span></strong>
+<strong class="markLine">        <span style="color:#0000FF">&lt;/</span><span style="color:#800000">add</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">        <span style="color:#0000FF">&lt;/</span><span style="color:#800000">listeners</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">    <span style="color:#0000FF">&lt;/</span><span style="color:#800000">trace</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">  <span style="color:#0000FF">&lt;/</span><span style="color:#800000">system.diagnostics</span><span style="color:#0000FF">&gt;</span></strong>
+  ...
+<span style="color:#0000FF">&lt;/</span><span style="color:#800000">configuration</span><span style="color:#0000FF">&gt;</span>
+</code></pre></li>
+<li><p>Add a class to the Web role project to manage its initialization and shutdown. In <strong>Solution Explorer</strong>, right-click the <strong>PhotoAlbum</strong> project, point to <strong>Add</strong> and then select <strong>Existing Item</strong>. In the <strong>Add Existing Item</strong> dialog, browse to <strong>Ex4-WorkingWithDrives\Assets</strong>, select <strong>WebRole.cs</strong> and then click <strong>Add</strong>.</p>
+<blockquote>
+<p><strong>Note:</strong> The <strong>WebRole.cs</strong> file contains a standard <strong>RoleEntryPoint</strong> derived class, similar to the one generated when you select a new Windows Azure Web Role project template in Visual Studio.</p>
+</blockquote></li>
+<li><p>Locate the <strong>Application_Start</strong> method in <strong>Global.asax.cs</strong> file and insert the following code (shown in <strong>bold</strong>) to this method. </p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex4-02-ApplicationStartMethod-CS</em>)</p>
+
+<!--mark: 12-59   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">protected</span> <span style="color:#0000FF">void</span> Application_Start(<span style="color:#0000FF">object</span> sender, EventArgs e)
+{
+    <span style="color:#008000">// Code that runs on application startup</span>
+    BundleConfig.RegisterBundles(BundleTable.Bundles);
+    AuthConfig.RegisterOpenAuth();
+
+    <span style="color:#0000FF">if</span> (imageStorePath == <span style="color:#0000FF">null</span>)
+    {
+        ImageStorePath = WebConfigurationManager.AppSettings[<span style="color:#8B0000">&quot;ImageStorePath&quot;</span>];
+    }
+
+<strong class="markLine">    <span style="color:#008000">// initialize storage account configuration setting publisher</span></strong>
+<strong class="markLine">    CloudStorageAccount.SetConfigurationSettingPublisher((configName, configSetter) =&gt;</strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">        <span style="color:#0000FF">string</span> connectionString = RoleEnvironment.GetConfigurationSettingValue(configName);</strong>
+<strong class="markLine">        configSetter(connectionString);</strong>
+<strong class="markLine">    });</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">    <span style="color:#0000FF">try</span></strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">        <span style="color:#008000">// initialize the local cache for the Azure drive</span></strong>
+<strong class="markLine">        LocalResource cache = RoleEnvironment.GetLocalResource(<span style="color:#8B0000">&quot;LocalDriveCache&quot;</span>);</strong>
+<strong class="markLine">        CloudDrive.InitializeCache(cache.RootPath + <span style="color:#8B0000">&quot;cache&quot;</span>, cache.MaximumSizeInMegabytes);</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">        <span style="color:#008000">// retrieve storage account </span></strong>
+<strong class="markLine">        CloudStorageAccount account = CloudStorageAccount.FromConfigurationSetting(<span style="color:#8B0000">&quot;DataConnectionString&quot;</span>);</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">        <span style="color:#008000">// retrieve URI for the page blob that contains the cloud drive from configuration settings </span></strong>
+<strong class="markLine">        <span style="color:#0000FF">string</span> imageStoreBlobUri = RoleEnvironment.GetConfigurationSettingValue(<span style="color:#8B0000">&quot;ImageStoreBlobUri&quot;</span>);</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">        <span style="color:#008000">// unmount any previously mounted drive.</span></strong>
+<strong class="markLine">        <span style="color:#0000FF">foreach</span> (<span style="color:#0000FF">var</span> drive <span style="color:#0000FF">in</span> CloudDrive.GetMountedDrives())</strong>
+<strong class="markLine">        {</strong>
+<strong class="markLine">            <span style="color:#0000FF">var</span> mountedDrive = <span style="color:#0000FF">new</span> CloudDrive(drive.Value, account.Credentials);</strong>
+<strong class="markLine">            mountedDrive.Unmount();</strong>
+<strong class="markLine">        }</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">        <span style="color:#008000">// create the Windows Azure drive and its associated page blob</span></strong>
+<strong class="markLine">        CloudDrive imageStoreDrive = account.CreateCloudDrive(imageStoreBlobUri);</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">        <span style="color:#0000FF">if</span> (CloudDrive.GetMountedDrives().Count() == 0)</strong>
+<strong class="markLine">        {                  </strong>
+<strong class="markLine">            <span style="color:#0000FF">try</span></strong>
+<strong class="markLine">            {</strong>
+<strong class="markLine">                imageStoreDrive.Create(16);</strong>
+<strong class="markLine">            }</strong>
+<strong class="markLine">            <span style="color:#0000FF">catch</span> (CloudDriveException)</strong>
+<strong class="markLine">            {</strong>
+<strong class="markLine">                <span style="color:#008000">// drive already exists</span></strong>
+<strong class="markLine">            }</strong>
+<strong class="markLine">        }</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">        <span style="color:#008000">// mount the drive and initialize the application with the path to the image store on the Azure drive</span></strong>
+<strong class="markLine">        Global.ImageStorePath = imageStoreDrive.Mount(cache.MaximumSizeInMegabytes / 2, DriveMountOptions.None);</strong>
+<strong class="markLine">    }</strong>
+<strong class="markLine">    <span style="color:#0000FF">catch</span> (CloudDriveException driveException)</strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">        Trace.WriteLine(<span style="color:#8B0000">&quot;Error: &quot;</span> + driveException.Message);</strong>
+<strong class="markLine">    }</strong>
+}
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> The preceding code retrieves the path to the local storage that you defined earlier, when you configured the Web role, and then uses this path to initialize the drive cache and set the maximum amount of local disk space it will use. Next, it creates a <strong>CloudDrive</strong> object specifying the URL of the page blob, which you also defined earlier in the role configuration settings. Finally, it mounts the formatted page blob to a drive letter for the Windows Azure application to start using. </p>
+
+<p>Notice that the cache assigned to the drive is only half the total amount of storage reserved for the cache. Later in the exercise, you will create a second drive and assign the remainder to that drive.</p>
+</blockquote></li>
+<li><p>Make sure the following namespace directives exist at the top of the <strong>Global.asax.cs</strong> code file.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex4-03-GlobalNamespace-CS</em>)</p>
+
+<!--mark: 1-4   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">using</span> System.Diagnostics;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure.ServiceRuntime;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure.StorageClient;</strong>
+</code></pre></li>
+<li><p>Next, insert the following highlighted code into the <strong>Application_End</strong> method to unmount the Windows Azure Drive when the Web role shuts down.  Place the code at the start of the method.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex4-04-ApplicationEndMethod-CS</em>)</p>
+
+<!--mark: 3-7   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">protected</span> <span style="color:#0000FF">void</span> Application_End(<span style="color:#0000FF">object</span> sender, EventArgs e)
+{
+<strong class="markLine">    <span style="color:#008000">// obtain a reference to the cloud drive and unmount it</span></strong>
+<strong class="markLine">    CloudStorageAccount account = CloudStorageAccount.FromConfigurationSetting(<span style="color:#8B0000">&quot;DataConnectionString&quot;</span>);</strong>
+<strong class="markLine">    <span style="color:#0000FF">string</span> imageStoreBlobUri = RoleEnvironment.GetConfigurationSettingValue(<span style="color:#8B0000">&quot;ImageStoreBlobUri&quot;</span>);</strong>
+<strong class="markLine">    CloudDrive imageStoreDrive = account.CreateCloudDrive(imageStoreBlobUri);</strong>
+<strong class="markLine">    imageStoreDrive.Unmount();</strong>
+}
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> The code above retrieves a reference to the previously mounted cloud drive and then unmounts it. </p>
+</blockquote></li>
+<li><p>The application is now ready to run as a Windows Azure service. Press <strong>F5</strong> to build and launch the application in the Compute Emulator. When the application starts, it displays the contents for the Windows Azure Drive, which is initially empty. Notice that the page shows that the Image Store Drive is mapped to a drive letter. Keep the browser window open for the moment.</p>
+
+<p><img src="Images/running-the-application-in-the-compute-emulat.png?raw=true" alt="Running the application in the compute emulator with an empty image store drive" />
+</p>
+
+<p><em>Running the application in the compute emulator with an empty image store drive</em></p></li>
+<li><p>Next, you determine the location of the folder used by storage emulator to simulate the cloud drive. To display the compute emulator UI, right-click the Windows Azure tray icon and then select <strong>Show Storage Emulator UI</strong>.</p>
+
+<p><img src="Images/viewing-the-status-of-storage-emulator.png?raw=true" alt="Showing the Compute Emulator UI" />
+</p>
+
+<p><em>Showing the Storage Emulator UI</em></p></li>
+<li><p>In the Storage Emulator UI, open the <strong>File</strong> menu and select <strong>Open Azure Drive Folder in Windows Explorer</strong>.   </p>
+
+<p><img src="Images/opening-the-azure-drive-simulation-folder.png?raw=true" alt="Opening the Azure Drive simulation folder" />
+</p>
+
+<p><em>Opening the Azure Drive simulation folder</em></p>
+<blockquote>
+<p><strong>Note:</strong> When running locally, the storage emulator does not use blob storage to simulate the cloud drive. Instead, it maps the drive to a local folder. From the storage emulator UI, you can open a Windows Explorer window pointing at the temporary folder used by storage emulator to store simulated Windows Azure drives.</p>
+</blockquote></li>
+<li><p>Inside the Azure Drive folder, navigate to <strong>devstoreaccount1\mydrives\SamplePictures.vhd</strong>. Note that this path matches the URI of the blob in the storage emulator.</p></li>
+<li><p>Now, open the <strong>Start</strong> menu, search for <strong>Pictures</strong> to open your pictures library and then double-click the <strong>Sample Pictures</strong> folder to open a window with sample image files.</p>
+<blockquote>
+<p><strong>Note:</strong> The sample pictures library is typically present in most Windows installations and is located at <em>&quot;%PUBLIC%\Pictures\Sample Pictures&quot;</em>. It contains a small set of image files. If this folder is not available in your environment, you may substitute it with any folder that contains a suitable collection of JPEG or PNG image files, for example, those found in <em>Assets\Images</em> in the <em>Source</em> folder of this lab.</p>
+</blockquote>
+<p><img src="Images/sample-pictures-library-in-windows.png?raw=true" alt="Sample pictures" />
+</p>
+
+<p><em>Sample pictures</em></p></li>
+<li><p>Copy one or more files from the pictures library to the simulated cloud drive that you determined previously.</p></li>
+<li><p>Switch back to the browser window showing the contents of the image store and refresh the page. Notice that the updated page shows the files that you copied in the previous step.</p>
+
+<p><img src="Images/application-showing-the-updated-contents-of-t.png?raw=true" alt="Application showing the updated contents of the Windows Azure Drive" />
+</p>
+
+<p><em>Application showing the updated contents of the Windows Azure Drive</em></p></li>
+<li><p>Close the browser window.</p></li>
+</ol>
+
+<p><a name="Ex4Task3"></a></p>
+
+<h4 id="Task_3_-_Creating_a_New_Drive_in_the_Cloud">Task 3 - Creating a New Drive in the Cloud</h4>
+
+<p>In this task, you update the application to create a new drive in the cloud, mount it, and then copy the contents of the original drive into it.</p>
+
+<ol>
+<li><p>In <strong>Solution Explorer</strong>, right-click <strong>Default.aspx</strong> and then select <strong>View Markup</strong>.</p></li>
+<li><p>Insert the highlighted markup inside the body of the page, between the <strong>h1</strong> and <strong>h2</strong> heading tags, as shown below.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex4-05-MountedDrives Panel</em>)</p>
+
+<!--mark: 9-15   -->
+
+<span class="codelanguage">HTML</span><pre><code class="HTML">...
+<span style="color:#0000FF">&lt;</span><span style="color:#C71585">asp</span>:<span style="color:#800000">Content</span> <span style="color:#FF0000">runat</span>=<span style="color:#0000FF">&quot;server&quot;</span> <span style="color:#FF0000">ID</span>=<span style="color:#0000FF">&quot;BodyContent&quot;</span> <span style="color:#FF0000">ContentPlaceHolderID</span>=<span style="color:#0000FF">&quot;MainContent&quot;</span><span style="color:#0000FF">&gt;</span>
+    <span style="color:#0000FF">&lt;</span><span style="color:#800000">style</span> <span style="color:#FF0000">type</span>=<span style="color:#0000FF">&quot;text/css&quot;</span><span style="color:#0000FF">&gt;</span>
+        ...
+    <span style="color:#0000FF">&lt;/</span><span style="color:#800000">style</span><span style="color:#0000FF">&gt;</span>
+
+    <span style="color:#0000FF">&lt;</span><span style="color:#800000">div</span><span style="color:#0000FF">&gt;</span>
+        <span style="color:#0000FF">&lt;</span><span style="color:#800000">h1</span><span style="color:#0000FF">&gt;</span>PhotoAlbum<span style="color:#0000FF">&lt;/</span><span style="color:#800000">h1</span><span style="color:#0000FF">&gt;</span>        
+<strong class="markLine">        <span style="color:#0000FF">&lt;</span><span style="color:#C71585">asp</span>:<span style="color:#800000">Panel</span> <span style="color:#FF0000">ID</span>=<span style="color:#0000FF">&quot;SelectDrive&quot;</span> <span style="color:#FF0000">runat</span>=<span style="color:#0000FF">&quot;server&quot;</span> <span style="color:#FF0000">Visible</span>=<span style="color:#0000FF">&quot;false&quot;</span><span style="color:#0000FF">&gt;</span></strong>
+<strong class="markLine">        <span style="color:#0000FF">&lt;</span><span style="color:#C71585">asp</span>:<span style="color:#800000">LinkButton</span> <span style="color:#FF0000">ID</span>=<span style="color:#0000FF">&quot;NewDrive&quot;</span> <span style="color:#FF0000">runat</span>=<span style="color:#0000FF">&quot;server&quot;</span> <span style="color:#FF0000">Text</span>=<span style="color:#0000FF">&quot;New Drive&quot;</span> <span style="color:#FF0000">onclick</span>=<span style="color:#0000FF">&quot;NewDrive_Click&quot;</span> <span style="color:#FF0000">CssClass</span>=<span style="color:#0000FF">&quot;newdrive&quot;</span> <span style="color:#0000FF">/&gt;</span></strong>
+<strong class="markLine">        Mounted Drives: </strong>
+<strong class="markLine">        <span style="color:#0000FF">&lt;</span><span style="color:#C71585">asp</span>:<span style="color:#800000">DropDownList</span> <span style="color:#FF0000">ID</span>=<span style="color:#0000FF">&quot;MountedDrives&quot;</span> <span style="color:#FF0000">runat</span>=<span style="color:#0000FF">&quot;server&quot;</span> <span style="color:#FF0000">AutoPostBack</span>=<span style="color:#0000FF">&quot;true&quot;</span></strong>
+<strong class="markLine">                        <span style="color:#FF0000">DataTextField</span>=<span style="color:#0000FF">&quot;Name&quot;</span> <span style="color:#FF0000">DataValueField</span>=<span style="color:#0000FF">&quot;Value&quot;</span></strong>
+<strong class="markLine">                        <span style="color:#FF0000">OnSelectedIndexChanged</span>=<span style="color:#0000FF">&quot;MountedDrives_SelectedIndexChanged&quot;</span> <span style="color:#0000FF">/&gt;</span></strong>
+<strong class="markLine">        <span style="color:#0000FF">&lt;/</span><span style="color:#C71585">asp</span>:<span style="color:#800000">Panel</span><span style="color:#0000FF">&gt;</span></strong>
+        <span style="color:#0000FF">&lt;</span><span style="color:#800000">h3</span><span style="color:#0000FF">&gt;</span>Image Store Drive: (<span style="background-color:#FFFF00; color:Black">&lt;%</span>=this.CurrentPath<span style="background-color:#FFFF00; color:Black">%&gt;</span>)<span style="color:#0000FF">&lt;/</span><span style="color:#800000">h3</span><span style="color:#0000FF">&gt;</span>
+        <span style="color:#0000FF">&lt;</span><span style="color:#C71585">asp</span>:<span style="color:#800000">GridView</span> <span style="color:#FF0000">DataSourceID</span>=<span style="color:#0000FF">&quot;LinqDataSource1&quot;</span> <span style="color:#FF0000">AutoGenerateColumns</span>=<span style="color:#0000FF">&quot;False&quot;</span> 
+...
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> The markup above displays a drop down list that enumerates the drives that the web role has mounted as well as a link button that triggers the creation of a new Windows Azure drive.</p>
+</blockquote></li>
+<li><p>In <strong>Solution Explorer</strong>, right-click <strong>Default.aspx</strong> and then select <strong>View Code</strong> to open its code-behind file.</p></li>
+<li><p>Add the following namespace directives at the top of the file to declare the Windows Azure supporting assemblies.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex4-06-AzureNamespaces-CS</em>)</p>
+
+<!--mark: 1-4   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure.Diagnostics;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure.ServiceRuntime;</strong>
+<strong class="markLine"><span style="color:#0000FF">using</span> Microsoft.WindowsAzure.StorageClient;</strong>
+</code></pre></li>
+<li><p>Locate the <strong>Page_PreRender</strong> method and insert the following highlighted code at the end of the method, as shown below.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex4-07-Page_PreRender-CS</em>)</p>
+
+<!--mark: 5-19   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><span style="color:#0000FF">protected</span> <span style="color:#0000FF">void</span> Page_PreRender(<span style="color:#0000FF">object</span> sender, EventArgs e)
+{
+  <span style="color:#0000FF">this</span>.GridView1.Columns[<span style="color:#0000FF">this</span>.GridView1.Columns.Count - 1].Visible = <span style="color:#0000FF">this</span>.CurrentPath != Global.ImageStorePath;
+
+<strong class="markLine">  <span style="color:#0000FF">if</span> (RoleEnvironment.IsAvailable)</strong>
+<strong class="markLine">  {</strong>
+<strong class="markLine">    <span style="color:#0000FF">this</span>.MountedDrives.DataSource = from item <span style="color:#0000FF">in</span> CloudDrive.GetMountedDrives()</strong>
+<strong class="markLine">                                    select <span style="color:#0000FF">new</span></strong>
+<strong class="markLine">                                    {</strong>
+<strong class="markLine">                                        Name = item.Key + <span style="color:#8B0000">&quot; =&gt; &quot;</span> + item.Value,</strong>
+<strong class="markLine">                                        Value = item.Key</strong>
+<strong class="markLine">                                    };</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">    <span style="color:#0000FF">this</span>.MountedDrives.DataBind();</strong>
+<strong class="markLine">    <span style="color:#0000FF">this</span>.MountedDrives.SelectedValue = <span style="color:#0000FF">this</span>.CurrentPath;</strong>
+<strong class="markLine">    <span style="color:#0000FF">this</span>.SelectDrive.Visible = <span style="color:#0000FF">true</span>;</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">    <span style="color:#0000FF">this</span>.NewDrive.Text = <span style="color:#0000FF">this</span>.MountedDrives.Items.Count &lt; 2 ? <span style="color:#8B0000">&quot;New Drive&quot;</span> : <span style="color:#8B0000">&quot;Delete Drive&quot;</span>;</strong>
+<strong class="markLine">  }</strong>
+}
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> The preceding code populates a drop down list with the drives currently mounted by the web role. The drop down shows the mapping between the page blob URI and the corresponding drive letter for the mounted drive.</p>
+</blockquote></li>
+<li><p>Add code to implement an event handler for the <strong>New Drive</strong> link button. To do this, paste the following code into the <strong>_Default</strong> class.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex4-08-NewDrive_Click-CS</em>)</p>
+
+<!--mark: 1-45   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">protected</span> <span style="color:#0000FF">void</span> NewDrive_Click(<span style="color:#0000FF">object</span> sender, EventArgs e)</strong>
+<strong class="markLine">{</strong>
+<strong class="markLine">  <span style="color:#0000FF">if</span> (RoleEnvironment.IsAvailable)</strong>
+<strong class="markLine">  {</strong>
+<strong class="markLine">    <span style="color:#008000">// retrieve storage account</span></strong>
+<strong class="markLine">    CloudStorageAccount account = CloudStorageAccount.FromConfigurationSetting(<span style="color:#8B0000">&quot;DataConnectionString&quot;</span>);</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">    <span style="color:#008000">// build page blob URI for the new cloud drive by changing the extension in the original URI</span></strong>
+<strong class="markLine">    <span style="color:#0000FF">string</span> imageStoreBlobUri = RoleEnvironment.GetConfigurationSettingValue(<span style="color:#8B0000">&quot;ImageStoreBlobUri&quot;</span>);</strong>
+<strong class="markLine">    <span style="color:#0000FF">string</span> cloneStoreBlobUri = Path.ChangeExtension(imageStoreBlobUri, <span style="color:#8B0000">&quot;bak&quot;</span>);                </strong>
+<strong class="markLine"></strong>
+<strong class="markLine">    <span style="color:#008000">// create drive and its associated page blob</span></strong>
+<strong class="markLine">    CloudDrive clonedDrive = account.CreateCloudDrive(cloneStoreBlobUri);</strong>
+<strong class="markLine">    <span style="color:#0000FF">if</span> (<span style="color:#0000FF">this</span>.MountedDrives.Items.Count &lt; 2)</strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">      <span style="color:#0000FF">try</span></strong>
+<strong class="markLine">      {</strong>
+<strong class="markLine">        clonedDrive.Create(16);</strong>
+<strong class="markLine">      }</strong>
+<strong class="markLine">      <span style="color:#0000FF">catch</span> (CloudDriveException)</strong>
+<strong class="markLine">      {</strong>
+<strong class="markLine">        <span style="color:#008000">// cloud drive already exists</span></strong>
+<strong class="markLine">      }</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">      <span style="color:#008000">// mount the drive and retrieve its path</span></strong>
+<strong class="markLine">      LocalResource cache = RoleEnvironment.GetLocalResource(<span style="color:#8B0000">&quot;LocalDriveCache&quot;</span>);</strong>
+<strong class="markLine">      <span style="color:#0000FF">string</span> clonedStorePath = clonedDrive.Mount(cache.MaximumSizeInMegabytes / 2, DriveMountOptions.None);</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">      <span style="color:#008000">// copy the contents from the original drive to the new drive                </span></strong>
+<strong class="markLine">      <span style="color:#0000FF">foreach</span> (<span style="color:#0000FF">string</span> sourceFileName <span style="color:#0000FF">in</span> Directory.GetFiles(Global.ImageStorePath, <span style="color:#8B0000">&quot;*.*&quot;</span>).Where(name =&gt; name.EndsWith(<span style="color:#8B0000">&quot;.jpg&quot;</span>) || name.EndsWith(<span style="color:#8B0000">&quot;.png&quot;</span>)))</strong>
+<strong class="markLine">      {</strong>
+<strong class="markLine">        <span style="color:#0000FF">string</span> destinationFileName = Path.Combine(clonedStorePath, Path.GetFileName(sourceFileName));</strong>
+<strong class="markLine">        File.Copy(sourceFileName, destinationFileName, <span style="color:#0000FF">true</span>);</strong>
+<strong class="markLine">      }</strong>
+<strong class="markLine"></strong>
+<strong class="markLine">      <span style="color:#0000FF">this</span>.SelectImageStore(clonedStorePath);</strong>
+<strong class="markLine">    }</strong>
+<strong class="markLine">    <span style="color:#0000FF">else</span></strong>
+<strong class="markLine">    {</strong>
+<strong class="markLine">      clonedDrive.Unmount();</strong>
+<strong class="markLine">      clonedDrive.Delete();</strong>
+<strong class="markLine">      <span style="color:#0000FF">this</span>.SelectImageStore(Global.ImageStorePath);</strong>
+<strong class="markLine">    }</strong>
+<strong class="markLine">  }</strong>
+<strong class="markLine">}</strong>
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> The preceding code checks if it has already mounted a second drive and if not, it creates a new NTFS formatted cloud drive and its associated page blob. It then copies the contents of the originally mounted drive into this second drive. If the drive already exists, it first unmounts it and then deletes it.</p>
+</blockquote></li>
+<li><p>Finally, add an event handler for the <strong>SelectedIndexChanged</strong> event of the mounted drives drop down list. To do this, insert the following method into the <strong>_Default</strong> class.</p>
+
+<p>(Code Snippet - <em>ExploringStorage-Ex4-09-MountedDrives_SelectedIndexChanged-CS</em>)</p>
+
+<!--mark: 1-4   -->
+
+<span class="codelanguage">C#</span><pre><code class="C#"><strong class="markLine"><span style="color:#0000FF">protected</span> <span style="color:#0000FF">void</span> MountedDrives_SelectedIndexChanged(<span style="color:#0000FF">object</span> sender, EventArgs e)</strong>
+<strong class="markLine">{</strong>
+<strong class="markLine">  <span style="color:#0000FF">this</span>.SelectImageStore(<span style="color:#0000FF">this</span>.MountedDrives.SelectedValue);</strong>
+<strong class="markLine">}</strong>
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> The preceding code triggers a redirection that will refresh the contents of the page and show the directory of the newly selected drive.</p>
+</blockquote></li>
+<li><p>You are now ready to test the changes to the solution. Press <strong>F5</strong> to launch the application in the compute emulator. When the applications starts, notice that the <strong>Mounted Drives</strong> drop down list shows the letter assigned to the drive and the corresponding URL of the page blob that provides backing storage.</p>
+
+<p><img src="Images/application-showing-currently-mounted-drives.png?raw=true" alt="Application showing currently mounted drives" />
+</p>
+
+<p><em>Application showing currently mounted drives</em></p></li>
+<li><p>Click the <strong>New Drive</strong> link to create a new drive and copy the contents of the original drive into it. After you create the drive, the page refreshes and shows the contents of the new drive. Notice that the drop down list of mounted drives now shows the second drive.</p>
+
+<p><img src="Images/application-showing-the-newly-created-drive.png?raw=true" alt="Application showing the newly created drive" />
+</p>
+
+<p><em>Application showing the newly created drive</em></p></li>
+<li><p>Delete one or more files in the new drive by clicking the <strong>Delete</strong> link.</p>
+
+<p><img src="Images/deleting-files-in-the-second-drive.png?raw=true" alt="Deleting files in the second drive" />
+</p>
+
+<p><em>Deleting files in the second drive</em></p></li>
+<li><p>Now, choose the original drive in the <strong>Mounted Drives</strong> drop down list and verify that its contents are intact.</p></li>
+<li><p>Finally, click <strong>Delete Drive</strong> to unmount the drive and delete its corresponding page blob.</p>
+
+<p><img src="Images/unmounting-the-drive-and-deleting-it.png?raw=true" alt="Unmounting the drive and deleting it" />
+</p>
+
+<p><em>Unmounting the drive and deleting it</em></p></li>
+<li><p>Close the browser window. You will now deploy and test the application in Windows Azure.</p></li>
+</ol>
+
+<p><a name="Ex4Task4"></a></p>
+
+<h4 id="Task_4_-_Creating_an_NTFS_Formatted_VHD_on_Your_Local_Machine">Task 4 - Creating an NTFS Formatted VHD on Your Local Machine</h4>
+
+<p>So far, you have explored Windows Azure Drives using the simulated environment provided by the compute emulator. When you deploy the application to the Windows Azure environment, you need a mechanism to upload the information used by the application to blob storage. One alternative is creating a Virtual Hard Drive (VHD) locally in your machine, copying the required information, and then uploading the VHD file to a Windows Azure page blob.</p>
+
+<p>In this task, you create an NTFS-formatted VHD file to contain sample images that you can upload to Windows Azure Storage and then use as the backing store for a Windows Azure Drive.</p>
+<blockquote>
+<p><strong>Note:</strong> This task is optional and is dependent on a feature that is currently available only in Windows 7 and Windows Server 2008 R2. If you do not have these operating system versions, you may skip this task and use the pre-built VHD included in the lab's <em>Assets</em> folder instead.</p>
+
+<p><strong>Important:</strong> To complete the remaining tasks in this exercise, you require a valid Windows Azure subscription.
+For more information, visit the <a href="http://www.microsoft.com/windowsazure/">Windows Azure Portal</a>.</p>
+</blockquote>
+<ol>
+<li><p>Open the <strong>Disk Management</strong> console. To do this, press <strong>Start</strong>, type <strong>diskmgmt.msc</strong>, and then click <strong>diskmgmt.msc</strong>.</p>
+
+<p><img src="Images/launching-the-disk-management-console.png?raw=true" alt="Launching the Disk Management console" />
+</p>
+
+<p><em>Launching the Disk Management console</em></p></li>
+<li><p>In the Disk Management console, open the <strong>Action</strong> menu and select <strong>Create VHD</strong>.</p></li>
+<li><p>In the <strong>Create and Attach Virtual Hard Disk</strong> dialog, click <strong>Browse</strong> and navigate to <strong>\Source\Ex4-WorkingWithDrives</strong>, set the file name to <strong>SamplePictures.vhd</strong> and click <strong>Save</strong>. Next, set the <strong>Virtual hard disk size</strong> to <em>16 MB</em>,  the <strong>Virtual hard disk format</strong> to <strong>VHD</strong> and the <strong>Virtual hard disk type</strong> to <strong>Fixed size</strong>, and then click <strong>OK</strong> to create and attach the virtual hard disk.</p>
+
+<p><img src="Images/creating-a-virtual-hard-disk-vhd.png?raw=true" alt="Creating a virtual hard disk (VHD)" />
+</p>
+
+<p><em>Creating a virtual hard disk (VHD)</em></p></li>
+<li><p>Before you can use the new disk, you need to initialize it. To do this, right-click the disk icon for the newly created disk in the lower pane of the <strong>Disk Management</strong> console and select <strong>Initialize Disk</strong>.</p>
+
+<p><img src="Images/initializing-the-virtual-hard-disk-vhd.png?raw=true" alt="Initializing the virtual hard disk (VHD)" />
+</p>
+
+<p><em>Initializing the virtual hard disk (VHD)</em></p></li>
+<li><p>In the <strong>Initialize Disk</strong> dialog, make sure to select the disk that corresponds to the attached VHD, set the partition style to <strong>MBR (Master Boot Record)</strong>, and then click <strong>OK</strong>.</p>
+
+<p><img src="Images/configuring-disk-initialization-options.png?raw=true" alt="Configuring disk initialization options" />
+</p>
+
+<p><em>Configuring disk initialization options</em></p></li>
+<li><p>Next, right-click the partition area in the attached virtual hard disk identified as unallocated and select <strong>New Simple Volume</strong>.</p>
+
+<p><img src="Images/creating-a-volume-in-the-virtual-hard-disk-vh.png?raw=true" alt="Creating a volume in the virtual hard disk (VHD)" />
+</p>
+
+<p><em>Creating a volume in the virtual hard disk (VHD)</em></p></li>
+<li><p>In the <strong>New Simple Volume Wizard</strong>, click <strong>Next</strong> to dismiss the Welcome page.</p>
+
+<p><img src="Images/new-simple-volume-wizard-welcome-page.png?raw=true" alt="New Simple Volume Wizard welcome page" />
+</p>
+
+<p><em>New Simple Volume Wizard welcome page</em></p></li>
+<li><p>Leave the <strong>Simple volume size</strong> unchanged-it should match the <strong>Maximum disk space</strong>-and click <strong>Next</strong> to proceed.</p>
+
+<p><img src="Images/specifying-the-size-of-the-disk-volume.png?raw=true" alt="Specifying the size of the disk volume" />
+</p>
+
+<p><em>Specifying the size of the disk volume</em></p></li>
+<li><p>Next, assign a suitable drive letter and click <strong>Next</strong>.</p>
+
+<p><img src="Images/assigning-a-drive-letter-to-the-volume.png?raw=true" alt="Assigning a drive letter to the volume" />
+</p>
+
+<p><em>Assigning a drive letter to the volume</em></p></li>
+<li><p>Now, choose to format the new partition. Set the <strong>File system</strong> to <em>NTFS</em>, leave the default <strong>Allocation unit size</strong> unchanged and set the <strong>Volume label</strong> to <em>SamplePictures</em>. Make sure that you check the option labeled <strong>Perform a quick format</strong> and leave the <strong>Enable file and folder compression</strong> option turned off. Click <strong>Next</strong> to proceed.</p>
+
+<p><img src="Images/formatting-the-new-disk-partition.png?raw=true" alt="Formatting the new disk partition" />
+</p>
+
+<p><em>Formatting the new disk partition</em></p>
+<blockquote>
+<p><strong>Note:</strong> Currently, Windows Azure Drives require an NTFS-formatted Virtual Hard Drive (VHD). </p>
+</blockquote></li>
+<li><p>Finally, verify the information presented by the wizard in its summary screen and click <strong>Finish</strong> to create the new volume.</p>
+
+<p><img src="Images/completing-the-new-simple-volume-wizard.png?raw=true" alt="Completing the New Simple Volume Wizard" />
+</p>
+
+<p><em>Completing the New Simple Volume Wizard</em></p></li>
+<li><p>Wait for the formatting process to complete-it should only take a few seconds. If enabled, <strong>AutoPlay</strong> then prompts you to view the files in the newly attached disk. If that is the case, click <strong>Open folder to view files</strong>. Otherwise, right-click the volume in the Disk Management console and select <strong>Open</strong> to show the contents of the new VHD drive. Leave this new window open for the time being.</p></li>
+<li><p>Now, open the <strong>Start</strong> menu, select <strong>Pictures</strong> to open your pictures library and then browse to the <strong>Sample Pictures</strong> folder to view the sample image files.</p>
+<blockquote>
+<p><strong>Note:</strong> If this folder is not available in your environment, you may substitute it with any folder that contains a suitable collection of JPEG or PNG image files, for example, those found in <em>Assets\Images</em> in the <em>Source</em> folder of this lab.</p>
+</blockquote></li>
+<li><p>Next, copy and paste all the files from the <strong>Sample Pictures</strong> folder into the first window to copy all the images contained in this folder into the VHD drive. If the drive becomes full, do not worry. You only require a few files to test the application.</p></li>
+<li><p>Switch back to the Disk Management console, right-click the attached disk-make sure to point to the disk and not the partition area-and then select <strong>Detach VHD</strong>.</p>
+
+<p><img src="Images/preparing-to-detach-the-virtual-hard-disk-vhd.png?raw=true" alt="Preparing to detach the virtual hard disk (VHD) file" />
+</p>
+
+<p><em>Preparing to detach the virtual hard disk (VHD) file</em></p></li>
+<li><p>In the <strong>Detach Virtual Hard Disk</strong> dialog, make sure not to check the option labeled <strong>Delete the virtual hard disk file after removing the disk</strong> and then click <strong>OK</strong>.</p>
+
+<p><img src="Images/detaching-a-virtual-hard-disk.png?raw=true" alt="Detaching a virtual hard disk" />
+</p>
+
+<p><em>Detaching a virtual hard disk</em></p></li>
+<li><p>You are now ready to upload the virtual hard disk (VHD) file to Windows Azure Storage.</p></li>
+</ol>
+
+<p><a name="Ex4Task5"></a></p>
+
+<h4 id="Task_5_-_Deploying_the_Application_and_Uploading_the_Drive_to_Windows_Azure">Task 5 - Deploying the Application and Uploading the Drive to Windows Azure</h4>
+
+<p>In this task, you upload the NTFS-formatted Virtual Hard Drive (VHD) created previously to a Windows Azure Page Blob. The lab material includes a tool that you can use for this purpose.</p>
+
+<ol>
+<li><p>Before you access your Windows Azure Storage account to upload the VHD file, you need to determine the name and primary key of the account. To obtain your storage account information, sign in at the Windows Azure Management Portal <a href="http://manage.windowsazure.com/">http://manage.windowsazure.com/</a>.</p></li>
+<li><p>Click <strong>Storage</strong> and then select your account from the list. Take note of the account <strong>name</strong>.</p>
+
+<p><img src="Images/viewing-windows-azure-storage-accounts.png?raw=true" alt="Viewing Windows Azure storage accounts" title="Viewing Windows Azure storage accounts" />
+</p>
+
+<p><em>Viewing storage accounts</em></p></li>
+<li><p>Click <strong>Manage Keys</strong> within the bottom menu and take note of the storage account's <strong>Primary Key</strong> (you will use this value later in this exercise).</p>
+
+<p><img src="Images/manage-keys.png?raw=true" alt="Manage keys" title="Manage keys" />
+</p>
+
+<p><em>Manage Keys</em></p>
+
+<p><img src="Images/viewing-windows-azure-storage-account-informa.png?raw=true" alt="Viewing Windows Azure storage account information" />
+</p>
+
+<p><em>Viewing Windows Azure storage account information</em></p></li>
+<li><p>Next, open a command prompt and change the current directory to <em>\Source\Assets\VHDUpload</em>.</p></li>
+<li><p>At the command prompt, type the following command line replacing <em>&lt;vhdFilePath&gt;</em> with the path to the VHD file created in task 4, and <strong>&lt;accountName&gt;</strong> and <strong>&lt;accountKey&gt;</strong> with the name and the primary access key of your Windows Azure storage account , respectively. </p>
+<blockquote>
+<p><strong>Note:</strong> If you are currently on a platform that does not support creating and mounting VHD files and you were unable to complete the previous task, use the <strong>SamplePictures.vhd</strong> file located in the same folder as the tool instead.</p>
+</blockquote>
+<!--mark: 1   -->
+
+<span class="codelanguage">CommandPrompt</span><pre><code class="CommandPrompt"><strong class="markLine">VHDUPLOAD &lt;vhdFilePath&gt; mydrives/SamplePictures.vhd &lt;accountName&gt; &lt;accountKey&gt;</strong>
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> The Blob service URI that specifies the location of the .vhd file in blob storage is case sensitive. Make sure that you enter the value exactly as shown.        </p>
+</blockquote></li>
+<li><p>Press <strong>Enter</strong> to start uploading the virtual hard disk (VHD) file to blob storage. Wait for the process to complete; it may take several minutes</p>
+
+<p><img src="Images/uploading-a-vhd-file-to-a-windows-azure-page.png?raw=true" alt="Uploading a VHD file to a Windows Azure page blob" />
+</p>
+
+<p><em>Uploading a VHD file to a Windows Azure page blob</em></p></li>
+<li><p>Now that you have uploaded the VHD file to Azure Storage, you are ready to deploy the application.</p></li>
+<li><p>Switch back to Visual Studio.</p></li>
+<li><p>First, you need to update the web role configuration with your storage account information. To do this, expand the <strong>Roles</strong> node in the <strong>PhotoAlbumService</strong> project and double-click the <strong>PhotoAlbum</strong> role to open its properties window. </p></li>
+<li><p>In the <strong>PhotoAlbum [Role]</strong> window, switch to the <strong>Settings</strong> tab, locate the <em>Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString</em> setting and then click the button labeled with an ellipsis, on the right edge of the row. In the <strong>Storage Connection String</strong> dialog, choose <strong>Manually entered credentials</strong> and enter the <strong>Account name</strong> and <strong>Account key</strong> for your Windows Azure storage account. In the <strong>Connection</strong> area, make sure that the <strong>Use HTTP</strong> option is selected, and click <strong>OK</strong>.</p></li>
+<li><p>Repeat the previous step to configure the <em>DataConnectionString</em> setting. Enter the same information used previously except for the <strong>Connection</strong> setting, which should be set to <strong>Use HTTP</strong>.</p>
+
+<p><img src="Images/configuring-the-storage-account-for-the-cloud.png?raw=true" alt="Configuring the storage account for the cloud drive to use HTTP endpoints" />
+</p>
+
+<p><em>Configuring the storage account for the cloud drive to use HTTP endpoints</em></p>
+<blockquote>
+<p><strong>Note:</strong> Windows Azure Drives only support HTTP endpoints currently.</p>
+</blockquote></li>
+<li><p>Now that you have configured the application with the settings for your storage account, you can proceed to deploy it. To create a service package, right-click the <strong>PhotoAlbumService</strong> cloud service project and select <strong>Package</strong>. </p>
+<blockquote>
+<p><strong>Note:</strong> For additional information about deploying your application to Windows Azure, see the <strong>Windows Azure Deployment</strong> hands-on lab in this training kit. In particular, Exercise 3 of this lab discusses deploying applications from Visual Studio.</p>
+</blockquote>
+<p><img src="Images/creating-a-service-package-in-visual-studio.png?raw=true" alt="Creating a service package in Visual Studio" />
+</p>
+
+<p><em>Creating a service package in Visual Studio</em></p></li>
+<li><p>In the <strong>Package Windows Azure Application</strong> dialog box, click <strong>Package</strong> to generate the package. This opens Windows Explorer to a folder within your solution folders that contains the generated package. Although you could use the integrated deployment feature in the Windows Azure Tools to publish the service to Windows Azure directly from Visual Studio, in this lab, you deploy it using the Windows Azure Management Portal.</p></li>
+<li><p>To deploy the service package, go to the <a href="https://manage.windowsazure.com/">Management Portal</a> and sign in. </p></li>
+<li><p>At the portal, select the project where you will deploy your application. If you have not previously created a service, you will need to create one at this time; otherwise, you may use an existing service. In that case, skip the following steps and go directly to step 20. </p></li>
+<li><p>Create the compute component that executes the application code. To do this, click <strong>New</strong> | <strong>Compute</strong> | <strong>Cloud Service</strong> | <strong>Custom Create</strong>.</p>
+
+<p><img src="Images/creating-a-new-cloud-service.png?raw=true" alt="Creating a new cloud service" title="Creating a new cloud service" />
+</p>
+
+<p><em>Creating a new cloud service</em></p></li>
+<li><p>In the <strong>Create a cloud service</strong> dialog, select a unique <strong>URL</strong> prefix for your service and then choose an available <strong>Region/Affinity Group</strong> from the list.</p></li>
+<li><p>Select <strong>Deploy a Cloud Service package now</strong> and continue to the next step.</p>
+
+<p><img src="Images/create-your-cloud-service.png?raw=true" alt="Create Your Cloud Service" title="Create Your Cloud Service" />
+</p>
+
+<p><em>Create a cloud service</em></p></li>
+<li><p>In the <strong>Publish your cloud service</strong> page, select a <strong>Deployment Name</strong> and then, select the Package <strong>(.cspkg)</strong> and Configuration <strong>(.cscfg)</strong> files that you generated in Visual Studio: you can find them in the file system location indicated by the Windows Explorer window that opened when you published the package.</p></li>
+<li><p>Finally, set the <strong>Environment</strong> where you want to deploy the application <em>(Production or Staging)</em>, select <strong>Deploy even if one or more roles contain a single instance</strong> and finish the wizard.</p>
+
+<p><img src="Images/publish-your-cloud-service.png?raw=true" alt="Publish your cloud service" title="Publish your cloud service" />
+</p>
+
+<p><em>Publish your cloud service</em></p>
+<blockquote>
+<p><strong>Note:</strong> A Windows Azure virtual machine runs a guest operating system into which your service application is deployed. To support the Windows Azure Drive feature, the operating system version must be compatible with the Windows Azure SDK version 1.8. For information on available versions of the Windows Azure guest operating system, see <a href="http://msdn.microsoft.com/en-us/library/ee924680(v=MSDN.10).aspx"><a href="http://msdn.microsoft.com/en-us/library/ee924680(v=MSDN.10).aspx">http://msdn.microsoft.com/en-us/library/ee924680(v=MSDN.10).aspx</a></a>.</p>
+
+<p>In general, it is recommended to use the latest available OS to take advantage of new features and security fixes. If you do not specify a version in your configuration file, the OS upgrade method is set to automatic and Windows Azure automatically upgrades your VMs to the latest release of the guest OS, once it becomes available. For this lab, you will not choose a specific version and instead use automatic upgrade mode to ensure that the application runs under a guest OS that supports Windows Azure Drives.</p>
+</blockquote></li>
+<li><p>Wait for the transfer to complete. The status of the service should show <strong>Created</strong> when completed.</p></li>
+<li><p>Now, click <strong>URL</strong> link within your recently deployed service to open the application in your browser. The application should behave in essentially the same manner as it did when you deployed it locally. However, notice that the URL of the page blob for the mounted drive is now pointing to the page blob where you uploaded the VHD file.</p>
+
+<p><img src="Images/running-the-application-in-the-windows-azure.png?raw=true" alt="Running the application in the Windows Azure environment" />
+</p>
+
+<p><em>Running the application in the Windows Azure environment</em></p></li>
+</ol>
+
+<hr />
+
+<p><a name="Summary"></a></p>
+
+<h2 id="Summary">Summary</h2>
+
+<p>In this lab, you have learned how to work with the Windows Azure Storage using tables, blobs, queues and drives.</p>
+
+<p>Tables store data as collections of entities. Entities are similar to rows. An entity has a primary key and a set of properties. A property is a name/value pair, similar to a column.</p>
+
+<p>Blobs can store any binary data. In this lab, you have used the Blob service to store and show images and associate metadata using a Web application.</p>
+
+<p>Using queues, you have seen how to dispatch simple messages (with string, xml or binary content). This is an excellent way of enabling communication between web and worker roles.</p>
+
+<p>Finally, you explored the use of Windows Azure Drives that allow you to read and write data to blob storage using standard file system functions.</p>
+
+</span>
+		</div>
+	<br />
+	<p><a href="#top">top of page</a></p>
+
+
+				</div>
+			</section>
+			<footer>
+				<div class="footer-sitemap" style="border-top:0"></div>
+				<div class="footer-bottom">
+					<ul>
+						<li class="footer-copyright"><a href="http://www.microsoft.com"><img alt="microsoft" src="images/microsoft.png" /></a></li>					
+												<li><a href="https://github.com/WindowsAzure-TrainingKit/HOL-ExploringStorage-VS2012/issues" target="_new">File an Issue</a></li>
+												<li><a href="mailto:azcfeed@microsoft.com?subject=Windows Azure Training Kit">Contact Us</a></li>
+						<li><a href="EULA.htm">Terms of Use</a></li>
+						<li><a href=".\">Browse Content</a></li>
+						<li>&copy; 2012 Microsoft</li>
+					</ul>
+				</div>
+			</footer>
+			</div>
+        </div>
+    </div>
+</body>
+</html>
+

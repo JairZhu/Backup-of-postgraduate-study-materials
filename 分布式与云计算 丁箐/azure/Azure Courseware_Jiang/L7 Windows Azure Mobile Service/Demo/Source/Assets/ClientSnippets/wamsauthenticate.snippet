@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>wamsauthenticate</Title>
+      <Author>Nick Harris http://twitter.com/cloudnick</Author>
+      <Description>
+      </Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>wamsauthenticate</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="csharp"><![CDATA[//TODO:update OnNavigatedTo to be an async method then add call to await Authenticate();
+	await App.MobileService.LoginAsync(MobileServiceAuthenticationProvider.MicrosoftAccount);]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

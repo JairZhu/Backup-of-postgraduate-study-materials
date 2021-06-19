@@ -1,0 +1,1 @@
+This is from Windows Azure Training Kit. We suggest you take exercise 2 as homework, exercise 1 as demo.

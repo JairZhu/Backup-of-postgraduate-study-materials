@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition name="AzureTalk" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
+  <WorkerRole name="AzureTalk.Service" enableNativeCodeExecution="true">
+    <ConfigurationSettings>
+      <Setting name="DiagnosticsConnectionString" />
+    </ConfigurationSettings>
+    <Endpoints>
+      <InputEndpoint name="ChatService" port="3030" protocol="tcp" />
+    </Endpoints>
+  </WorkerRole>
+</ServiceDefinition>

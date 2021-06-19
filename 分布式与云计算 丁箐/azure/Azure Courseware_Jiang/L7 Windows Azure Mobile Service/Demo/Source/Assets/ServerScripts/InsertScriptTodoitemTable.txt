@@ -1,0 +1,33 @@
+function insert(item, user, request) {
+    request.execute({
+        success: function(){
+				request.respond();
+				sendNotifications(item);
+        },
+        error: function(err){
+				request.respond(500, "Error");
+        }
+    });
+}
+
+function sendNotifications(item){               
+    var channelTable = tables.getTable('Channel'); 
+        channelTable.read({ 
+            success: function(channels){
+                channels.forEach(function(channel){
+                    push.wns.sendToastText04(channel.Uri, {
+                        text1: item.text,
+                        text2: "text line 2",
+                        text3:  "text line 3"
+                    }, {
+                        success: function(response){                                               
+                            console.log(response);
+                        },                                   
+                        error: function(err){                                               
+                            console.error(err);                       
+                        }                    
+                    });
+                });
+            }        
+    });    
+}

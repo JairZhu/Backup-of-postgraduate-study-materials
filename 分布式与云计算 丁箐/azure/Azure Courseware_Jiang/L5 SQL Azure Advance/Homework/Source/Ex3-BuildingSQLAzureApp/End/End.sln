@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Web
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "AdventureWorks", "AdventureWorks\AdventureWorks.ccproj", "{ADDBE2CF-0EDC-4D3E-A371-C89CB7B072E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureWorksWeb", "AdventureWorksWeb\AdventureWorksWeb.csproj", "{0A1FCAEC-15FD-4693-BD59-016323C00E45}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C4554451-AA0B-45B6-8B6D-6B861B17C55E}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ADDBE2CF-0EDC-4D3E-A371-C89CB7B072E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADDBE2CF-0EDC-4D3E-A371-C89CB7B072E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADDBE2CF-0EDC-4D3E-A371-C89CB7B072E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADDBE2CF-0EDC-4D3E-A371-C89CB7B072E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A1FCAEC-15FD-4693-BD59-016323C00E45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A1FCAEC-15FD-4693-BD59-016323C00E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A1FCAEC-15FD-4693-BD59-016323C00E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A1FCAEC-15FD-4693-BD59-016323C00E45}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
