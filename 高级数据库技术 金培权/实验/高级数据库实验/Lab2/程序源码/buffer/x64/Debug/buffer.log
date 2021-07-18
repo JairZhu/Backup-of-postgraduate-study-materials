@@ -1,0 +1,14 @@
+﻿  buffer.cpp
+e:\高级数据库实验\adb-buffer-master\adb-buffer-master\buffer\buffer.cpp(62): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+e:\高级数据库实验\adb-buffer-master\adb-buffer-master\buffer\buffer.cpp(63): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+e:\高级数据库实验\adb-buffer-master\adb-buffer-master\buffer\buffer.cpp(64): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+e:\高级数据库实验\adb-buffer-master\adb-buffer-master\buffer\buffer.cpp(75): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+e:\高级数据库实验\adb-buffer-master\adb-buffer-master\buffer\buffer.cpp(76): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+e:\高级数据库实验\adb-buffer-master\adb-buffer-master\buffer\buffer.cpp(77): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+e:\高级数据库实验\adb-buffer-master\adb-buffer-master\buffer\buffer.cpp(78): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+e:\高级数据库实验\adb-buffer-master\adb-buffer-master\buffer\buffer.cpp(79): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+e:\高级数据库实验\adb-buffer-master\adb-buffer-master\buffer\buffer.cpp(80): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+e:\高级数据库实验\adb-buffer-master\adb-buffer-master\buffer\buffer.cpp(81): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+e:\高级数据库实验\adb-buffer-master\adb-buffer-master\buffer\buffer.cpp(84): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+e:\高级数据库实验\adb-buffer-master\adb-buffer-master\buffer\buffer.cpp(101): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  buffer.vcxproj -> E:\高级数据库实验\adb-buffer-master\adb-buffer-master\x64\Debug\buffer.exe
